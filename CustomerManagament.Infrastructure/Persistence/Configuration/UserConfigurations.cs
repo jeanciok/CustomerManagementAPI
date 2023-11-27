@@ -17,8 +17,14 @@ namespace CustomerManagament.Infrastructure.Persistence.Configuration
                 .HasKey(p => p.Id);
 
             builder
-                .HasOne(p => p.Tenant)
-                .WithMany()
+                .HasOne(u => u.Tenant)
+                .WithMany(t => t.Users)
+                .HasForeignKey(f => f.TenantId);
+
+            builder
+                .HasOne(u => u.Role)
+                .WithMany(r => r.Users)
+                .HasForeignKey(f => f.RoleId);
         }
     }
 }

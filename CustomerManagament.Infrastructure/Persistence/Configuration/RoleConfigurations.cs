@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 
 namespace CustomerManagament.Infrastructure.Persistence.Configuration
 {
-    public class TenantConfigurations : IEntityTypeConfiguration<Tenant>
+    public class RoleConfigurations : IEntityTypeConfiguration<Role>
     {
-        public void Configure(EntityTypeBuilder<Tenant> builder)
+        public void Configure(EntityTypeBuilder<Role> builder)
         {
             builder
-                .HasKey(p => p.TenantId);       
+                .HasKey(p => p.Id);
         }
     }
 }
