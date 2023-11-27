@@ -8,11 +8,10 @@ namespace CustomerManagement.Core.Entities
 {
     public class Customer : BaseEntity
     {
-        public Customer(Tenant tenant, string name, DateTime birthDate, string phoneNumber, string businessPhone, string homePhone, string cnpj, string cpf, string rg, string cep, 
+        public Customer(string name, DateTime birthDate, string phoneNumber, string businessPhone, string homePhone, string cnpj, string cpf, string rg, string cep, 
             string street, int number, string additional, CustomerGroup group, string email, string site, long description, string uRLPicture, City city, DateTime createdAt, 
             DateTime updatedAt, User userChange)
         {
-            Tenant = tenant;
             Name = name;
             BirthDate = birthDate;
             PhoneNumber = phoneNumber;
@@ -36,6 +35,7 @@ namespace CustomerManagement.Core.Entities
             UserChange = userChange;
         }
 
+        public Guid TenantId { get; set; }
         public Tenant Tenant { get; set; }
         public string Name { get; set; }
         public DateTime BirthDate { get; set; }

@@ -8,12 +8,12 @@ namespace CustomerManagement.Core.Entities
 {
     public class CustomerGroup : BaseEntity
     {
-        public CustomerGroup(Tenant tenant, string name)
+        public CustomerGroup(string name)
         {
-            Tenant = tenant;
             Name = name;
         }
 
+        public Guid TenantId { get; set; }
         public Tenant Tenant { get; set; }
         public string Name { get; set; }
     }

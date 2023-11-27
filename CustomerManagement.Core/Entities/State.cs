@@ -8,10 +8,10 @@ namespace CustomerManagement.Core.Entities
 {
     public class State : BaseEntity
     {
-        public State(string name, string uF)
+        public State(string name, string uf)
         {
             Name = name;
-            UF = uF;
+            UF = uf;
         }
 
         public string Name { get; set; }

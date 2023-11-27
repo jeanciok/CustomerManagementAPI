@@ -15,12 +15,12 @@ namespace CustomerManagament.Infrastructure.Persistence
         {
         }
 
-        public DbSet<Tenant> Tenant { get; set; }
-        public DbSet<Customer> Customer { get; set; }
-        public DbSet<User> User { get; set; }
-        public DbSet<Group> Group { get; set; }
-        public DbSet<Role> Role { get; set; }
-        public DbSet<Attachment> Attachment { get; set; }
+        public DbSet<Tenant> Tenants { get; set; }
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Group> Groups { get; set; }
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<Attachment> Attachments { get; set; }
         public DbSet<City> City { get; set; }
         public DbSet<State> State { get; set; }
     }
