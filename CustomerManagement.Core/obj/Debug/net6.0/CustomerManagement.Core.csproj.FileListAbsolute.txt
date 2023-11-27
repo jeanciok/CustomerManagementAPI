@@ -1,0 +1,12 @@
+C:\Users\Jean\source\repos\CustomerManagementAPI\CustomerManagement.Core\bin\Debug\net6.0\CustomerManagement.Core.deps.json
+C:\Users\Jean\source\repos\CustomerManagementAPI\CustomerManagement.Core\bin\Debug\net6.0\CustomerManagement.Core.dll
+C:\Users\Jean\source\repos\CustomerManagementAPI\CustomerManagement.Core\bin\Debug\net6.0\CustomerManagement.Core.pdb
+C:\Users\Jean\source\repos\CustomerManagementAPI\CustomerManagement.Core\obj\Debug\net6.0\CustomerManagement.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Jean\source\repos\CustomerManagementAPI\CustomerManagement.Core\obj\Debug\net6.0\CustomerManagement.Core.AssemblyInfoInputs.cache
+C:\Users\Jean\source\repos\CustomerManagementAPI\CustomerManagement.Core\obj\Debug\net6.0\CustomerManagement.Core.AssemblyInfo.cs
+C:\Users\Jean\source\repos\CustomerManagementAPI\CustomerManagement.Core\obj\Debug\net6.0\CustomerManagement.Core.csproj.CoreCompileInputs.cache
+C:\Users\Jean\source\repos\CustomerManagementAPI\CustomerManagement.Core\obj\Debug\net6.0\CustomerManagement.Core.sourcelink.json
+C:\Users\Jean\source\repos\CustomerManagementAPI\CustomerManagement.Core\obj\Debug\net6.0\CustomerManagement.Core.dll
+C:\Users\Jean\source\repos\CustomerManagementAPI\CustomerManagement.Core\obj\Debug\net6.0\refint\CustomerManagement.Core.dll
+C:\Users\Jean\source\repos\CustomerManagementAPI\CustomerManagement.Core\obj\Debug\net6.0\CustomerManagement.Core.pdb
+C:\Users\Jean\source\repos\CustomerManagementAPI\CustomerManagement.Core\obj\Debug\net6.0\ref\CustomerManagement.Core.dll

@@ -5,7 +5,9 @@ VisualStudioVersion = 17.8.34309.116
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomerManagementAPI", "CustomerManagementAPI\CustomerManagementAPI.csproj", "{5D59D2D9-DBBA-480B-8AE9-B2645CF7C5BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerManagement.Core", "CustomerManagement.Core\CustomerManagement.Core.csproj", "{C627533A-21E7-49B7-86F2-10333F02BC13}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomerManagement.Core", "CustomerManagement.Core\CustomerManagement.Core.csproj", "{C627533A-21E7-49B7-86F2-10333F02BC13}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerManagament.Infrastructure", "CustomerManagament.Infrastructure\CustomerManagament.Infrastructure.csproj", "{18026241-E03F-4A4B-B80F-5B51689251CE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{C627533A-21E7-49B7-86F2-10333F02BC13}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C627533A-21E7-49B7-86F2-10333F02BC13}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C627533A-21E7-49B7-86F2-10333F02BC13}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18026241-E03F-4A4B-B80F-5B51689251CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18026241-E03F-4A4B-B80F-5B51689251CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18026241-E03F-4A4B-B80F-5B51689251CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18026241-E03F-4A4B-B80F-5B51689251CE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

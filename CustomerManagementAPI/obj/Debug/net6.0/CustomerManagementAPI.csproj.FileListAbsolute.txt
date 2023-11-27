@@ -30,3 +30,4 @@ C:\Users\Jean\source\repos\CustomerManagementAPI\CustomerManagementAPI\obj\Debug
 C:\Users\Jean\source\repos\CustomerManagementAPI\CustomerManagementAPI\obj\Debug\net6.0\CustomerManagementAPI.pdb
 C:\Users\Jean\source\repos\CustomerManagementAPI\CustomerManagementAPI\obj\Debug\net6.0\CustomerManagementAPI.genruntimeconfig.cache
 C:\Users\Jean\source\repos\CustomerManagementAPI\CustomerManagementAPI\obj\Debug\net6.0\ref\CustomerManagementAPI.dll
+C:\Users\Jean\source\repos\CustomerManagementAPI\CustomerManagementAPI\obj\Debug\net6.0\CustomerManagementAPI.sourcelink.json
