@@ -19,6 +19,6 @@ namespace CustomerManagement.Core.Entities
         public string Name { get; set; }
         public Guid StateId { get; set; }
         public State State { get; set; }
-        //public ICollection<Customer> Customers { get; set; }
+        public ICollection<Customer> Customers { get; set; }
     }
 }

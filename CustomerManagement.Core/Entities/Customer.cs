@@ -11,8 +11,8 @@ namespace CustomerManagement.Core.Entities
         public Customer() { }
 
         public Customer(Guid tenantId, Tenant tenant, string name, DateTime birthDate, string phoneNumber, string businessPhone, 
-            string homePhone, string cNPJ, string cPF, string rG, string cEP, string street, int number, string additional, Guid groupId, 
-            CustomerGroup group, string email, string site, long description, string uRLPicture, Guid cityId, City city, DateTime createdAt, 
+            string homePhone, string cNPJ, string cPF, string rG, string cEP, string street, int number, string additional,
+            string email, string site, long description, string uRLPicture, Guid cityId, City city, DateTime createdAt, 
             DateTime updatedAt, ICollection<Attachment> attachments)
         {
             TenantId = tenantId;
@@ -29,8 +29,6 @@ namespace CustomerManagement.Core.Entities
             Street = street;
             Number = number;
             Additional = additional;
-            GroupId = groupId;
-            Group = group;
             Email = email;
             Site = site;
             Description = description;
@@ -56,8 +54,8 @@ namespace CustomerManagement.Core.Entities
         public string Street { get; set; }
         public int Number { get; set; }
         public string Additional { get; set; }
-        public Guid GroupId { get; set; }
-        public CustomerGroup Group { get; set; }
+        //public Guid GroupId { get; set; }
+        //public CustomerGroup Group { get; set; }
         public string Email { get; set; }
         public string Site { get; set; }
         public long Description { get; set; }

@@ -23,7 +23,7 @@ namespace CustomerManagement.Core.Entities
         public string Slug { get; set; }
 
         public ICollection<User> Users { get; set; }
-        //public ICollection<Customer> Customers { get; set; }
+        public ICollection<Customer> Customers { get; set; }
         public ICollection<CustomerGroup> CustomerGroups { get; set; }
     }
 }
