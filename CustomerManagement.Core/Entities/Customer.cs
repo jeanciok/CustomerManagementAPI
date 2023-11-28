@@ -32,7 +32,6 @@ namespace CustomerManagement.Core.Entities
             City = city;
             CreatedAt = createdAt;
             UpdatedAt = updatedAt;
-            UserChange = userChange;
         }
 
         public Guid TenantId { get; set; }
