@@ -4,17 +4,15 @@
     {
         public Attachment() { }
 
-        public Attachment(string name, string uRLFile, Guid customerId, Customer customer)
+        public Attachment(string name, string urlFile)
         {
             Name = name;
-            URLFile = uRLFile;
-            CustomerId = customerId;
-            Customer = customer;
+            UrlFile = urlFile;
         }
 
         public string Name { get; set; }
-        public string URLFile { get; set; }
-        public Guid CustomerId { get; set; }
-        public Customer Customer { get; set; }
+        public string UrlFile { get; set; }
+        //public Guid CustomerId { get; set; }
+        //public Customer Customer { get; set; }
     }
 }

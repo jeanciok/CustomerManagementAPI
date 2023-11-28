@@ -16,12 +16,12 @@ namespace CustomerManagament.Infrastructure.Persistence
         {
         }
 
-        //public DbSet<Tenant> Tenants { get; set; }
+        public DbSet<Tenant> Tenants { get; set; }
         //public DbSet<Customer> Customers { get; set; }
-        //public DbSet<User> Users { get; set; }
+        public DbSet<User> Users { get; set; }
         //public DbSet<Group> Groups { get; set; }
-        //public DbSet<Role> Roles { get; set; }
-        //public DbSet<Attachment> Attachments { get; set; }
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<Attachment> Attachments { get; set; }
         public DbSet<City> City { get; set; }
         public DbSet<State> State { get; set; }
 
@@ -37,6 +37,11 @@ namespace CustomerManagament.Infrastructure.Persistence
             //modelBuilder.ApplyConfiguration(new UserConfigurations());
             modelBuilder.ApplyConfiguration(new CityConfigurations());
             modelBuilder.ApplyConfiguration(new StateConfigurations());
+            modelBuilder.ApplyConfiguration(new AttachmentConfigurations());
+            modelBuilder.ApplyConfiguration(new TenantConfigurations());
+            modelBuilder.ApplyConfiguration(new UserConfigurations());
+            modelBuilder.ApplyConfiguration(new RoleConfigurations());
+            //modelBuilder.ApplyConfiguration(new CostumerGroupConfigurations());
         }
     }
 }

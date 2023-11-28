@@ -9,15 +9,12 @@ namespace CustomerManagement.Core.Entities
     public class Tenant
     {
         public Tenant() { }
-        public Tenant(Guid tenantId, string name, bool isActive, string slug, ICollection<User> users, ICollection<Customer> customers, ICollection<CustomerGroup> customerGroups)
+        public Tenant(Guid tenantId, string name, bool isActive, string slug)
         {
             TenantId = tenantId;
             Name = name;
-            IsActive = isActive;
+            IsActive = true;
             Slug = slug;
-            Users = users;
-            Customers = customers;
-            CustomerGroups = customerGroups;
         }
 
         public Guid TenantId { get; set; }
@@ -26,7 +23,7 @@ namespace CustomerManagement.Core.Entities
         public string Slug { get; set; }
 
         public ICollection<User> Users { get; set; }
-        public ICollection<Customer> Customers { get; set; }
+        //public ICollection<Customer> Customers { get; set; }
         public ICollection<CustomerGroup> CustomerGroups { get; set; }
     }
 }

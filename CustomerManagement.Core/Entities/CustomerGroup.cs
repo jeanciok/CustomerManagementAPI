@@ -9,17 +9,16 @@ namespace CustomerManagement.Core.Entities
     public class CustomerGroup : BaseEntity
     {
         public CustomerGroup() { }
-        public CustomerGroup(Guid tenantId, Tenant tenant, string name, ICollection<Customer> customers)
+        public CustomerGroup(Guid tenantId, Tenant tenant, string name)
         {
             TenantId = tenantId;
             Tenant = tenant;
             Name = name;
-            Customers = customers;
         }
 
         public Guid TenantId { get; set; }
         public Tenant Tenant { get; set; }
         public string Name { get; set; }
-        public ICollection<Customer> Customers { get; set; }
+        //public ICollection<Customer> Customers { get; set; }
     }
 }
