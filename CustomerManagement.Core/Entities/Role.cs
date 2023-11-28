@@ -8,9 +8,10 @@ namespace CustomerManagement.Core.Entities
 {
     public class Role : BaseEntity
     {
-        public Role(string name)
+        public Role(string name, ICollection<User> users)
         {
             Name = name;
+            Users = users;
         }
 
         public string Name { get; set; }

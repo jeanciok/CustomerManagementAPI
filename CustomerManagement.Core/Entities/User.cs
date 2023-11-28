@@ -8,12 +8,18 @@ namespace CustomerManagement.Core.Entities
 {
     public class User : BaseEntity
     {
-        public User(string name, string email, string password)
+        public User(Guid tenantId, Tenant tenant, string name, int roleId, Role role, string email, string password, bool isActive)
         {
+            TenantId = tenantId;
+            Tenant = tenant;
             Name = name;
+            RoleId = roleId;
+            Role = role;
             Email = email;
             Password = password;
+            IsActive = isActive;
         }
+
         public Guid TenantId { get; set; }
 
         public Tenant Tenant { get; set; }

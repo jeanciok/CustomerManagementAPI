@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CustomerManagament.Infrastructure.Persistence.Configuration
 {
-    public class 3 : IEntityTypeConfiguration<CustomerGroup>
+    public class CostumerGroupConfigurations : IEntityTypeConfiguration<CustomerGroup>
     {
         public void Configure(EntityTypeBuilder<CustomerGroup> builder)
         {

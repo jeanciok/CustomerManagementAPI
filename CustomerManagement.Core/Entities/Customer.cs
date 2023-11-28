@@ -8,30 +8,36 @@ namespace CustomerManagement.Core.Entities
 {
     public class Customer : BaseEntity
     {
-        public Customer(string name, DateTime birthDate, string phoneNumber, string businessPhone, string homePhone, string cnpj, string cpf, string rg, string cep, 
-            string street, int number, string additional, CustomerGroup group, string email, string site, long description, string uRLPicture, City city, DateTime createdAt, 
-            DateTime updatedAt, User userChange)
+        public Customer(Guid tenantId, Tenant tenant, string name, DateTime birthDate, string phoneNumber, string businessPhone, 
+            string homePhone, string cNPJ, string cPF, string rG, string cEP, string street, int number, string additional, Guid groupId, 
+            CustomerGroup group, string email, string site, long description, string uRLPicture, Guid cityId, City city, DateTime createdAt, 
+            DateTime updatedAt, ICollection<Attachment> attachments)
         {
+            TenantId = tenantId;
+            Tenant = tenant;
             Name = name;
             BirthDate = birthDate;
             PhoneNumber = phoneNumber;
             BusinessPhone = businessPhone;
             HomePhone = homePhone;
-            CNPJ = cnpj;
-            CPF = cpf;
-            RG = rg;
-            CEP = cep;
+            CNPJ = cNPJ;
+            CPF = cPF;
+            RG = rG;
+            CEP = cEP;
             Street = street;
             Number = number;
             Additional = additional;
+            GroupId = groupId;
             Group = group;
             Email = email;
             Site = site;
             Description = description;
             URLPicture = uRLPicture;
+            CityId = cityId;
             City = city;
             CreatedAt = createdAt;
             UpdatedAt = updatedAt;
+            Attachments = attachments;
         }
 
         public Guid TenantId { get; set; }

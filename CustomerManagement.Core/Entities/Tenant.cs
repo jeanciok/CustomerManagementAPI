@@ -8,8 +8,9 @@ namespace CustomerManagement.Core.Entities
 {
     public class Tenant
     {
-        public Tenant(string name, bool isActive, string slug, ICollection<User> users, ICollection<Customer> customers, ICollection<CustomerGroup> customerGroups)
+        public Tenant(Guid tenantId, string name, bool isActive, string slug, ICollection<User> users, ICollection<Customer> customers, ICollection<CustomerGroup> customerGroups)
         {
+            TenantId = tenantId;
             Name = name;
             IsActive = isActive;
             Slug = slug;
