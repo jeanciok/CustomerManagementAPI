@@ -8,6 +8,8 @@ namespace CustomerManagement.Core.Entities
 {
     public class Customer : BaseEntity
     {
+        public Customer() { }
+
         public Customer(Guid tenantId, Tenant tenant, string name, DateTime birthDate, string phoneNumber, string businessPhone, 
             string homePhone, string cNPJ, string cPF, string rG, string cEP, string street, int number, string additional, Guid groupId, 
             CustomerGroup group, string email, string site, long description, string uRLPicture, Guid cityId, City city, DateTime createdAt, 

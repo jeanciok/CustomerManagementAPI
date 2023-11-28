@@ -18,8 +18,8 @@ namespace CustomerManagament.Infrastructure.Persistence.Configuration
 
             builder
                 .HasOne(c => c.State)
-                .WithMany(s => s.City)
-                .HasForeignKey(c => c.UF);
+                .WithMany(s => s.Cities)
+                .HasForeignKey(c => c.StateId);
         }
     }
 }

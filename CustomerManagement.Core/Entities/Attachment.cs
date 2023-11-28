@@ -2,6 +2,8 @@
 {
     public class Attachment : BaseEntity
     {
+        public Attachment() { }
+
         public Attachment(string name, string uRLFile, Guid customerId, Customer customer)
         {
             Name = name;

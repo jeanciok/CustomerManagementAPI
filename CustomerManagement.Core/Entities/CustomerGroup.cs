@@ -8,6 +8,7 @@ namespace CustomerManagement.Core.Entities
 {
     public class CustomerGroup : BaseEntity
     {
+        public CustomerGroup() { }
         public CustomerGroup(Guid tenantId, Tenant tenant, string name, ICollection<Customer> customers)
         {
             TenantId = tenantId;

@@ -8,17 +8,17 @@ namespace CustomerManagement.Core.Entities
 {
     public class City : BaseEntity
     {
-        public City(string name, string uF, State state, ICollection<Customer> customers)
+        public City() { }
+
+        public City(string name, State state)
         {
             Name = name;
-            UF = uF;
             State = state;
-            Customers = customers;
         }
 
         public string Name { get; set; }
-        public string UF { get; set; }
+        public Guid StateId { get; set; }
         public State State { get; set; }
-        public ICollection<Customer> Customers { get; set; }
+        //public ICollection<Customer> Customers { get; set; }
     }
 }
