@@ -1,12 +1,6 @@
 ﻿using CustomerManagament.Infrastructure.Persistence.Configuration;
 using CustomerManagement.Core.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace CustomerManagament.Infrastructure.Persistence
 {
@@ -19,7 +13,7 @@ namespace CustomerManagament.Infrastructure.Persistence
         public DbSet<Tenant> Tenants { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<User> Users { get; set; }
-        //public DbSet<Group> Groups { get; set; }
+        public DbSet<CustomerGroup> CustomerGroups { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<Attachment> Attachments { get; set; }
         public DbSet<City> City { get; set; }
@@ -34,6 +28,7 @@ namespace CustomerManagament.Infrastructure.Persistence
             modelBuilder.ApplyConfiguration(new UserConfigurations());
             modelBuilder.ApplyConfiguration(new RoleConfigurations());
             modelBuilder.ApplyConfiguration(new CustomerConfigurations());
+            modelBuilder.ApplyConfiguration(new CostumerGroupConfigurations());
         }
     }
 }

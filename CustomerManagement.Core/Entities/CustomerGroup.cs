@@ -17,6 +17,6 @@ namespace CustomerManagement.Core.Entities
         public Guid TenantId { get; set; }
         public Tenant Tenant { get; set; }
         public string Name { get; set; }
-        //public ICollection<Customer> Customers { get; set; }
+        public ICollection<Customer> Customers { get; set; }
     }
 }

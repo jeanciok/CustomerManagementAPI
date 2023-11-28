@@ -54,8 +54,8 @@ namespace CustomerManagement.Core.Entities
         public string Street { get; set; }
         public int Number { get; set; }
         public string Additional { get; set; }
-        //public Guid GroupId { get; set; }
-        //public CustomerGroup Group { get; set; }
+        public Guid GroupId { get; set; }
+        public CustomerGroup Group { get; set; }
         public string Email { get; set; }
         public string Site { get; set; }
         public long Description { get; set; }

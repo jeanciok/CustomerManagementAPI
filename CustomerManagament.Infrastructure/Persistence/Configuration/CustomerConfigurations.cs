@@ -26,10 +26,10 @@ namespace CustomerManagament.Infrastructure.Persistence.Configuration
                 .WithMany(x => x.Customers)
                 .HasForeignKey(f => f.CityId);
 
-            //builder
-            //    .HasOne(c => c.Group)
-            //    .WithMany(g => g.Customers)
-            //    .HasForeignKey(f => f.GroupId);
+            builder
+                .HasOne(c => c.Group)
+                .WithMany(g => g.Customers)
+                .HasForeignKey(f => f.GroupId);
         }
     }
 }

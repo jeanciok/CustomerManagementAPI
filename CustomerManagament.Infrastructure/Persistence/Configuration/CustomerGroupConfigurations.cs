@@ -13,13 +13,13 @@ namespace CustomerManagament.Infrastructure.Persistence.Configuration
     {
         public void Configure(EntityTypeBuilder<CustomerGroup> builder)
         {
-            //builder
-            //    .HasKey(p => p.Id);
+            builder
+                .HasKey(p => p.Id);
 
-            ////builder
-            ////    .HasOne(u => u.Tenant)
-            ////    .WithMany(t => t.CustomerGroups)
-            ////    .HasForeignKey(f => f.TenantId);
+            builder
+                .HasOne(u => u.Tenant)
+                .WithMany(t => t.CustomerGroups)
+                .HasForeignKey(f => f.TenantId);
         }
     }
 }
