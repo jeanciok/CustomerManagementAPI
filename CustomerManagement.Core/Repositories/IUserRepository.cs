@@ -9,8 +9,8 @@ namespace CustomerManagement.Core.Repositories
 {
     public interface IUserRepository
     {
-        Task<List<User>> GetAllUserAsync();
-        Task<User> GetUserByIdAsync(Guid id);
+        Task<List<User>> GetAllAsync();
+        Task<User> GetByIdAsync(Guid id);
         Task AddAsync(User user);
         Task UpdateAsync(User user);
         Task DeleteAsync(Guid id);

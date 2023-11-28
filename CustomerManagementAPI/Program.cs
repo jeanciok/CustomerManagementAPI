@@ -1,4 +1,8 @@
 using CustomerManagament.Infrastructure.Persistence;
+using CustomerManagament.Infrastructure.Persistence.Repositories;
+using CustomerManagement.Application.Queries.GetAllUsers;
+using CustomerManagement.Core.Repositories;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +18,9 @@ builder.Services.AddDbContext<CostumerManagementDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("Default"));
 });
 
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
 
 var app = builder.Build();
 

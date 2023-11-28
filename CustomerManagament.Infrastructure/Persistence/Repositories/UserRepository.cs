@@ -1,17 +1,12 @@
 ﻿using CustomerManagement.Core.Entities;
 using CustomerManagement.Core.Repositories;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CustomerManagament.Infrastructure.Persistence.Repositories
 {
     public class UserRepository : IUserRepository
     {
-        private Guid tempGuid = Guid.Parse("bbda7fc7-f064-4b89-8cb0-ddd6d8109999");
+        private Guid tempTenant = Guid.Parse("f3680a57-795e-4ef7-9e10-cf54d2b6c42f");
 
         private readonly CostumerManagementDbContext _dbContext;
 
@@ -31,19 +26,19 @@ namespace CustomerManagament.Infrastructure.Persistence.Repositories
             throw new NotImplementedException();
         }
 
-        public async Task<List<User>> GetAllUserAsync()
+        public async Task<List<User>> GetAllAsync()
         {
             return await _dbContext.Users
                    .Include(u => u.Role)
-                   .Where(u => u.TenantId == tempGuid)
+                   .Where(u => u.TenantId == tempTenant)
                    .ToListAsync();
         }
 
-        public async Task<User> GetUserByIdAsync(Guid id)
+        public async Task<User> GetByIdAsync(Guid id)
         {
             return await _dbContext.Users
                 .Include(u => u.Role)
-                .Where(u => u.TenantId == tempGuid && u.Id == id)
+                .Where(u => u.TenantId == tempTenant && u.Id == id)
                 .FirstOrDefaultAsync();
         }
 
