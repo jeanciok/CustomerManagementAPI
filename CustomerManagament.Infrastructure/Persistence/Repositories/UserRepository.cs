@@ -7,6 +7,7 @@ namespace CustomerManagament.Infrastructure.Persistence.Repositories
     public class UserRepository : IUserRepository
     {
         private Guid tempTenant = Guid.Parse("f3680a57-795e-4ef7-9e10-cf54d2b6c42f");
+        private Guid tempRole = Guid.Parse("62d8acf1-1577-4d1a-b6ba-62e214e0fe8b");
 
         private readonly CostumerManagementDbContext _dbContext;
 
@@ -17,6 +18,11 @@ namespace CustomerManagament.Infrastructure.Persistence.Repositories
 
         public async Task AddAsync(User user)
         {
+            // Remove as soon as you finish configuring the tenant
+            user.TenantId = tempTenant;
+            user.RoleId = tempRole;
+            //
+
             await _dbContext.Users.AddAsync(user);
             await _dbContext.SaveChangesAsync();
         }

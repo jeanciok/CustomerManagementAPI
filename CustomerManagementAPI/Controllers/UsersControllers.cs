@@ -1,4 +1,5 @@
-﻿using CustomerManagement.Application.Queries.GetAllUsers;
+﻿using CustomerManagement.Application.Commands.CreateUser;
+using CustomerManagement.Application.Queries.GetAllUsers;
 using CustomerManagement.Application.ViewModels;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -23,6 +24,14 @@ namespace CustomerManagementAPI.Controllers
             List<UserViewModel> users = await _mediator.Send(query);
 
             return Ok(users);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Post([FromBody] CreateUserCommand command)
+        {
+            Guid userId = await _mediator.Send(command);
+
+            return Ok(userId);
         }
     }
 }
