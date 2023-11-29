@@ -24,6 +24,8 @@ namespace CustomerManagement.Application.Commands.CreateCustomerGroup
             await _customerGroupRepository.AddAsync(customerGroup);
 
             return customerGroup.Id;
+
+
         }
     }
 }
