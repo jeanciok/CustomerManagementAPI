@@ -9,13 +9,14 @@ namespace CustomerManagement.Application.ViewModels
 {
     public class UserViewModel
     {
-        public UserViewModel(Guid id, string name, string email, Role role, bool isActive)
+        public UserViewModel(Guid id, string name, string email, Role role, bool isActive, Tenant tenant)
         {
             Id = id;
             Name = name;
             Email = email;
             Role = role;
             IsActive = isActive;
+            Tenant = tenant;
         }
 
         public Guid Id { get; set; }
@@ -23,5 +24,6 @@ namespace CustomerManagement.Application.ViewModels
         public string Email { get; set; }
         public Role Role { get; set; }
         public bool IsActive { get; set; }
+        public Tenant Tenant { get; set; }
     }
 }

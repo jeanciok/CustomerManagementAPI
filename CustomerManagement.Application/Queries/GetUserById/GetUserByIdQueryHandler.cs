@@ -31,7 +31,8 @@ namespace CustomerManagement.Application.Queries.GetUserById
                 user.Name,
                 user.Email,
                 user.Role,
-                user.IsActive
+                user.IsActive,
+                user.Tenant
             );
 
             return viewModel;

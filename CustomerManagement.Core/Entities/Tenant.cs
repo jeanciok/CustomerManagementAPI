@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace CustomerManagement.Core.Entities
@@ -22,8 +23,11 @@ namespace CustomerManagement.Core.Entities
         public bool IsActive { get; set; }
         public string Slug { get; set; }
 
+        [JsonIgnore]
         public ICollection<User> Users { get; set; }
+        [JsonIgnore]
         public ICollection<Customer> Customers { get; set; }
+        [JsonIgnore]
         public ICollection<CustomerGroup> CustomerGroups { get; set; }
     }
 }

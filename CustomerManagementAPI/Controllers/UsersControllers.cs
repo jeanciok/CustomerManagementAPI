@@ -1,4 +1,5 @@
 ﻿using CustomerManagement.Application.Commands.CreateUser;
+using CustomerManagement.Application.Commands.DeleteUser;
 using CustomerManagement.Application.Commands.UpdateUser;
 using CustomerManagement.Application.Queries.GetAllUsers;
 using CustomerManagement.Application.Queries.GetUserById;
@@ -50,6 +51,16 @@ namespace CustomerManagementAPI.Controllers
         public async Task<IActionResult> Put([FromBody] UpdateUserCommand command)
         {
             await _mediator.Send(command);
+
+            return NoContent();
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            DeleteUserCommand deleteUserCommand = new(id);
+
+            await _mediator.Send(deleteUserCommand);
 
             return NoContent();
         }

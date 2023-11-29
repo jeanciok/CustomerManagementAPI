@@ -24,7 +24,7 @@ namespace CustomerManagement.Application.Queries.GetAllUsers
             List<User> users = await _userRepository.GetAllAsync();
 
             List<UserViewModel> usersViewModel = users
-                .Select(u => new UserViewModel(u.TenantId, u.Name, u.Email, u.Role, u.IsActive))
+                .Select(u => new UserViewModel(u.Id, u.Name, u.Email, u.Role, u.IsActive, u.Tenant))
                 .ToList();
 
             return usersViewModel;

@@ -27,15 +27,22 @@ namespace CustomerManagament.Infrastructure.Persistence.Repositories
             await _dbContext.SaveChangesAsync();
         }
 
-        public Task DeleteAsync(Guid id)
+        public async Task DeleteAsync(Guid id)
         {
-            throw new NotImplementedException();
+            var user = await GetByIdAsync(id);
+
+            if (user is not null)
+            {
+                _dbContext.Users.Remove(user);
+                await _dbContext.SaveChangesAsync();
+            }
         }
 
         public async Task<List<User>> GetAllAsync()
         {
             return await _dbContext.Users
                    .Include(u => u.Role)
+                   .Include(u => u.Tenant)
                    .Where(u => u.TenantId == tempTenant)
                    .ToListAsync();
         }
@@ -50,6 +57,7 @@ namespace CustomerManagament.Infrastructure.Persistence.Repositories
 
         public async Task UpdateAsync(User user)
         {
+            user.TenantId = tempTenant;
             _dbContext.Users.Update(user);
             await _dbContext.SaveChangesAsync();
         }

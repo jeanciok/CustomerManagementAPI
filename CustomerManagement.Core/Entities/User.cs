@@ -9,9 +9,9 @@ namespace CustomerManagement.Core.Entities
     public class User : BaseEntity
     {
         public User() { }
-        public User(Guid tenantId, string name, string email, string password, Guid roleId, bool isActive)
+        public User(Guid id, string name, string email, string password, Guid roleId, bool isActive)
         {
-            TenantId = tenantId;
+            Id = id;
             Name = name;
             Email = email;
             Password = password;
