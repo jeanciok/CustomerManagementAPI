@@ -9,8 +9,9 @@ namespace CustomerManagement.Core.Entities
     public class CustomerGroup : BaseEntity
     {
         public CustomerGroup() { }
-        public CustomerGroup(Tenant tenant, string name)
+        public CustomerGroup(Guid id, string name)
         {
+            Id = id;
             Name = name;
         }
 
