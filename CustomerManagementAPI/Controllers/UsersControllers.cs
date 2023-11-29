@@ -1,4 +1,5 @@
 ﻿using CustomerManagement.Application.Commands.CreateUser;
+using CustomerManagement.Application.Commands.UpdateUser;
 using CustomerManagement.Application.Queries.GetAllUsers;
 using CustomerManagement.Application.Queries.GetUserById;
 using CustomerManagement.Application.ViewModels;
@@ -43,6 +44,14 @@ namespace CustomerManagementAPI.Controllers
             Guid userId = await _mediator.Send(command);
 
             return Ok(userId);
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> Put([FromBody] UpdateUserCommand command)
+        {
+            await _mediator.Send(command);
+
+            return NoContent();
         }
     }
 }
