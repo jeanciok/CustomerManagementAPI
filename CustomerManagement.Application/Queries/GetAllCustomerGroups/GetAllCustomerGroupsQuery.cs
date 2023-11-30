@@ -14,4 +14,3 @@ namespace CustomerManagement.Application.Queries.GetAllCustomerGroups
     {
     }
 }
-S
