@@ -41,6 +41,7 @@ namespace CustomerManagament.Infrastructure.Persistence.Repositories
         {
             return await _dbContext.CustomerGroups
                 .Where(cg => cg.TenantId == tempTenant)
+                .Include(cg => cg.Customers)
                 .ToListAsync();
         }
 
