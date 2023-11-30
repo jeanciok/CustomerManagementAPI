@@ -1,3 +1,4 @@
+using CustomerManagement.Application.Commands.CreateCustomerGroup;
 using CustomerManagement.Application.Commands.DeleteCustomerGroup;
 using CustomerManagement.Application.Commands.DeleteUser;
 using CustomerManagement.Application.Commands.UpdateCustomerGroup;
@@ -33,6 +34,19 @@ namespace CustomerManagement.Application.Controllers
             var query = new GetCustomerGroupByIdQuery(id);
             var result = await _mediator.Send(query);
             return Ok(result);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Post([FromBody] CreateCustomerGroupCommand command)
+        {
+            if (command.Name.Length > 100)
+            {
+                return BadRequest();
+            }
+
+            Guid id = await _mediator.Send(command);
+
+            return CreatedAtAction(nameof(GetById), new { id }, id);    
         }
 
         [HttpDelete("{id}")]
