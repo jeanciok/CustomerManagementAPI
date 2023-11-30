@@ -8,7 +8,7 @@ namespace CustomerManagement.Application.Commands.UpdateCustomerGroup
         public Guid Id { get; set; }
         public string Name { get; set; }
 
-        public UpdateCustomerGroupCommand(Guid id, string name, string tenant)
+        public UpdateCustomerGroupCommand(Guid id, string name)
         {
             Id = id;
             Name = name;

@@ -24,6 +24,7 @@ builder.Services.AddDbContext<CostumerManagementDbContext>(options =>
 });
 
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<ICustomerGroupRepository, CustomerGroupRepository>();
 
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<GetAllUsersQuery>());
 

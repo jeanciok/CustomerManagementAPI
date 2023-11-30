@@ -57,10 +57,10 @@ namespace CustomerManagement.Application.Controllers
             return NoContent();
         }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Update(Guid id)
+        [HttpPut()]
+        public async Task<IActionResult> Update([FromBody] UpdateCustomerGroupCommand command)
         {
-            DeleteCustomerGroupCommand command = new(id);
+            UpdateCustomerGroupCommand updateCustomerGroupCommand = new(command.Id, command.Name);
 
             await _mediator.Send(command);
             return NoContent();
