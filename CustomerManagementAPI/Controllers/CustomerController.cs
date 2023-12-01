@@ -44,14 +44,9 @@ namespace CustomerManagement.Application.Controllers
             return NoContent();
         }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Update(Guid id, [FromBody] UpdateCustomerCommand command)
+        [HttpPut()]
+        public async Task<IActionResult> Update([FromBody] UpdateCustomerCommand command)
         {
-            if (id != command.Id)
-            {
-                return BadRequest();
-            }
-
             await _mediator.Send(command);
             return NoContent();
         }

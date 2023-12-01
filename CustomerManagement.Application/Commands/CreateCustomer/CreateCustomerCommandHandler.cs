@@ -18,7 +18,8 @@ namespace CustomerManagement.Application.Commands.AddCustomer
 
         public async Task<Unit> Handle(CreateCustomerCommand request, CancellationToken cancellationToken)
         {
-            
+            var customer = new Customer(request.Id, request.Name, request.BirthDate, request.PhoneNumber, request.BusinessPhone, request.HomePhone, request.CNPJ, request.CPF, request.RG, request.CEP,
+                request.Street, request.Number, request.Additional, request.Email, request.Site, request.Description, request.URLPicture, request.CityId, request.GroupId);
 
             await _customerRepository.AddAsync(customer);
             return Unit.Value;

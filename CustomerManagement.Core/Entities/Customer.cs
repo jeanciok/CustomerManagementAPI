@@ -8,10 +8,11 @@ namespace CustomerManagement.Core.Entities
 {
     public class Customer : BaseEntity
     {
-        public Customer(string name, DateTime birthDate, string phoneNumber, string businessPhone, 
+        public Customer(Guid id, string name, DateTime birthDate, string phoneNumber, string businessPhone, 
             string homePhone, string cNPJ, string cPF, string rG, string cEP, string street, int number, string additional,
             string email, string site, long description, string uRLPicture, Guid cityId, Guid groupId)
         {
+            Id = id;
             Name = name;
             BirthDate = birthDate;
             PhoneNumber = phoneNumber;
@@ -48,7 +49,7 @@ namespace CustomerManagement.Core.Entities
         public string Street { get; set; }
         public int Number { get; set; }
         public string Additional { get; set; }
-        public Guid? GroupId { get; set; }
+        public Guid GroupId { get; set; }
         public CustomerGroup Group { get; set; }
         public string Email { get; set; }
         public string Site { get; set; }
