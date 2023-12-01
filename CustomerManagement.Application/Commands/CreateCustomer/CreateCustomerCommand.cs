@@ -6,10 +6,9 @@ namespace CustomerManagement.Application.Commands.AddCustomer
 {
     public class CreateCustomerCommand : IRequest<Unit>
     {
-        public CreateCustomerCommand(Guid id, string name, DateTime birthDate, string phoneNumber, string businessPhone, string homePhone, string cNPJ, string cPF, string rG, 
-            string cEP, string street, int number, string additional, Guid groupId, string email, string site, long description, string uRLPicture, Guid cityId)
+        public CreateCustomerCommand(string name, DateTime birthDate, string phoneNumber, string businessPhone, string homePhone, string cNPJ, string cPF, string rG, 
+            string cEP, string street, int number, string additional, Guid groupId, string email, string site, string description, string uRLPicture, Guid cityId)
         {
-            Id = id;
             Name = name;
             BirthDate = birthDate;
             PhoneNumber = phoneNumber;
@@ -30,7 +29,6 @@ namespace CustomerManagement.Application.Commands.AddCustomer
             CityId = cityId;
         }
 
-        public Guid Id { get; set; }
         public string Name { get; set; }
         public DateTime BirthDate { get; set; }
         public string PhoneNumber { get; set; }
@@ -46,7 +44,7 @@ namespace CustomerManagement.Application.Commands.AddCustomer
         public Guid GroupId { get; set; }
         public string Email { get; set; }
         public string Site { get; set; }
-        public long Description { get; set; }
+        public string Description { get; set; }
         public string URLPicture { get; set; }
         public Guid CityId { get; set; }
     }

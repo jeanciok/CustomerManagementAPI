@@ -13,6 +13,9 @@ namespace CustomerManagement.Core.Repositories
     {
         private readonly CustomerManagementDbContext _context;
 
+        private Guid tempTenant = Guid.Parse("f3680a57-795e-4ef7-9e10-cf54d2b6c42f");
+
+
         public CustomerRepository(CustomerManagementDbContext context)
         {
             _context = context;
@@ -20,6 +23,7 @@ namespace CustomerManagement.Core.Repositories
 
         public async Task AddAsync(Customer customer)
         {
+            customer.TenantId = tempTenant;
             await _context.AddAsync(customer);
             await _context.SaveChangesAsync();
         }
@@ -36,16 +40,27 @@ namespace CustomerManagement.Core.Repositories
 
         public async Task<List<Customer>> GetAllAsync()
         {
-            return await _context.Customers.ToListAsync();
+            // TODO - Include Group
+            return await _context.Customers
+                .Include(c => c.City)
+                .Include(c => c.City.State)
+                //.Include(c => c.Group)
+                .ToListAsync();
         }
 
         public async Task<Customer> GetByIdAsync(Guid id)
         {
-            return await _context.Customers.FindAsync(id);
+            // TODO - Include Group
+
+            return await _context.Customers
+                .Include(c => c.City)
+                //.Include(c => c.Group)
+                .FirstOrDefaultAsync(c => c.Id == id);
         }
 
         public async Task UpdateAsync(Customer customer)
         {
+            customer.TenantId = tempTenant;
             _context.Customers.Update(customer);
             await _context.SaveChangesAsync();
         }

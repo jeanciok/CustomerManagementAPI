@@ -10,11 +10,11 @@ namespace CustomerManagement.Application.ViewModels
 {
     public class CustomerViewModel
     {
-        public CustomerViewModel(Tenant tenant, string name, DateTime birthDate, string phoneNumber, string businessPhone, string homePhone, string cNPJ, string cPF, 
-            string rG, string cEP, string street, int number, string additional, CustomerGroup group, string email, string site, long description, string uRLPicture, 
+        public CustomerViewModel(Guid id, string name, DateTime birthDate, string phoneNumber, string businessPhone, string homePhone, string cNPJ, string cPF, 
+            string rG, string cEP, string street, int number, string additional, string email, string site, string description, string uRLPicture, 
             City city, DateTime createdAt, DateTime updatedAt, ICollection<Attachment> attachments)
         {
-            Tenant = tenant;
+            Id = id;
             Name = name;
             BirthDate = birthDate;
             PhoneNumber = phoneNumber;
@@ -27,7 +27,6 @@ namespace CustomerManagement.Application.ViewModels
             Street = street;
             Number = number;
             Additional = additional;
-            Group = group;
             Email = email;
             Site = site;
             Description = description;
@@ -38,7 +37,7 @@ namespace CustomerManagement.Application.ViewModels
             Attachments = new List<Attachment>();
         }
 
-        public Tenant Tenant { get; set; }
+        public Guid Id { get; set; }
         public string Name { get; set; }
         public DateTime BirthDate { get; set; }
         public string PhoneNumber { get; set; }
@@ -51,10 +50,9 @@ namespace CustomerManagement.Application.ViewModels
         public string Street { get; set; }
         public int Number { get; set; }
         public string Additional { get; set; }
-        public CustomerGroup Group { get; set; }
         public string Email { get; set; }
         public string Site { get; set; }
-        public long Description { get; set; }
+        public string Description { get; set; }
         public string URLPicture { get; set; }
         public City City { get; set; }
         public DateTime CreatedAt { get; set; }

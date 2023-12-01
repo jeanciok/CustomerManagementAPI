@@ -8,6 +8,7 @@ namespace CustomerManagament.Infrastructure.Persistence
     {
         public CustomerManagementDbContext(DbContextOptions<CustomerManagementDbContext> options) : base(options)
         {
+            AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
         }
 
         public DbSet<Tenant> Tenants { get; set; }

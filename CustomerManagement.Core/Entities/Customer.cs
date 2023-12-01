@@ -10,7 +10,7 @@ namespace CustomerManagement.Core.Entities
     {
         public Customer(Guid id, string name, DateTime birthDate, string phoneNumber, string businessPhone, 
             string homePhone, string cNPJ, string cPF, string rG, string cEP, string street, int number, string additional,
-            string email, string site, long description, string uRLPicture, Guid cityId, Guid groupId)
+            string email, string site, string description, string uRLPicture, Guid cityId, Guid groupId)
         {
             Id = id;
             Name = name;
@@ -53,7 +53,7 @@ namespace CustomerManagement.Core.Entities
         public CustomerGroup Group { get; set; }
         public string Email { get; set; }
         public string Site { get; set; }
-        public long Description { get; set; }
+        public string Description { get; set; }
         public string URLPicture { get; set; }
         public Guid CityId { get; set; }
         public City City { get; set; }

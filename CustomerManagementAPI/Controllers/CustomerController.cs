@@ -1,3 +1,4 @@
+using CustomerManagement.Application.Commands.AddCustomer;
 using CustomerManagement.Application.Commands.DeleteCustomer;
 using CustomerManagement.Application.Commands.UpdateCustomer;
 using CustomerManagement.Application.Queries.GetAllCustomers;
@@ -34,6 +35,13 @@ namespace CustomerManagement.Application.Controllers
             var query = new GetCustomerByIdQuery(id);
             var result = await _mediator.Send(query);
             return Ok(result);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Post([FromBody] CreateCustomerCommand command)
+        {
+            await _mediator.Send(command);
+            return NoContent();
         }
 
         [HttpDelete("{id}")]
