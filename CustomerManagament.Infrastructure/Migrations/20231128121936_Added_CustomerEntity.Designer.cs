@@ -11,7 +11,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace CustomerManagament.Infrastructure.Migrations
 {
-    [DbContext(typeof(CostumerManagementDbContext))]
+    [DbContext(typeof(CustomerManagementDbContext))]
     [Migration("20231128121936_Added_CustomerEntity")]
     partial class Added_CustomerEntity
     {

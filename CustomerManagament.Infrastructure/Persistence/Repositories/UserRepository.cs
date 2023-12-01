@@ -9,9 +9,9 @@ namespace CustomerManagament.Infrastructure.Persistence.Repositories
         private Guid tempTenant = Guid.Parse("f3680a57-795e-4ef7-9e10-cf54d2b6c42f");
         private Guid tempRole = Guid.Parse("62d8acf1-1577-4d1a-b6ba-62e214e0fe8b");
 
-        private readonly CostumerManagementDbContext _dbContext;
+        private readonly CustomerManagementDbContext _dbContext;
 
-        public UserRepository(CostumerManagementDbContext dbContext)
+        public UserRepository(CustomerManagementDbContext dbContext)
         {
             _dbContext = dbContext;
         }

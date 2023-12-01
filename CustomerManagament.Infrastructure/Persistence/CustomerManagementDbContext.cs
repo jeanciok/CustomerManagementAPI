@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CustomerManagament.Infrastructure.Persistence
 {
-    public class CostumerManagementDbContext : DbContext
+    public class CustomerManagementDbContext : DbContext
     {
-        public CostumerManagementDbContext(DbContextOptions<CostumerManagementDbContext> options) : base(options)
+        public CustomerManagementDbContext(DbContextOptions<CustomerManagementDbContext> options) : base(options)
         {
         }
 

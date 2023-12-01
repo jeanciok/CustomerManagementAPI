@@ -11,7 +11,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace CustomerManagament.Infrastructure.Migrations
 {
-    [DbContext(typeof(CostumerManagementDbContext))]
+    [DbContext(typeof(CustomerManagementDbContext))]
     [Migration("20231128015707_Added_RoleEntity")]
     partial class Added_RoleEntity
     {

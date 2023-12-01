@@ -12,9 +12,9 @@ namespace CustomerManagament.Infrastructure.Persistence.Repositories
     {
         private Guid tempTenant = Guid.Parse("f3680a57-795e-4ef7-9e10-cf54d2b6c42f");
 
-        private readonly CostumerManagementDbContext _dbContext;
+        private readonly CustomerManagementDbContext _dbContext;
 
-        public CustomerGroupRepository(CostumerManagementDbContext dbContext)
+        public CustomerGroupRepository(CustomerManagementDbContext dbContext)
         {
             _dbContext = dbContext;
         }
