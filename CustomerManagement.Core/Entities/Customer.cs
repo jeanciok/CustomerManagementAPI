@@ -8,15 +8,10 @@ namespace CustomerManagement.Core.Entities
 {
     public class Customer : BaseEntity
     {
-        public Customer() { }
-
-        public Customer(Guid tenantId, Tenant tenant, string name, DateTime birthDate, string phoneNumber, string businessPhone, 
+        public Customer(string name, DateTime birthDate, string phoneNumber, string businessPhone, 
             string homePhone, string cNPJ, string cPF, string rG, string cEP, string street, int number, string additional,
-            string email, string site, long description, string uRLPicture, Guid cityId, City city, DateTime createdAt, 
-            DateTime updatedAt, ICollection<Attachment> attachments)
+            string email, string site, long description, string uRLPicture, Guid cityId, Guid groupId)
         {
-            TenantId = tenantId;
-            Tenant = tenant;
             Name = name;
             BirthDate = birthDate;
             PhoneNumber = phoneNumber;
@@ -34,10 +29,9 @@ namespace CustomerManagement.Core.Entities
             Description = description;
             URLPicture = uRLPicture;
             CityId = cityId;
-            City = city;
-            CreatedAt = createdAt;
-            UpdatedAt = updatedAt;
-            Attachments = attachments;
+            CreatedAt = DateTime.Now;
+            UpdatedAt = DateTime.Now;
+            GroupId = groupId;
         }
 
         public Guid TenantId { get; set; }
@@ -54,7 +48,7 @@ namespace CustomerManagement.Core.Entities
         public string Street { get; set; }
         public int Number { get; set; }
         public string Additional { get; set; }
-        public Guid GroupId { get; set; }
+        public Guid? GroupId { get; set; }
         public CustomerGroup Group { get; set; }
         public string Email { get; set; }
         public string Site { get; set; }
