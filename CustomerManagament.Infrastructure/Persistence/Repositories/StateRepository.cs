@@ -20,8 +20,9 @@ namespace CustomerManagament.Infrastructure.Persistence.Repositories
 
         public async Task<List<State>> GetAll()
         {
-            List<State> states = await _dbContext
-                .State.ToListAsync();
+            List<State> states = await _dbContext.State
+                .Include(s => s.Cities)
+                .ToListAsync();
 
             return states;
         }

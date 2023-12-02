@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CustomerManagementAPI.Controllers
 {
-    [Route("api/users")]
+    [Route("api/[controller]")]
     public class UsersControllers : ControllerBase
     {
         private readonly IMediator _mediator;
