@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
 
-namespace CustomerManagement.Application.Controllers
+namespace CustomerManagementAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

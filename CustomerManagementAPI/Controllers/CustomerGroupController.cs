@@ -7,7 +7,7 @@ using CustomerManagement.Application.Queries.GetCustomerGroupById;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CustomerManagement.Application.Controllers
+namespace CustomerManagementAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
