@@ -8,7 +8,7 @@ using System.Security.Cryptography;
 
 namespace CustomerManagament.Infrastructure.Auth
 {
-    internal class AuthService : IAuthService
+    public class AuthService : IAuthService
     {
         private readonly IConfiguration _configuration;
 

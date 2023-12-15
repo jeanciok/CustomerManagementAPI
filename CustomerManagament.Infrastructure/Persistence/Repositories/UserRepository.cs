@@ -61,5 +61,14 @@ namespace CustomerManagament.Infrastructure.Persistence.Repositories
             _dbContext.Users.Update(user);
             await _dbContext.SaveChangesAsync();
         }
+
+        public async Task<User> GetByEmailAndPasswordHash(string email, string passwordHash)
+        {
+            return await _dbContext.Users
+                .Include(u => u.Tenant)
+                .Include(u => u.Role)
+                .Where(u => u.Email == email && u.Password == passwordHash)
+                .SingleOrDefaultAsync();
+        }
     }
 }

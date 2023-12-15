@@ -1,11 +1,13 @@
 ﻿using CustomerManagement.Application.Queries.GetAllStates;
 using CustomerManagement.Application.ViewModels;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CustomerManagementAPI.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize]
     public class StateController : ControllerBase
     {
         private readonly IMediator _mediator;

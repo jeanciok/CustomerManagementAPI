@@ -5,11 +5,13 @@ using CustomerManagement.Application.Commands.UpdateCustomerGroup;
 using CustomerManagement.Application.Queries.GetAllCustomerGroups;
 using CustomerManagement.Application.Queries.GetCustomerGroupById;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CustomerManagement.Application.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize]
     [ApiController]
     public class CustomerGroupController : ControllerBase
     {

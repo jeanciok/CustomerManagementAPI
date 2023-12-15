@@ -4,6 +4,7 @@ using CustomerManagement.Application.Commands.UpdateCustomer;
 using CustomerManagement.Application.Queries.GetAllCustomers;
 using CustomerManagement.Application.Queries.GetCustomerById;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
@@ -11,6 +12,7 @@ using System.Threading.Tasks;
 namespace CustomerManagement.Application.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize]
     [ApiController]
     public class CustomerController : ControllerBase
     {
