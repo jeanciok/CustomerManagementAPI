@@ -14,5 +14,6 @@ namespace CustomerManagement.Core.Repositories
         Task AddAsync(User user);
         Task UpdateAsync(User user);
         Task DeleteAsync(Guid id);
+        Task<User> GetByEmailAndPasswordHash(string email, string passwordHash);
     }
 }

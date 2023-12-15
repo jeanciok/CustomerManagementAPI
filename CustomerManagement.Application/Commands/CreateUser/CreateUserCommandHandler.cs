@@ -1,5 +1,6 @@
 ﻿using CustomerManagement.Core.Entities;
 using CustomerManagement.Core.Repositories;
+using CustomerManagement.Core.Services;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -12,15 +13,19 @@ namespace CustomerManagement.Application.Commands.CreateUser
     public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, Guid>
     {
         private IUserRepository _userRepository;
+        private IAuthService _authService;
 
-        public CreateUserCommandHandler(IUserRepository userRepository)
+        public CreateUserCommandHandler(IUserRepository userRepository, IAuthService authService)
         {
             _userRepository = userRepository;
+            _authService = authService;
         }
 
         public async Task<Guid> Handle(CreateUserCommand request, CancellationToken cancellationToken)
         {
-            var user = new User(Guid.NewGuid(), request.Name, request.Email, request.Password, Guid.NewGuid(), true);
+            string passwordHash = _authService.ComputeSha256Hash(request.Password);
+
+            var user = new User(Guid.NewGuid(), request.Name, request.Email, passwordHash, Guid.NewGuid(), true);
 
             await _userRepository.AddAsync(user);
 
