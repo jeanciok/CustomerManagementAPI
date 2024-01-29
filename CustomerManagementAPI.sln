@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomerManagement.Core", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomerManagament.Infrastructure", "CustomerManagament.Infrastructure\CustomerManagament.Infrastructure.csproj", "{18026241-E03F-4A4B-B80F-5B51689251CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerManagement.Application", "CustomerManagement.Application\CustomerManagement.Application.csproj", "{A677430D-7A13-4729-BABF-05BBBDAEFD3B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomerManagement.Application", "CustomerManagement.Application\CustomerManagement.Application.csproj", "{A677430D-7A13-4729-BABF-05BBBDAEFD3B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerManagement.UnitTests", "CustomerManagement.UnitTests\CustomerManagement.UnitTests.csproj", "{A7EC5811-A54B-4951-915D-C210121A06D4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{A677430D-7A13-4729-BABF-05BBBDAEFD3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A677430D-7A13-4729-BABF-05BBBDAEFD3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A677430D-7A13-4729-BABF-05BBBDAEFD3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7EC5811-A54B-4951-915D-C210121A06D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7EC5811-A54B-4951-915D-C210121A06D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7EC5811-A54B-4951-915D-C210121A06D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7EC5811-A54B-4951-915D-C210121A06D4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
