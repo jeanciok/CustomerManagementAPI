@@ -9,6 +9,14 @@ namespace CustomerManagement.Application.Commands.CreateUser
 {
     public class CreateUserCommand : IRequest<Guid>
     {
+        public CreateUserCommand(string name, string email, string password, Guid roleId)
+        {
+            Name = name;
+            Email = email;
+            Password = password;
+            RoleId = roleId;
+        }
+
         public string Name { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }

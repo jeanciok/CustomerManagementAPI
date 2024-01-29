@@ -10,18 +10,20 @@ namespace CustomerManagement.Core.Entities
     public class Tenant
     {
         public Tenant() { }
-        public Tenant(Guid tenantId, string name, bool isActive, string slug)
+        public Tenant(Guid tenantId, string name, bool isActive, string slug, string documentNumber)
         {
             TenantId = tenantId;
             Name = name;
-            IsActive = true;
+            IsActive = isActive;
             Slug = slug;
+            DocumentNumber = documentNumber;
         }
 
         public Guid TenantId { get; set; }
         public string Name { get; set; }
         public bool IsActive { get; set; }
         public string Slug { get; set; }
+        public string DocumentNumber { get; set; }
 
         [JsonIgnore]
         public ICollection<User> Users { get; set; }
