@@ -16,5 +16,6 @@ namespace CustomerManagement.Application.Commands.UpdateUser
         public string Email { get; set; }
         public Guid RoleId { get; set; }
         public bool IsActive { get; set; }
+        public Guid TenantId { get; set; }
     }
 }

@@ -1,23 +1,23 @@
 ﻿using CustomerManagement.Core.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CustomerManagement.Application.ViewModels
 {
-    public class LoginUserViewModel
+    public class LoginUserViewModel : BaseEntity
     {
-        public LoginUserViewModel(string email, string token, Tenant tenant)
+        public LoginUserViewModel(Guid id, string name, string email, string token, Tenant tenant, Role role)
         {
+            Id = id;
+            Name = name;
             Email = email;
             Token = token;
             Tenant = tenant;
+            Role = role;
         }
 
+        public string Name { get; set; }
         public string Email { get; set; }
         public string Token { get; set; }
         public Tenant Tenant { get; set; }
+        public Role Role { get; set; }
     }
 }

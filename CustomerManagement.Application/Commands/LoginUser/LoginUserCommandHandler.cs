@@ -35,7 +35,7 @@ namespace CustomerManagement.Application.Commands.LoginUser
 
             var token = _authService.GenerateToken(user.Email, "Admin");
 
-            return new LoginUserViewModel(user.Email, token, user.Tenant);
+            return new LoginUserViewModel(user.Id, user.Name, user.Email, token, user.Tenant, user.Role);
         }
     }
 }

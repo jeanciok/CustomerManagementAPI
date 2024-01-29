@@ -25,7 +25,7 @@ namespace CustomerManagement.Application.Commands.CreateUser
         {
             string passwordHash = _authService.ComputeSha256Hash(request.Password);
 
-            var user = new User(Guid.NewGuid(), request.Name, request.Email, passwordHash, Guid.NewGuid(), true);
+            var user = new User(Guid.NewGuid(), request.Name, request.Email, passwordHash, request.RoleId, true, request.TenantId);
 
             await _userRepository.AddAsync(user);
 

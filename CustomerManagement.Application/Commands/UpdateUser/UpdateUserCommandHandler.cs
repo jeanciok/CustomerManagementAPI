@@ -25,7 +25,7 @@ namespace CustomerManagement.Application.Commands.UpdateUser
         {
             string passwordHash = _authService.ComputeSha256Hash(request.Password);
 
-            User user = new(request.Id, request.Name, request.Email, passwordHash, request.RoleId, request.IsActive);
+            User user = new(request.Id, request.Name, request.Email, passwordHash, request.RoleId, request.IsActive, request.TenantId);
 
             await _userRepository.UpdateAsync(user);
 

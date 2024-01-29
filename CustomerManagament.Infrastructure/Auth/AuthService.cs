@@ -58,5 +58,31 @@ namespace CustomerManagament.Infrastructure.Auth
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
+
+        public bool IsTokenValid(string token)
+        {
+            var key = _configuration["Jwt:Key"];
+            var issuer = _configuration["Jwt:Issuer"];
+            var audience = _configuration["Jwt:Audience"];
+            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key));
+            var tokenHandler = new JwtSecurityTokenHandler();
+            try
+            {
+                tokenHandler.ValidateToken(token, new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidIssuer = issuer,
+                    ValidAudience = audience,
+                    IssuerSigningKey = securityKey
+                }, out SecurityToken validatedToken);
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }

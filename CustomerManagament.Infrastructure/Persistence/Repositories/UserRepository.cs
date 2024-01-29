@@ -18,11 +18,6 @@ namespace CustomerManagament.Infrastructure.Persistence.Repositories
 
         public async Task AddAsync(User user)
         {
-            // Remove as soon as you finish configuring the tenant
-            user.TenantId = tempTenant;
-            user.RoleId = tempRole;
-            //
-
             await _dbContext.Users.AddAsync(user);
             await _dbContext.SaveChangesAsync();
         }

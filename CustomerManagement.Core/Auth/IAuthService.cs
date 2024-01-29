@@ -10,5 +10,6 @@ namespace CustomerManagement.Core.Services
     {
         string ComputeSha256Hash(string password);
         string GenerateToken(string username, string password);
+        bool IsTokenValid(string token);
     }
 }

@@ -33,9 +33,7 @@ namespace CustomerManagement.Application.Commands.CreateTenant
 
             await _tenantRepository.AddAsync(tenant);
 
-            var user = new User(Guid.NewGuid(), request.User.Name, request.User.Email, request.User.Password, request.User.RoleId, true);
-
-            var createUser = new CreateUserCommand(request.User.Name, request.User.Email, request.User.Password, request.User.RoleId);
+            var createUser = new CreateUserCommand(request.User.Name, request.User.Email, request.User.Password, request.User.RoleId, tenant.TenantId);
 
             await _mediator.Send(createUser);
 

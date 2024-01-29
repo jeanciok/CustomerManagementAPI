@@ -5,6 +5,7 @@ using CustomerManagement.Application.Commands.UpdateUser;
 using CustomerManagement.Application.Queries.GetAllUsers;
 using CustomerManagement.Application.Queries.GetUserById;
 using CustomerManagement.Application.ViewModels;
+using CustomerManagement.Core.Services;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -16,10 +17,12 @@ namespace CustomerManagementAPI.Controllers
     public class UsersController : ControllerBase
     {
         private readonly IMediator _mediator;
+        private readonly IAuthService _authService;
 
-        public UsersController(IMediator mediator)
+        public UsersController(IMediator mediator, IAuthService authService)
         {
             _mediator = mediator;
+            _authService = authService;
         }
 
         [HttpGet]

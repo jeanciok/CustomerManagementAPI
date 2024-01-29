@@ -15,6 +15,5 @@ namespace CustomerManagement.Application.Commands.CreateTenant
         public string Name { get; set; }
         public string DocumentNumber { get; set; }
         public CreateUserCommand User { get; set; }
-        public Guid ActivationKey { get; set; }
     }
 }

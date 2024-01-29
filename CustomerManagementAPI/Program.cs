@@ -11,6 +11,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.OpenApi.Models;
+using CustomerManagement.Core.Interfaces;
+using CustomerManagement.Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -81,6 +83,8 @@ builder.Services.AddScoped<ICustomerGroupRepository, CustomerGroupRepository>();
 builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
 builder.Services.AddScoped<IStateRepository, StateRepository>();
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<ITenantRepository, TenantRepository>();
+
 
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<GetAllUsersQuery>());
 
