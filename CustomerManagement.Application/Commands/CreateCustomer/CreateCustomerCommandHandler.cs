@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CustomerManagement.Application.Commands.AddCustomer
 {
-    public class CreateCustomerCommandHandler : IRequestHandler<CreateCustomerCommand, Unit>
+    public class CreateCustomerCommandHandler : IRequestHandler<CreateCustomerCommand, Guid>
     {
         private readonly ICustomerRepository _customerRepository;
 
@@ -16,13 +16,13 @@ namespace CustomerManagement.Application.Commands.AddCustomer
             _customerRepository = customerRepository;
         }
 
-        public async Task<Unit> Handle(CreateCustomerCommand request, CancellationToken cancellationToken)
+        public async Task<Guid> Handle(CreateCustomerCommand request, CancellationToken cancellationToken)
         {
             var customer = new Customer(Guid.NewGuid(), request.Name, request.BirthDate, request.PhoneNumber, request.BusinessPhone, request.HomePhone, request.CNPJ, request.CPF, request.RG, request.CEP,
                 request.Street, request.Number, request.Additional, request.Email, request.Site, request.Description, request.URLPicture, request.CityId, request.GroupId);
 
             await _customerRepository.AddAsync(customer);
-            return Unit.Value;
+            return customer.Id;
         }
     }
 }
