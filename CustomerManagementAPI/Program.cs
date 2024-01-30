@@ -13,6 +13,9 @@ using System.Text;
 using Microsoft.OpenApi.Models;
 using CustomerManagement.Core.Interfaces;
 using CustomerManagement.Infrastructure.Repositories;
+using CustomerManagement.Application.Validators;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -85,6 +88,10 @@ builder.Services.AddScoped<IStateRepository, StateRepository>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<ITenantRepository, TenantRepository>();
 
+builder.Services
+    .AddValidatorsFromAssemblyContaining<CreateUserCommandValidator>()
+    .AddFluentValidationAutoValidation()
+    .AddFluentValidationClientsideAdapters();
 
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<GetAllUsersQuery>());
 

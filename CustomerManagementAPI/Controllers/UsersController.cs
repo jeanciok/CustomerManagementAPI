@@ -44,12 +44,23 @@ namespace CustomerManagementAPI.Controllers
 
             return Ok(user);
         }
-
+        [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] CreateUserCommand command)
         {
+            if (!ModelState.IsValid)
+            {
+                var messages = ModelState
+                    .SelectMany(msg => msg.Value.Errors)
+                    .Select(e => e.ErrorMessage)
+                    .ToList();
+
+                return BadRequest(messages);
+            }
+
             Guid userId = await _mediator.Send(command);
 
+            // TODO: Change this to return a 201 Created response
             return Ok(userId);
         }
 
