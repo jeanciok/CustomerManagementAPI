@@ -16,17 +16,18 @@ using CustomerManagement.Infrastructure.Repositories;
 using CustomerManagement.Application.Validators;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using CustomerManagementAPI.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers().AddJsonOptions(options =>
-{
-    //options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
-    options.JsonSerializerOptions.WriteIndented = true;
-});
-
+builder.Services.AddControllers(options => options.Filters.Add(typeof(ValidationFilter)))
+    .AddJsonOptions(options =>
+        {
+            //options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+            options.JsonSerializerOptions.WriteIndented = true;
+        });
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
