@@ -28,8 +28,8 @@ namespace CustomerManagement.UnitTests.Application.Commands
                 Password = "password",
                 TenantId = Guid.NewGuid()
             };
-
-            // Act
+            
+        // Act
             var id = await createUserCommandHandler.Handle(createUserCommand, CancellationToken.None);
 
             // Assert
