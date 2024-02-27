@@ -1,4 +1,6 @@
 ﻿using CustomerManagement.Application.Commands.CreateTenant;
+using CustomerManagement.Application.Queries.GetTenantById;
+using CustomerManagement.Application.Queries.GetUserById;
 using CustomerManagement.Application.ViewModels;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -18,9 +20,19 @@ namespace CustomerManagementAPI.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] CreateTenantCommand command)
         {
-            await _mediator.Send(command);
+            Guid tenantId = await _mediator.Send(command);
 
-            return Ok();
+            return Created("", tenantId);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(Guid id)
+        {
+            GetTenantByIdQuery query = new(id);
+
+            TenantViewModel viewModel = await _mediator.Send(query);
+
+            return Ok(viewModel);
         }
     }
 }

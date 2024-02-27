@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace CustomerManagement.Application.Commands.CreateTenant
 {
-    public class CreateTenantCommand : IRequest<Unit>
+    public class CreateTenantCommand : IRequest<Guid>
     {
         public string Name { get; set; }
         public string DocumentNumber { get; set; }

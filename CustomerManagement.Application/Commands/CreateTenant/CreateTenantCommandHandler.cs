@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace CustomerManagement.Application.Commands.CreateTenant
 {
-    public class CreateTenantCommandHandler : IRequestHandler<CreateTenantCommand, Unit>
+    public class CreateTenantCommandHandler : IRequestHandler<CreateTenantCommand, Guid>
     {
         private readonly ITenantRepository _tenantRepository;
         private readonly IAuthService _authService;
@@ -27,7 +27,7 @@ namespace CustomerManagement.Application.Commands.CreateTenant
             _mediator = mediator;
         }
 
-        public async Task<Unit> Handle(CreateTenantCommand request, CancellationToken cancellationToken)
+        public async Task<Guid> Handle(CreateTenantCommand request, CancellationToken cancellationToken)
         {
             var tenant = new Tenant(Guid.NewGuid(), request.Name, true, request.Name.ToSlug(), request.DocumentNumber);
 
@@ -44,7 +44,7 @@ namespace CustomerManagement.Application.Commands.CreateTenant
 
             await _mediator.Send(createUser);
 
-            return Unit.Value;
+            return tenant.TenantId;
         }
 
     }
