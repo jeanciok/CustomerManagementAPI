@@ -95,5 +95,14 @@ namespace CustomerManagementAPI.Controllers
 
             return Ok(response);
         }
+
+        [AllowAnonymous]
+        [HttpGet("validateToken")]
+        public IActionResult ValidateToken([FromQuery] string token)
+        {
+            bool isValid = _authService.IsTokenValid(token);
+
+            return Ok(isValid);
+        }
     }
 }
