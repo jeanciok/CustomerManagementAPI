@@ -12,7 +12,7 @@ namespace CustomerManagement.Application.ViewModels
     {
         public CustomerViewModel(Guid id, string name, DateTime birthDate, string phoneNumber, string businessPhone, string homePhone, string cNPJ, string cPF, 
             string rG, string cEP, string street, int number, string additional, string email, string site, string description, string uRLPicture, 
-            City city, DateTime createdAt, DateTime updatedAt, ICollection<Attachment> attachments)
+            City city, DateTime createdAt, DateTime updatedAt)
         {
             Id = id;
             Name = name;
@@ -34,7 +34,6 @@ namespace CustomerManagement.Application.ViewModels
             City = city;
             CreatedAt = createdAt;
             UpdatedAt = updatedAt;
-            Attachments = new List<Attachment>();
         }
 
         public Guid Id { get; set; }
@@ -57,7 +56,5 @@ namespace CustomerManagement.Application.ViewModels
         public City City { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
-        public ICollection<Attachment> Attachments { get; set; }
     }
-
 }

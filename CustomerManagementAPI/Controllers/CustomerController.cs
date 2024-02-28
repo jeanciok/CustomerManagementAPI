@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace CustomerManagementAPI.Controllers
 {
     [Route("api/[controller]")]
-    [Authorize]
+    //[Authorize]
     [ApiController]
     public class CustomerController : ControllerBase
     {
@@ -24,9 +24,15 @@ namespace CustomerManagementAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> Get([FromQuery] string? name, [FromQuery] string? cpf, [FromQuery] string? cnpj)
         {
-            var query = new GetAllCustomersQuery();
+            var query = new GetAllCustomersQuery
+            {
+                Name = name,
+                Cpf = cpf,
+                Cnpj = cnpj
+            };
+
             var result = await _mediator.Send(query);
             return Ok(result);
         }

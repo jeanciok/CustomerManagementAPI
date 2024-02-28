@@ -15,7 +15,6 @@ namespace CustomerManagement.Core.Repositories
 
         private Guid tempTenant = Guid.Parse("f3680a57-795e-4ef7-9e10-cf54d2b6c42f");
 
-
         public CustomerRepository(CustomerManagementDbContext context)
         {
             _context = context;
@@ -38,14 +37,28 @@ namespace CustomerManagement.Core.Repositories
             }
         }
 
-        public async Task<List<Customer>> GetAllAsync()
+        public async Task<List<Customer>> Get(string name, string cpf, string cnpj)
         {
             // TODO - Include Group
-            return await _context.Customers
-                .Include(c => c.City)
-                .Include(c => c.City.State)
-                //.Include(c => c.Group)
-                .ToListAsync();
+            IQueryable<Customer> query = _context.Customers
+                .Include(c => c.City);
+
+            if (!string.IsNullOrEmpty(name))
+            {
+                query = query.Where(c => c.Name.Contains(name));
+            }
+
+            if (!string.IsNullOrEmpty(cpf))
+            {
+                query = query.Where(c => c.Equals(cpf));
+            }
+
+            if (!string.IsNullOrEmpty(cnpj))
+            {
+                query = query.Where(c => c.Equals(cnpj));
+            }
+
+            return await query.ToListAsync();
         }
 
         public async Task<Customer> GetByIdAsync(Guid id)

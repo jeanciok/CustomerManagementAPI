@@ -27,7 +27,7 @@ namespace CustomerManagement.UnitTests.Application.Queries
             };
 
             Mock<ICustomerRepository> customerRepositoryMock = new();
-            customerRepositoryMock.Setup(x => x.GetAllAsync()).ReturnsAsync(customers);
+            customerRepositoryMock.Setup(x => x.Get("", "", "")).ReturnsAsync(customers);
 
             GetAllCustomersQuery getAllCustomersQuery = new();
             GetAllCustomersQueryHandler getAllCustomersQueryHandler = new(customerRepositoryMock.Object);
@@ -40,7 +40,7 @@ namespace CustomerManagement.UnitTests.Application.Queries
             Assert.NotEmpty(customerViewModels);
             Assert.Equal(3, customerViewModels.Count);
 
-            customerRepositoryMock.Verify(x => x.GetAllAsync(), Times.Once);
+            customerRepositoryMock.Verify(x => x.Get("", "", ""), Times.Once);
         }
 
         [Fact]
@@ -48,7 +48,7 @@ namespace CustomerManagement.UnitTests.Application.Queries
         {
             // Arrange
             Mock<ICustomerRepository> customerRepositoryMock = new();
-            customerRepositoryMock.Setup(x => x.GetAllAsync()).ReturnsAsync(new List<Customer>());
+            customerRepositoryMock.Setup(x => x.Get("", "", "")).ReturnsAsync(new List<Customer>());
 
             GetAllCustomersQuery getAllCustomersQuery = new();
             GetAllCustomersQueryHandler getAllCustomersQueryHandler = new(customerRepositoryMock.Object);
@@ -60,7 +60,7 @@ namespace CustomerManagement.UnitTests.Application.Queries
             Assert.NotNull(customerViewModels);
             Assert.Empty(customerViewModels);
 
-            customerRepositoryMock.Verify(x => x.GetAllAsync(), Times.Once);
+            customerRepositoryMock.Verify(x => x.Get("", "", ""), Times.Once);
         }
 
         [Fact]
@@ -70,7 +70,7 @@ namespace CustomerManagement.UnitTests.Application.Queries
             Customer customer = new(Guid.NewGuid(), "John Doe", new DateTime(1990, 1, 1), "123456789", "987654321", "11111111111", "22222222222", "333333333", "44444444", "1231231231", "Street 1", 1, "Additional 1", "john.doe@example.com", "www.example.com", "Description 1", "url1.jpg", Guid.NewGuid(), Guid.NewGuid());
 
             Mock<ICustomerRepository> customerRepositoryMock = new();
-            customerRepositoryMock.Setup(x => x.GetAllAsync()).ReturnsAsync(new List<Customer> { customer });
+            customerRepositoryMock.Setup(x => x.Get("", "", "")).ReturnsAsync(new List<Customer> { customer });
 
             GetAllCustomersQuery getAllCustomersQuery = new();
             GetAllCustomersQueryHandler getAllCustomersQueryHandler = new(customerRepositoryMock.Object);
@@ -100,7 +100,7 @@ namespace CustomerManagement.UnitTests.Application.Queries
             Assert.Equal(customer.CreatedAt, customerViewModels[0].CreatedAt);
             Assert.Equal(customer.UpdatedAt, customerViewModels[0].UpdatedAt);
 
-            customerRepositoryMock.Verify(x => x.GetAllAsync(), Times.Once);
+            customerRepositoryMock.Verify(x => x.Get("", "", ""), Times.Once);
         }
 
     }

@@ -38,7 +38,7 @@ namespace CustomerManagementAPI.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(Guid id)
         {
-            GetUserByIdQuery query = new GetUserByIdQuery(id);
+            GetUserByIdQuery query = new(id);
 
             UserViewModel user = await _mediator.Send(query);
 
