@@ -41,7 +41,9 @@ namespace CustomerManagement.Core.Repositories
         {
             // TODO - Include Group
             IQueryable<Customer> query = _context.Customers
-                .Include(c => c.City);
+                .Include(c => c.City)
+                .Include(c => c.City.State)
+                .Include(g => g.Group);
 
             if (!string.IsNullOrEmpty(name))
             {

@@ -12,7 +12,7 @@ namespace CustomerManagement.Application.ViewModels
     {
         public CustomerViewModel(Guid id, string name, DateTime birthDate, string phoneNumber, string businessPhone, string homePhone, string cNPJ, string cPF, 
             string rG, string cEP, string street, int number, string additional, string email, string site, string description, string uRLPicture, 
-            City city, DateTime createdAt, DateTime updatedAt)
+            City city, DateTime createdAt, DateTime updatedAt, CustomerGroupViewModel group)
         {
             Id = id;
             Name = name;
@@ -34,6 +34,7 @@ namespace CustomerManagement.Application.ViewModels
             City = city;
             CreatedAt = createdAt;
             UpdatedAt = updatedAt;
+            Group = group;
         }
 
         public Guid Id { get; set; }
@@ -54,6 +55,7 @@ namespace CustomerManagement.Application.ViewModels
         public string Description { get; set; }
         public string URLPicture { get; set; }
         public City City { get; set; }
+        public CustomerGroupViewModel Group { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
     }

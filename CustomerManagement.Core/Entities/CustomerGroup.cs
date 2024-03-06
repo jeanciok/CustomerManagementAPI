@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace CustomerManagement.Core.Entities
@@ -18,6 +19,7 @@ namespace CustomerManagement.Core.Entities
         public Guid TenantId { get; set; }
         public Tenant Tenant { get; set; }
         public string Name { get; set; }
+        [JsonIgnore]
         public ICollection<Customer> Customers { get; set; }
     }
 }

@@ -9,7 +9,7 @@ namespace CustomerManagement.Application.ViewModels
 {
     public class CustomerGroupViewModel
     {
-        public CustomerGroupViewModel(Guid id, string name, ICollection<Customer> customers)
+        public CustomerGroupViewModel(Guid id, string name, ICollection<Customer> customers = null)
         {
             Id = id;
             Name = name;

@@ -9,13 +9,12 @@ namespace CustomerManagement.Core.Entities
 {
     public class Customer : BaseEntity
     {
-        public Customer(Guid id, string name, DateTime birthDate, string phoneNumber, string businessPhone, 
+        public Customer(Guid id, string name, string phoneNumber, string businessPhone, 
             string homePhone, string cNPJ, string cPF, string rG, string cEP, string street, int number, string additional,
             string email, string site, string description, string uRLPicture, Guid cityId, Guid groupId)
         {
             Id = id;
             Name = name;
-            BirthDate = birthDate;
             PhoneNumber = phoneNumber;
             BusinessPhone = businessPhone;
             HomePhone = homePhone;
