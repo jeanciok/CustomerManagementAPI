@@ -21,9 +21,9 @@ namespace CustomerManagement.UnitTests.Application.Queries
             // Arrange
             List<Customer> customers = new()
             {
-                new Customer(Guid.NewGuid(), "John Doe", new DateTime(1990, 1, 1), "123456789", "987654321", "11111111111", "22222222222", "333333333", "44444444", "1231231231", "Street 1", 1, "Additional 1", "john.doe@example.com", "www.example.com", "Description 1", "url1.jpg", Guid.NewGuid(), Guid.NewGuid()),
-                new Customer(Guid.NewGuid(), "Jane Smith", new DateTime(1985, 5, 5), "987654321", "123456789", "55555555555", "66666666666", "777777777", "88888888", "1231231231", "Street 2", 2, "Additional 2", "jane.smith@example.com", "www.example.com", "Description 2", "url2.jpg", Guid.NewGuid(), Guid.NewGuid()),
-                new Customer(Guid.NewGuid(), "Bob Johnson", new DateTime(1978, 10, 10), "555555555", "999999999", "99999999999", "88888888888", "777777777", "66666666","12312312312" ,"Street 3", 3, "Additional 3", "bob.johnson@example.com", "www.example.com", "Description 3", "url3.jpg", Guid.NewGuid(), Guid.NewGuid())
+                new Customer(Guid.NewGuid(), "John Doe", "123456789", "987654321", "11111111111", "22222222222", "333333333", "44444444", "1231231231", "Street 1", 1, "Additional 1", "john.doe@example.com", "www.example.com", "Description 1", "url1.jpg", Guid.NewGuid(), Guid.NewGuid()),
+                new Customer(Guid.NewGuid(), "Jane Smith", "987654321", "123456789", "55555555555", "66666666666", "777777777", "88888888", "1231231231", "Street 2", 2, "Additional 2", "jane.smith@example.com", "www.example.com", "Description 2", "url2.jpg", Guid.NewGuid(), Guid.NewGuid()),
+                new Customer(Guid.NewGuid(), "Bob Johnson", "555555555", "999999999", "99999999999", "88888888888", "777777777", "66666666","12312312312" ,"Street 3", 3, "Additional 3", "bob.johnson@example.com", "www.example.com", "Description 3", "url3.jpg", Guid.NewGuid(), Guid.NewGuid())
             };
 
             Mock<ICustomerRepository> customerRepositoryMock = new();
@@ -67,7 +67,7 @@ namespace CustomerManagement.UnitTests.Application.Queries
         public async Task CustomerEntityToViewModelMapping_Executed_CorrectlyMapped()
         {
             // Arrange
-            Customer customer = new(Guid.NewGuid(), "John Doe", new DateTime(1990, 1, 1), "123456789", "987654321", "11111111111", "22222222222", "333333333", "44444444", "1231231231", "Street 1", 1, "Additional 1", "john.doe@example.com", "www.example.com", "Description 1", "url1.jpg", Guid.NewGuid(), Guid.NewGuid());
+            Customer customer = new(Guid.NewGuid(), "John Doe", "123456789", "987654321", "11111111111", "22222222222", "333333333", "44444444", "1231231231", "Street 1", 1, "Additional 1", "john.doe@example.com", "www.example.com", "Description 1", "url1.jpg", Guid.NewGuid(), Guid.NewGuid());
 
             Mock<ICustomerRepository> customerRepositoryMock = new();
             customerRepositoryMock.Setup(x => x.Get("", "", "")).ReturnsAsync(new List<Customer> { customer });
@@ -83,7 +83,6 @@ namespace CustomerManagement.UnitTests.Application.Queries
             Assert.Single(customerViewModels);
             Assert.Equal(customer.Id, customerViewModels[0].Id);
             Assert.Equal(customer.Name, customerViewModels[0].Name);
-            Assert.Equal(customer.BirthDate, customerViewModels[0].BirthDate);
             Assert.Equal(customer.PhoneNumber, customerViewModels[0].PhoneNumber);
             Assert.Equal(customer.Email, customerViewModels[0].Email);
             Assert.Equal(customer.Site, customerViewModels[0].Site);

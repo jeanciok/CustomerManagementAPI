@@ -22,7 +22,7 @@ namespace CustomerManagement.UnitTests.Application.Commands
             var createCustomerCommandHandler = new CreateCustomerCommandHandler(customerRepository.Object);
 
             var createCustomerCommand = new CreateCustomerCommand
-                ("Name", DateTime.Now, "PhoneNumber", "BusinessPhone", "HomePhone", "CNPJ", "CPF", "RG", "CEP", "Street", 1, 
+                ("Name", "PhoneNumber", "BusinessPhone", "HomePhone", "CNPJ", "CPF", "RG", "CEP", "Street", 1, 
                 "Additional", Guid.NewGuid(), "Email", "Site", "Description", "URLPicture", Guid.NewGuid());
 
             // Act

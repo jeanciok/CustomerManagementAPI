@@ -14,7 +14,6 @@ namespace CustomerManagement.UnitTests.Application.Commands.Validators
             var validator = new CreateCustomerCommandValidator();
             var command = new CreateCustomerCommand(
                 name: "Jean Andrade",
-                birthDate: new DateTime(1990, 1, 1),
                 phoneNumber: "1234567890",
                 businessPhone: "0987654321",
                 homePhone: "9876543210",
@@ -48,7 +47,6 @@ namespace CustomerManagement.UnitTests.Application.Commands.Validators
             var validator = new CreateCustomerCommandValidator();
             var command = new CreateCustomerCommand(
                 name: "",
-                birthDate: new DateTime(1990, 1, 1),
                 phoneNumber: "1234567890",
                 businessPhone: "0987654321",
                 homePhone: "9876543210",
@@ -76,47 +74,12 @@ namespace CustomerManagement.UnitTests.Application.Commands.Validators
         }
 
         [Fact]
-        public void BirthDateIsEmpty_Validate_ShouldHaveValidationError()
-        {
-            // Arrange
-            var validator = new CreateCustomerCommandValidator();
-            var command = new CreateCustomerCommand(
-                name: "Jean Andrade",
-                birthDate: default(DateTime),
-                phoneNumber: "1234567890",
-                businessPhone: "0987654321",
-                homePhone: "9876543210",
-                cNPJ: "12345678901234",
-                cPF: "12345678901",
-                rG: "123456789",
-                cEP: "12345-678",
-                street: "Example Street",
-                number: 123,
-                additional: "Apartment 42",
-                groupId: Guid.NewGuid(),
-                email: "jean@example.com",
-                site: "www.example.com",
-                description: "Lorem ipsum dolor sit amet",
-                uRLPicture: "https://example.com/picture.jpg",
-                cityId: Guid.NewGuid()
-            );
-
-            // Act
-            var result = validator.Validate(command);
-
-            // Assert
-            Assert.False(result.IsValid);
-            Assert.Contains(result.Errors, e => e.PropertyName == "BirthDate" && e.ErrorMessage == "Birth date is required");
-        }
-
-        [Fact]
         public void HomePhoneIsEmpty_Validate_ShouldHaveValidationError()
         {
             // Arrange
             var validator = new CreateCustomerCommandValidator();
             var command = new CreateCustomerCommand(
                 name: "Jean Andrade",
-                birthDate: new DateTime(1990, 1, 1),
                 phoneNumber: "1234567890",
                 businessPhone: "0987654321",
                 homePhone: "",
@@ -150,7 +113,6 @@ namespace CustomerManagement.UnitTests.Application.Commands.Validators
             var validator = new CreateCustomerCommandValidator();
             var command = new CreateCustomerCommand(
                 name: "Jean Andrade",
-                birthDate: new DateTime(1990, 1, 1),
                 phoneNumber: "1234567890",
                 businessPhone: "0987654321",
                 homePhone: "9876543210",
@@ -184,7 +146,6 @@ namespace CustomerManagement.UnitTests.Application.Commands.Validators
             var validator = new CreateCustomerCommandValidator();
             var command = new CreateCustomerCommand(
                 name: "Jean Andrade",
-                birthDate: new DateTime(1990, 1, 1),
                 phoneNumber: "1234567890",
                 businessPhone: "0987654321",
                 homePhone: "9876543210",
@@ -220,7 +181,6 @@ namespace CustomerManagement.UnitTests.Application.Commands.Validators
             var validator = new CreateCustomerCommandValidator();
             var command = new CreateCustomerCommand(
                 name: "Jean Andrade",
-                birthDate: new DateTime(1990, 1, 1),
                 phoneNumber: "1234567890",
                 businessPhone: "0987654321",
                 homePhone: "9876543210",
@@ -254,7 +214,6 @@ namespace CustomerManagement.UnitTests.Application.Commands.Validators
             var validator = new CreateCustomerCommandValidator();
             var command = new CreateCustomerCommand(
                 name: "Jean Andrade",
-                birthDate: new DateTime(1990, 1, 1),
                 phoneNumber: "1234567890",
                 businessPhone: "0987654321",
                 homePhone: "9876543210",
@@ -288,7 +247,6 @@ namespace CustomerManagement.UnitTests.Application.Commands.Validators
             var validator = new CreateCustomerCommandValidator();
             var command = new CreateCustomerCommand(
                 name: "Jean Andrade",
-                birthDate: new DateTime(1990, 1, 1),
                 phoneNumber: "1234567890",
                 businessPhone: "0987654321",
                 homePhone: "9876543210",
@@ -322,7 +280,6 @@ namespace CustomerManagement.UnitTests.Application.Commands.Validators
             var validator = new CreateCustomerCommandValidator();
             var command = new CreateCustomerCommand(
                 name: "Jean Andrade",
-                birthDate: new DateTime(1990, 1, 1),
                 phoneNumber: "1234567890",
                 businessPhone: "0987654321",
                 homePhone: "9876543210",
@@ -356,7 +313,6 @@ namespace CustomerManagement.UnitTests.Application.Commands.Validators
             var validator = new CreateCustomerCommandValidator();
             var command = new CreateCustomerCommand(
                 name: "Jean Andrade",
-                birthDate: new DateTime(1990, 1, 1),
                 phoneNumber: "1234567890",
                 businessPhone: "0987654321",
                 homePhone: "9876543210",
@@ -390,7 +346,6 @@ namespace CustomerManagement.UnitTests.Application.Commands.Validators
             var validator = new CreateCustomerCommandValidator();
             var command = new CreateCustomerCommand(
                 name: "Jean Andrade",
-                birthDate: new DateTime(1990, 1, 1),
                 phoneNumber: "1234567890",
                 businessPhone: "0987654321",
                 homePhone: "9876543210",
@@ -424,7 +379,6 @@ namespace CustomerManagement.UnitTests.Application.Commands.Validators
             var validator = new CreateCustomerCommandValidator();
             var command = new CreateCustomerCommand(
                 name: "Jean Andrade",
-                birthDate: new DateTime(1990, 1, 1),
                 phoneNumber: "1234567890",
                 businessPhone: "0987654321",
                 homePhone: "9876543210",
@@ -458,7 +412,6 @@ namespace CustomerManagement.UnitTests.Application.Commands.Validators
             var validator = new CreateCustomerCommandValidator();
             var command = new CreateCustomerCommand(
                 name: "Jean Andrade",
-                birthDate: new DateTime(1990, 1, 1),
                 phoneNumber: "1234567890",
                 businessPhone: "0987654321",
                 homePhone: "9876543210",
@@ -492,7 +445,6 @@ namespace CustomerManagement.UnitTests.Application.Commands.Validators
             var validator = new CreateCustomerCommandValidator();
             var command = new CreateCustomerCommand(
                 name: "Jean Andrade",
-                birthDate: new DateTime(1990, 1, 1),
                 phoneNumber: "1234567890",
                 businessPhone: "0987654321",
                 homePhone: "9876543210",
@@ -526,7 +478,6 @@ namespace CustomerManagement.UnitTests.Application.Commands.Validators
             var validator = new CreateCustomerCommandValidator();
             var command = new CreateCustomerCommand(
                 name: "Jean Andrade",
-                birthDate: new DateTime(1990, 1, 1),
                 phoneNumber: "1234567890",
                 businessPhone: "0987654321",
                 homePhone: "9876543210",

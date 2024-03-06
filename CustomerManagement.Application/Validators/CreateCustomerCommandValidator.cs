@@ -9,7 +9,6 @@ namespace CustomerManagement.Application.Validators
         public CreateCustomerCommandValidator()
         {
             RuleFor(x => x.Name).NotEmpty().WithMessage("Name is required");
-            RuleFor(x => x.BirthDate).NotEmpty().WithMessage("Birth date is required");
             RuleFor(x => x.PhoneNumber).NotEmpty().WithMessage("Phone number is required");
             RuleFor(x => x.BusinessPhone).NotEmpty().WithMessage("Business phone is required");
             RuleFor(x => x.HomePhone).NotEmpty().WithMessage("Home phone is required");
