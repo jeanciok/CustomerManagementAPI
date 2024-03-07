@@ -25,9 +25,9 @@ namespace CustomerManagement.Application.Queries.GetCustomerById
                 return null;
             }
 
-            CustomerViewModel customerViewModel = new(customer.Id, customer.Name, customer.PhoneNumber, customer.CNPJ, 
-                customer.CPF, customer.RG, customer.CEP, customer.Street, customer.Number, customer.Additional, customer.Email, customer.Site, customer.Description, 
-                customer.URLPicture, customer.City, customer.CreatedAt, customer.UpdatedAt, new CustomerGroupViewModel(customer.Group.Id, customer.Group.Name));
+            CustomerViewModel customerViewModel = new(customer.Id, customer.Name, customer.PhoneNumber, customer.Cnpj, 
+                customer.Cpf, customer.Rg, customer.Cep, customer.Street, customer.Number, customer.Additional, customer.Email, customer.Description, 
+                customer.City, customer.CreatedAt, customer.UpdatedAt, new CustomerGroupViewModel(customer.Group.Id, customer.Group.Name));
 
             return customerViewModel;
         }

@@ -10,17 +10,17 @@ namespace CustomerManagement.Core.Entities
 {
     public class Customer : BaseEntity
     {
-        public Customer(Guid id, string name, string phoneNumber, string phoneNumber2, string cNPJ, string cPF, string rG, string cEP, 
+        public Customer(Guid id, string name, string phoneNumber, string phoneNumber2, string cnpj, string cpf, string rg, string cep, 
             string street, int number, string additional, string email, string description, Guid cityId, Guid groupId)
         {
             Id = id;
             Name = name;
             PhoneNumber = phoneNumber;
             PhoneNumber2 = phoneNumber2;
-            CNPJ = cNPJ;
-            CPF = cPF;
-            RG = rG;
-            CEP = cEP;
+            Cnpj = cnpj;
+            Cpf = cpf;
+            Rg = rg;
+            Cep = cep;
             Street = street;
             Number = number;
             Additional = additional;
@@ -37,19 +37,17 @@ namespace CustomerManagement.Core.Entities
         public string Name { get; set; }
         public string PhoneNumber { get; set; }
         public string PhoneNumber2 { get; set; }
-        public string CNPJ { get; set; }
-        public string CPF { get; set; }
-        public string RG { get; set; }
-        public string CEP { get; set; }
+        public string Cnpj { get; set; }
+        public string Cpf { get; set; }
+        public string Rg { get; set; }
+        public string Cep { get; set; }
         public string Street { get; set; }
         public int Number { get; set; }
         public string Additional { get; set; }
         public Guid GroupId { get; set; }
         public CustomerGroup Group { get; set; }
         public string Email { get; set; }
-        public string Site { get; set; }
         public string Description { get; set; }
-        public string URLPicture { get; set; }
         public Guid CityId { get; set; }
         public City City { get; set; }
         public DateTime CreatedAt { get; set; }

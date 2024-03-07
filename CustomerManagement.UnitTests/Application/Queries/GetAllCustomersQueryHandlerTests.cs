@@ -85,13 +85,11 @@ namespace CustomerManagement.UnitTests.Application.Queries
             Assert.Equal(customer.Name, customerViewModels[0].Name);
             Assert.Equal(customer.PhoneNumber, customerViewModels[0].PhoneNumber);
             Assert.Equal(customer.Email, customerViewModels[0].Email);
-            Assert.Equal(customer.Site, customerViewModels[0].Site);
             Assert.Equal(customer.Description, customerViewModels[0].Description);
-            Assert.Equal(customer.URLPicture, customerViewModels[0].URLPicture);
-            Assert.Equal(customer.CNPJ, customerViewModels[0].CNPJ);
-            Assert.Equal(customer.CPF, customerViewModels[0].CPF);
-            Assert.Equal(customer.RG, customerViewModels[0].RG);
-            Assert.Equal(customer.CEP, customerViewModels[0].CEP);
+            Assert.Equal(customer.Cnpj, customerViewModels[0].CNPJ);
+            Assert.Equal(customer.Cpf, customerViewModels[0].CPF);
+            Assert.Equal(customer.Rg, customerViewModels[0].RG);
+            Assert.Equal(customer.Cep, customerViewModels[0].CEP);
             Assert.Equal(customer.Street, customerViewModels[0].Street);
             Assert.Equal(customer.Number, customerViewModels[0].Number);
             Assert.Equal(customer.Additional, customerViewModels[0].Additional);
