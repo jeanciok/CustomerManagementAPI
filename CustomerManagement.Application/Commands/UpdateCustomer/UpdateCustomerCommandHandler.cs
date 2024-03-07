@@ -18,7 +18,7 @@ namespace CustomerManagement.Application.Commands.UpdateCustomer
 
         public async Task<Unit> Handle(UpdateCustomerCommand request, CancellationToken cancellationToken)
         {
-            var customer = new Customer(request.Id, request.Name, request.PhoneNumber, request.BusinessPhone, request.HomePhone, request.CNPJ, request.CPF, request.RG, request.CEP,
+            var customer = new Customer(request.Id, request.Name, request.PhoneNumber, request.CNPJ, request.CPF, request.RG, request.CEP,
                                request.Street, request.Number, request.Additional, request.Email, request.Site, request.Description, request.URLPicture, request.CityId, request.GroupId);
 
             await _customerRepository.UpdateAsync(customer);

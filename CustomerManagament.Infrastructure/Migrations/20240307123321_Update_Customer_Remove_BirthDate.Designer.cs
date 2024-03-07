@@ -3,6 +3,7 @@ using System;
 using CustomerManagament.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace CustomerManagament.Infrastructure.Migrations
 {
     [DbContext(typeof(CustomerManagementDbContext))]
-    partial class CostumerManagementDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240307123321_Update_Customer_Remove_BirthDate")]
+    partial class Update_Customer_Remove_BirthDate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -76,6 +78,10 @@ namespace CustomerManagament.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<string>("BusinessPhone")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<string>("CEP")
                         .IsRequired()
                         .HasColumnType("text");
@@ -105,6 +111,10 @@ namespace CustomerManagament.Infrastructure.Migrations
                     b.Property<Guid>("GroupId")
                         .HasColumnType("uuid");
 
+                    b.Property<string>("HomePhone")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
@@ -113,10 +123,6 @@ namespace CustomerManagament.Infrastructure.Migrations
                         .HasColumnType("integer");
 
                     b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("PhoneNumber2")
                         .IsRequired()
                         .HasColumnType("text");
 
