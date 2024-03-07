@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
@@ -9,12 +10,13 @@ namespace CustomerManagement.Core.Entities
 {
     public class Customer : BaseEntity
     {
-        public Customer(Guid id, string name, string phoneNumber, string cNPJ, string cPF, string rG, string cEP, 
-            string street, int number, string additional, string email, string site, string description, string uRLPicture, Guid cityId, Guid groupId)
+        public Customer(Guid id, string name, string phoneNumber, string phoneNumber2, string cNPJ, string cPF, string rG, string cEP, 
+            string street, int number, string additional, string email, string description, Guid cityId, Guid groupId)
         {
             Id = id;
             Name = name;
             PhoneNumber = phoneNumber;
+            PhoneNumber2 = phoneNumber2;
             CNPJ = cNPJ;
             CPF = cPF;
             RG = rG;
@@ -23,9 +25,7 @@ namespace CustomerManagement.Core.Entities
             Number = number;
             Additional = additional;
             Email = email;
-            Site = site;
             Description = description;
-            URLPicture = uRLPicture;
             CityId = cityId;
             CreatedAt = DateTime.Now;
             UpdatedAt = DateTime.Now;

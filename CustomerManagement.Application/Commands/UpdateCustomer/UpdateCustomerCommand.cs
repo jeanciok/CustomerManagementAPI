@@ -5,15 +5,13 @@ namespace CustomerManagement.Application.Commands.UpdateCustomer
 {
     public class UpdateCustomerCommand : IRequest<Unit>
     {
-        public UpdateCustomerCommand(Guid id, string name, DateTime birthDate, string phoneNumber, string businessPhone, string homePhone, string cnpj, string cpf, string rg,
-            string cEP, string street, int number, string additional, Guid groupId, string email, string site, string description, string uRLPicture, Guid cityId)
+        public UpdateCustomerCommand(Guid id, string name, string phoneNumber, string phoneNumber2, string cnpj, string cpf, string rg,
+            string cEP, string street, int number, string additional, Guid groupId, string email, string description, Guid cityId)
         {
             Id = id;
             Name = name;
-            BirthDate = birthDate;
             PhoneNumber = phoneNumber;
-            BusinessPhone = businessPhone;
-            HomePhone = homePhone;
+            PhoneNumber2 = phoneNumber2;
             CNPJ = cnpj;
             CPF = cpf;
             RG = rg;
@@ -23,18 +21,14 @@ namespace CustomerManagement.Application.Commands.UpdateCustomer
             Additional = additional;
             GroupId = groupId;
             Email = email;
-            Site = site;
             Description = description;
-            URLPicture = uRLPicture;
             CityId = cityId;
         }
 
         public Guid Id { get; set; }
         public string Name { get; set; }
-        public DateTime BirthDate { get; set; }
         public string PhoneNumber { get; set; }
-        public string BusinessPhone { get; set; }
-        public string HomePhone { get; set; }
+        public string PhoneNumber2 { get; set; }
         public string CNPJ { get; set; }
         public string CPF { get; set; }
         public string RG { get; set; }
@@ -44,9 +38,7 @@ namespace CustomerManagement.Application.Commands.UpdateCustomer
         public string Additional { get; set; }
         public Guid GroupId { get; set; }
         public string Email { get; set; }
-        public string Site { get; set; }
         public string Description { get; set; }
-        public string URLPicture { get; set; }
         public Guid CityId { get; set; }
     }
 }

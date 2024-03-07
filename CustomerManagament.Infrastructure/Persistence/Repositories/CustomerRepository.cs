@@ -13,7 +13,7 @@ namespace CustomerManagement.Core.Repositories
     {
         private readonly CustomerManagementDbContext _context;
 
-        private Guid tempTenant = Guid.Parse("f3680a57-795e-4ef7-9e10-cf54d2b6c42f");
+        private Guid tempTenant = Guid.Parse("644d1f61-575b-444f-858f-5471a0b4f3d4");
 
         public CustomerRepository(CustomerManagementDbContext context)
         {

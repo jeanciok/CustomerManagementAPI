@@ -22,8 +22,8 @@ namespace CustomerManagement.UnitTests.Application.Commands
             var createCustomerCommandHandler = new CreateCustomerCommandHandler(customerRepository.Object);
 
             var createCustomerCommand = new CreateCustomerCommand
-                ("Name", "PhoneNumber", "BusinessPhone", "HomePhone", "CNPJ", "CPF", "RG", "CEP", "Street", 1, 
-                "Additional", Guid.NewGuid(), "Email", "Site", "Description", "URLPicture", Guid.NewGuid());
+                ("Name", "CNPJ", "CPF", "RG", "PhoneNumber", "PhoneNumber2", "CEP", "Street", 1, 
+                "Additional", Guid.NewGuid(), "Email", "Description", Guid.NewGuid());
 
             // Act
             var id = await createCustomerCommandHandler.Handle(createCustomerCommand, CancellationToken.None);

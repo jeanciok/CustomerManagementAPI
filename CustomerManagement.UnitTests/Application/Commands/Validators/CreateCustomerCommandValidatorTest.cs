@@ -15,20 +15,17 @@ namespace CustomerManagement.UnitTests.Application.Commands.Validators
             var command = new CreateCustomerCommand(
                 name: "Jean Andrade",
                 phoneNumber: "1234567890",
-                businessPhone: "0987654321",
-                homePhone: "9876543210",
-                cNPJ: "12345678901234",
-                cPF: "12345678901",
-                rG: "123456789",
-                cEP: "12345-678",
+                phoneNumber2: "0987654321",
+                cnpj: "12345678901234",
+                cpf: "12345678901",
+                rg: "123456789",
+                cep: "12345-678",
                 street: "Example Street",
                 number: 123,
                 additional: "Apartment 42",
                 groupId: Guid.NewGuid(),
                 email: "jean@example.com",
-                site: "www.example.com",
                 description: "Lorem ipsum dolor sit amet",
-                uRLPicture: "https://example.com/picture.jpg",
                 cityId: Guid.NewGuid()
             );
 
@@ -48,20 +45,17 @@ namespace CustomerManagement.UnitTests.Application.Commands.Validators
             var command = new CreateCustomerCommand(
                 name: "",
                 phoneNumber: "1234567890",
-                businessPhone: "0987654321",
-                homePhone: "9876543210",
-                cNPJ: "12345678901234",
-                cPF: "12345678901",
-                rG: "123456789",
-                cEP: "12345-678",
+                phoneNumber2: "0987654321",
+                cnpj: "12345678901234",
+                cpf: "12345678901",
+                rg: "123456789",
+                cep: "12345-678",
                 street: "Example Street",
                 number: 123,
                 additional: "Apartment 42",
                 groupId: Guid.NewGuid(),
                 email: "jean@example.com",
-                site: "www.example.com",
                 description: "Lorem ipsum dolor sit amet",
-                uRLPicture: "https://example.com/picture.jpg",
                 cityId: Guid.NewGuid()
             );
 
@@ -81,20 +75,17 @@ namespace CustomerManagement.UnitTests.Application.Commands.Validators
             var command = new CreateCustomerCommand(
                 name: "Jean Andrade",
                 phoneNumber: "1234567890",
-                businessPhone: "0987654321",
-                homePhone: "",
-                cNPJ: "12345678901234",
-                cPF: "12345678901",
-                rG: "123456789",
-                cEP: "12345-678",
+                phoneNumber2: "0987654321",
+                cnpj: "12345678901234",
+                cpf: "12345678901",
+                rg: "123456789",
+                cep: "12345-678",
                 street: "Example Street",
                 number: 123,
                 additional: "Apartment 42",
                 groupId: Guid.NewGuid(),
                 email: "jean@example.com",
-                site: "www.example.com",
                 description: "Lorem ipsum dolor sit amet",
-                uRLPicture: "https://example.com/picture.jpg",
                 cityId: Guid.NewGuid()
             );
 
@@ -114,20 +105,17 @@ namespace CustomerManagement.UnitTests.Application.Commands.Validators
             var command = new CreateCustomerCommand(
                 name: "Jean Andrade",
                 phoneNumber: "1234567890",
-                businessPhone: "0987654321",
-                homePhone: "9876543210",
-                cNPJ: "",
-                cPF: "12345678901",
-                rG: "123456789",
-                cEP: "12345-678",
+                phoneNumber2: "0987654321",
+                cnpj: "",
+                cpf: "12345678901",
+                rg: "123456789",
+                cep: "12345-678",
                 street: "Example Street",
                 number: 123,
                 additional: "Apartment 42",
                 groupId: Guid.NewGuid(),
                 email: "jean@example.com",
-                site: "www.example.com",
                 description: "Lorem ipsum dolor sit amet",
-                uRLPicture: "https://example.com/picture.jpg",
                 cityId: Guid.NewGuid()
             );
 
@@ -147,20 +135,17 @@ namespace CustomerManagement.UnitTests.Application.Commands.Validators
             var command = new CreateCustomerCommand(
                 name: "Jean Andrade",
                 phoneNumber: "1234567890",
-                businessPhone: "0987654321",
-                homePhone: "9876543210",
-                cNPJ: "12345678901234",
-                cPF: "",
-                rG: "123456789",
-                cEP: "12345-678",
+                phoneNumber2: "0987654321",
+                cnpj: "12345678901234",
+                cpf: "",
+                rg: "123456789",
+                cep: "12345-678",
                 street: "Example Street",
                 number: 123,
                 additional: "Apartment 42",
                 groupId: Guid.NewGuid(),
                 email: "jean@example.com",
-                site: "www.example.com",
                 description: "Lorem ipsum dolor sit amet",
-                uRLPicture: "https://example.com/picture.jpg",
                 cityId: Guid.NewGuid()
             );
 
@@ -182,20 +167,17 @@ namespace CustomerManagement.UnitTests.Application.Commands.Validators
             var command = new CreateCustomerCommand(
                 name: "Jean Andrade",
                 phoneNumber: "1234567890",
-                businessPhone: "0987654321",
-                homePhone: "9876543210",
-                cNPJ: "12345678901234",
-                cPF: "12345678901",
-                rG: "123456789",
-                cEP: "12345-678",
+                phoneNumber2: "0987654321",
+                cnpj: "12345678901234",
+                cpf: "1231231231",
+                rg: "123456789",
+                cep: "12345-678",
                 street: "Example Street",
                 number: 123,
                 additional: "",
                 groupId: Guid.NewGuid(),
                 email: "jean@example.com",
-                site: "www.example.com",
                 description: "Lorem ipsum dolor sit amet",
-                uRLPicture: "https://example.com/picture.jpg",
                 cityId: Guid.NewGuid()
             );
 
@@ -215,20 +197,17 @@ namespace CustomerManagement.UnitTests.Application.Commands.Validators
             var command = new CreateCustomerCommand(
                 name: "Jean Andrade",
                 phoneNumber: "1234567890",
-                businessPhone: "0987654321",
-                homePhone: "9876543210",
-                cNPJ: "12345678901234",
-                cPF: "12345678901",
-                rG: "",
-                cEP: "12345-678",
+                phoneNumber2: "0987654321",
+                cnpj: "12345678901234",
+                cpf: "123123123123",
+                rg: "",
+                cep: "12345-678",
                 street: "Example Street",
                 number: 123,
                 additional: "Apartment 42",
                 groupId: Guid.NewGuid(),
                 email: "jean@example.com",
-                site: "www.example.com",
                 description: "Lorem ipsum dolor sit amet",
-                uRLPicture: "https://example.com/picture.jpg",
                 cityId: Guid.NewGuid()
             );
 
@@ -248,20 +227,17 @@ namespace CustomerManagement.UnitTests.Application.Commands.Validators
             var command = new CreateCustomerCommand(
                 name: "Jean Andrade",
                 phoneNumber: "1234567890",
-                businessPhone: "0987654321",
-                homePhone: "9876543210",
-                cNPJ: "12345678901234",
-                cPF: "12345678901",
-                rG: "123456789",
-                cEP: "",
+                phoneNumber2: "0987654321",
+                cnpj: "12345678901234",
+                cpf: "12312312313",
+                rg: "123456789",
+                cep: "",
                 street: "Example Street",
                 number: 123,
                 additional: "Apartment 42",
                 groupId: Guid.NewGuid(),
                 email: "jean@example.com",
-                site: "www.example.com",
                 description: "Lorem ipsum dolor sit amet",
-                uRLPicture: "https://example.com/picture.jpg",
                 cityId: Guid.NewGuid()
             );
 
@@ -281,20 +257,17 @@ namespace CustomerManagement.UnitTests.Application.Commands.Validators
             var command = new CreateCustomerCommand(
                 name: "Jean Andrade",
                 phoneNumber: "1234567890",
-                businessPhone: "0987654321",
-                homePhone: "9876543210",
-                cNPJ: "12345678901234",
-                cPF: "12345678901",
-                rG: "123456789",
-                cEP: "12345-678",
+                phoneNumber2: "0987654321",
+                cnpj: "12345678901234",
+                cpf: "12312312313",
+                rg: "123456789",
+                cep: "12345-678",
                 street: "",
                 number: 123,
                 additional: "Apartment 42",
                 groupId: Guid.NewGuid(),
                 email: "jean@example.com",
-                site: "www.example.com",
                 description: "Lorem ipsum dolor sit amet",
-                uRLPicture: "https://example.com/picture.jpg",
                 cityId: Guid.NewGuid()
             );
 
@@ -314,20 +287,17 @@ namespace CustomerManagement.UnitTests.Application.Commands.Validators
             var command = new CreateCustomerCommand(
                 name: "Jean Andrade",
                 phoneNumber: "1234567890",
-                businessPhone: "0987654321",
-                homePhone: "9876543210",
-                cNPJ: "12345678901234",
-                cPF: "12345678901",
-                rG: "123456789",
-                cEP: "12345-678",
+                phoneNumber2: "0987654321",
+                cnpj: "12345678901234",
+                cpf: "12345678901",
+                rg: "123456789",
+                cep: "12345-678",
                 street: "Example Street",
                 number: 0,
                 additional: "Apartment 42",
                 groupId: Guid.NewGuid(),
                 email: "jean@example.com",
-                site: "www.example.com",
                 description: "Lorem ipsum dolor sit amet",
-                uRLPicture: "https://example.com/picture.jpg",
                 cityId: Guid.NewGuid()
             );
 
@@ -347,20 +317,17 @@ namespace CustomerManagement.UnitTests.Application.Commands.Validators
             var command = new CreateCustomerCommand(
                 name: "Jean Andrade",
                 phoneNumber: "1234567890",
-                businessPhone: "0987654321",
-                homePhone: "9876543210",
-                cNPJ: "12345678901234",
-                cPF: "12345678901",
-                rG: "123456789",
-                cEP: "12345-678",
+                phoneNumber2: "0987654321",
+                cnpj: "12345678901234",
+                cpf: "12312312313",
+                rg: "123456789",
+                cep: "12345-678",
                 street: "Example Street",
                 number: 123,
                 additional: "Apartment 42",
                 groupId: Guid.Empty,
                 email: "jean@example.com",
-                site: "www.example.com",
                 description: "Lorem ipsum dolor sit amet",
-                uRLPicture: "https://example.com/picture.jpg",
                 cityId: Guid.NewGuid()
             );
 
@@ -380,20 +347,17 @@ namespace CustomerManagement.UnitTests.Application.Commands.Validators
             var command = new CreateCustomerCommand(
                 name: "Jean Andrade",
                 phoneNumber: "1234567890",
-                businessPhone: "0987654321",
-                homePhone: "9876543210",
-                cNPJ: "12345678901234",
-                cPF: "12345678901",
-                rG: "123456789",
-                cEP: "12345-678",
+                phoneNumber2: "0987654321",
+                cnpj: "12345678901234",
+                cpf: "12312312313",
+                rg: "123456789",
+                cep: "12345-678",
                 street: "Example Street",
                 number: 123,
                 additional: "Apartment 42",
                 groupId: Guid.NewGuid(),
                 email: "",
-                site: "www.example.com",
                 description: "Lorem ipsum dolor sit amet",
-                uRLPicture: "https://example.com/picture.jpg",
                 cityId: Guid.NewGuid()
             );
 
@@ -406,93 +370,24 @@ namespace CustomerManagement.UnitTests.Application.Commands.Validators
         }
 
         [Fact]
-        public void SiteIsEmpty_Validate_ShouldHaveValidationError()
-        {
-            // Arrange
-            var validator = new CreateCustomerCommandValidator();
-            var command = new CreateCustomerCommand(
-                name: "Jean Andrade",
-                phoneNumber: "1234567890",
-                businessPhone: "0987654321",
-                homePhone: "9876543210",
-                cNPJ: "12345678901234",
-                cPF: "12345678901",
-                rG: "123456789",
-                cEP: "12345-678",
-                street: "Example Street",
-                number: 123,
-                additional: "Apartment 42",
-                groupId: Guid.NewGuid(),
-                email: "jean@example.com",
-                site: "",
-                description: "Lorem ipsum dolor sit amet",
-                uRLPicture: "https://example.com/picture.jpg",
-                cityId: Guid.NewGuid()
-            );
-
-            // Act
-            var result = validator.Validate(command);
-
-            // Assert
-            Assert.False(result.IsValid);
-            Assert.Contains(result.Errors, e => e.PropertyName == "Site" && e.ErrorMessage == "Site is required");
-        }
-
-        [Fact]
-        public void DescriptionIsEmpty_Validate_ShouldHaveValidationError()
-        {
-            // Arrange
-            var validator = new CreateCustomerCommandValidator();
-            var command = new CreateCustomerCommand(
-                name: "Jean Andrade",
-                phoneNumber: "1234567890",
-                businessPhone: "0987654321",
-                homePhone: "9876543210",
-                cNPJ: "12345678901234",
-                cPF: "12345678901",
-                rG: "123456789",
-                cEP: "12345-678",
-                street: "Example Street",
-                number: 123,
-                additional: "Apartment 42",
-                groupId: Guid.NewGuid(),
-                email: "jean@example.com",
-                site: "www.example.com",
-                description: "",
-                uRLPicture: "https://example.com/picture.jpg",
-                cityId: Guid.NewGuid()
-            );
-
-            // Act
-            var result = validator.Validate(command);
-
-            // Assert
-            Assert.False(result.IsValid);
-            Assert.Contains(result.Errors, e => e.PropertyName == "Description" && e.ErrorMessage == "Description is required");
-        }
-
-        [Fact]
         public void CityIdIsEmpty_Validate_ShouldHaveValidationError()
         {
             // Arrange
             var validator = new CreateCustomerCommandValidator();
             var command = new CreateCustomerCommand(
-                name: "Jean Andrade",
+               name: "Jean Andrade",
                 phoneNumber: "1234567890",
-                businessPhone: "0987654321",
-                homePhone: "9876543210",
-                cNPJ: "12345678901234",
-                cPF: "12345678901",
-                rG: "123456789",
-                cEP: "12345-678",
+                phoneNumber2: "0987654321",
+                cnpj: "12345678901234",
+                cpf: "",
+                rg: "123456789",
+                cep: "12345-678",
                 street: "Example Street",
                 number: 123,
                 additional: "Apartment 42",
                 groupId: Guid.NewGuid(),
                 email: "jean@example.com",
-                site: "www.example.com",
                 description: "Lorem ipsum dolor sit amet",
-                uRLPicture: "https://example.com/picture.jpg",
                 cityId: Guid.Empty
             );
 

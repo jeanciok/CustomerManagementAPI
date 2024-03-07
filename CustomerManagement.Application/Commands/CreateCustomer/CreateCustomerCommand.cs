@@ -6,44 +6,38 @@ namespace CustomerManagement.Application.Commands.AddCustomer
 {
     public class CreateCustomerCommand : IRequest<Guid>
     {
-        public CreateCustomerCommand(string name, string phoneNumber, string businessPhone, string homePhone, string cNPJ, string cPF, string rG, 
-            string cEP, string street, int number, string additional, Guid groupId, string email, string site, string description, string uRLPicture, Guid cityId)
+        public CreateCustomerCommand(string name, string cnpj, string cpf, string rg, string phoneNumber, string phoneNumber2,
+            string cep, string street, int number, string additional, Guid groupId, string email, string description, Guid cityId)
         {
             Name = name;
+            Cnpj = cnpj;
+            Cpf = cpf;
+            Rg = rg;
             PhoneNumber = phoneNumber;
-            BusinessPhone = businessPhone;
-            HomePhone = homePhone;
-            CNPJ = cNPJ;
-            CPF = cPF;
-            RG = rG;
-            CEP = cEP;
+            PhoneNumber2 = phoneNumber2;
+            Cep = cep;
             Street = street;
             Number = number;
             Additional = additional;
             GroupId = groupId;
             Email = email;
-            Site = site;
             Description = description;
-            URLPicture = uRLPicture;
             CityId = cityId;
         }
 
         public string Name { get; set; }
+        public string Cnpj { get; set; }
+        public string Cpf { get; set; }
+        public string Rg { get; set; }
         public string PhoneNumber { get; set; }
-        public string BusinessPhone { get; set; }
-        public string HomePhone { get; set; }
-        public string CNPJ { get; set; }
-        public string CPF { get; set; }
-        public string RG { get; set; }
-        public string CEP { get; set; }
+        public string PhoneNumber2 { get; set; }
+        public string Cep { get; set; }
         public string Street { get; set; }
         public int Number { get; set; }
         public string Additional { get; set; }
         public Guid GroupId { get; set; }
         public string Email { get; set; }
-        public string Site { get; set; }
         public string Description { get; set; }
-        public string URLPicture { get; set; }
         public Guid CityId { get; set; }
     }
 }
