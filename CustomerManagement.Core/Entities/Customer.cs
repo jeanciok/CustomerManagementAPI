@@ -35,18 +35,18 @@ namespace CustomerManagement.Core.Entities
         public Guid TenantId { get; set; }
         public Tenant Tenant { get; set; }
         public string Name { get; set; }
-        public string PhoneNumber { get; set; }
-        public string PhoneNumber2 { get; set; }
-        public string Cnpj { get; set; }
-        public string Cpf { get; set; }
-        public string Rg { get; set; }
+        public string? PhoneNumber { get; set; }
+        public string? PhoneNumber2 { get; set; }
+        public string? Cnpj { get; set; }
+        public string? Cpf { get; set; }
+        public string? Rg { get; set; }
         public string Cep { get; set; }
         public string Street { get; set; }
         public int Number { get; set; }
-        public string Additional { get; set; }
+        public string? Additional { get; set; }
         public Guid GroupId { get; set; }
         public CustomerGroup Group { get; set; }
-        public string Email { get; set; }
+        public string? Email { get; set; }
         public string Description { get; set; }
         public Guid CityId { get; set; }
         public City City { get; set; }
