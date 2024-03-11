@@ -18,22 +18,24 @@ namespace CustomerManagament.Infrastructure.Persistence.Repositories
             _dbContext = dbContext;
         }
 
-        public async Task<List<City>> Get()
+        public async Task<List<City>> GetAll()
         {
             return await _dbContext.City
                 .Include(c => c.State)
                 .ToListAsync();
         }
 
+        public async Task<List<City>> GetAllByUf(string uf)
+        {
+            return await _dbContext.City
+                .Include(c => c.State)
+                .Where(c => c.State.Uf == uf)
+                .ToListAsync();
+        }
+
         public Task<City> GetById(Guid id)
         {
             throw new NotImplementedException();
-        }
-
-        public async Task<City> GetByUf(string uf)
-        {
-            return await _dbContext.City
-                .FirstOrDefaultAsync(c => c.State.Uf == uf);
         }
     }
 }

@@ -9,8 +9,8 @@ namespace CustomerManagement.Core.Repositories
 {
     public interface ICityRepository
     {
-        Task<List<City>> Get();
+        Task<List<City>> GetAll();
+        Task<List<City>> GetAllByUf(string uf);
         Task<City> GetById(Guid id);
-        Task<City> GetByUf(string uf);
     }
 }
