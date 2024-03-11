@@ -11,5 +11,10 @@ namespace CustomerManagement.Application.Queries.GetCityByUf
     public class GetCityByUfQuery : IRequest<List<CityViewModel>>
     {
         public string Uf { get; set; }
+
+        public GetCityByUfQuery(string uf)
+        {
+            Uf = uf;
+        }
     }
 }

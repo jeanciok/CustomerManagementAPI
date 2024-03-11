@@ -89,6 +89,7 @@ builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
 builder.Services.AddScoped<IStateRepository, StateRepository>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<ITenantRepository, TenantRepository>();
+builder.Services.AddScoped<ICityRepository, CityRepository>();
 
 builder.Services
     .AddValidatorsFromAssemblyContaining<CreateUserCommandValidator>()
