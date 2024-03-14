@@ -49,7 +49,7 @@ namespace CustomerManagement.Core.Entities
         public Guid GroupId { get; set; }
         public CustomerGroup Group { get; set; }
         public string? Email { get; set; }
-        public string Description { get; set; }
+        public string? Description { get; set; }
         public Guid CityId { get; set; }
         public City City { get; set; }
         public DateTime CreatedAt { get; set; }
