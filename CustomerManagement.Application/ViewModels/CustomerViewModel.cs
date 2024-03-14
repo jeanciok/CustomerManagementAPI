@@ -10,13 +10,14 @@ namespace CustomerManagement.Application.ViewModels
 {
     public class CustomerViewModel
     {
-        public CustomerViewModel(Guid id, string name, string phoneNumber, string cNPJ, string cPF, 
+        public CustomerViewModel(Guid id, string name, string phoneNumber, string phoneNumber2, string cNPJ, string cPF, 
             string rG, string cEP, string street, int number, string additional, string email, string description,
             City city, DateTime createdAt, DateTime updatedAt, CustomerGroupViewModel group)
         {
             Id = id;
             Name = name;
             PhoneNumber = phoneNumber;
+            PhoneNumber2 = phoneNumber2;
             CNPJ = cNPJ;
             CPF = cPF;
             RG = rG;
@@ -35,6 +36,7 @@ namespace CustomerManagement.Application.ViewModels
         public Guid Id { get; set; }
         public string Name { get; set; }
         public string PhoneNumber { get; set; }
+        public string PhoneNumber2 { get; set; }
         public string CNPJ { get; set; }
         public string CPF { get; set; }
         public string RG { get; set; }

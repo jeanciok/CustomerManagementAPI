@@ -69,7 +69,8 @@ namespace CustomerManagement.Core.Repositories
 
             return await _context.Customers
                 .Include(c => c.City)
-                //.Include(c => c.Group)
+                .Include(c => c.City.State)
+                .Include(c => c.Group)
                 .FirstOrDefaultAsync(c => c.Id == id);
         }
 
