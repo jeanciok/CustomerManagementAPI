@@ -26,7 +26,7 @@ namespace CustomerManagement.Application.Queries.GetCustomerById
             }
 
             CustomerViewModel customerViewModel = new(customer.Id, customer.Name, customer.PhoneNumber, customer.PhoneNumber2, customer.Cnpj, 
-                customer.Cpf, customer.Rg, customer.Cep, customer.Street, customer.Number, customer.Additional, customer.Email, customer.Description, 
+                customer.Cpf, customer.Rg, customer.Cep, customer.Street, customer.Number, customer.District, customer.Additional, customer.Email, customer.Description, 
                 customer.City, customer.CreatedAt, customer.UpdatedAt, new CustomerGroupViewModel(customer.Group.Id, customer.Group.Name));
 
             return customerViewModel;

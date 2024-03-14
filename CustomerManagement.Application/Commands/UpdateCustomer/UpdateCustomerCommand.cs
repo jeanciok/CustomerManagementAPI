@@ -6,7 +6,7 @@ namespace CustomerManagement.Application.Commands.UpdateCustomer
     public class UpdateCustomerCommand : IRequest<Unit>
     {
         public UpdateCustomerCommand(Guid id, string name, string phoneNumber, string phoneNumber2, string cnpj, string cpf, string rg,
-            string cEP, string street, int number, string additional, Guid groupId, string email, string description, Guid cityId)
+            string cEP, string street, int number, string district, string additional, Guid groupId, string email, string description, Guid cityId)
         {
             Id = id;
             Name = name;
@@ -18,6 +18,7 @@ namespace CustomerManagement.Application.Commands.UpdateCustomer
             CEP = cEP;
             Street = street;
             Number = number;
+            District = district;
             Additional = additional;
             GroupId = groupId;
             Email = email;
@@ -35,6 +36,7 @@ namespace CustomerManagement.Application.Commands.UpdateCustomer
         public string CEP { get; set; }
         public string Street { get; set; }
         public int Number { get; set; }
+        public string District { get; set; }
         public string Additional { get; set; }
         public Guid GroupId { get; set; }
         public string Email { get; set; }
