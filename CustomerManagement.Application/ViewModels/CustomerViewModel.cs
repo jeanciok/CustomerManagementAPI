@@ -11,7 +11,7 @@ namespace CustomerManagement.Application.ViewModels
     public class CustomerViewModel
     {
         public CustomerViewModel(Guid id, string name, string phoneNumber, string phoneNumber2, string cNPJ, string cPF, 
-            string rG, string cEP, string street, int number, string district, string additional, string email, string description,
+            string rG, string cEP, string street, string number, string district, string additional, string email, string description,
             City city, DateTime createdAt, DateTime updatedAt, CustomerGroupViewModel group)
         {
             Id = id;
@@ -43,7 +43,7 @@ namespace CustomerManagement.Application.ViewModels
         public string RG { get; set; }
         public string CEP { get; set; }
         public string Street { get; set; }
-        public int Number { get; set; }
+        public string Number { get; set; }
         public string District { get; set; }
         public string Additional { get; set; }
         public string Email { get; set; }

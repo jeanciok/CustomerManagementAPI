@@ -11,7 +11,7 @@ namespace CustomerManagement.Core.Entities
     public class Customer : BaseEntity
     {
         public Customer(Guid id, string name, string phoneNumber, string phoneNumber2, string cnpj, string cpf, string rg, string cep, 
-            string street, int number, string district, string additional, string email, string description, Guid cityId, Guid groupId)
+            string street, string number, string district, string additional, string email, string description, Guid cityId, Guid groupId)
         {
             Id = id;
             Name = name;
@@ -43,7 +43,7 @@ namespace CustomerManagement.Core.Entities
         public string? Rg { get; set; }
         public string Cep { get; set; }
         public string Street { get; set; }
-        public int Number { get; set; }
+        public string Number { get; set; }
         public string District { get; set; }
         public string? Additional { get; set; }
         public Guid GroupId { get; set; }
