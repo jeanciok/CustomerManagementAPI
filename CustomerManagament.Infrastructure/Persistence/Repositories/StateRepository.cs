@@ -21,7 +21,7 @@ namespace CustomerManagament.Infrastructure.Persistence.Repositories
         public async Task<List<State>> GetAll()
         {
             List<State> states = await _dbContext.State
-                .Include(s => s.Cities)
+                .OrderBy(x => x.Name)
                 .ToListAsync();
 
             return states;
