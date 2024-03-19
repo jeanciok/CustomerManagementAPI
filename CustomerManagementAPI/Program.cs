@@ -17,6 +17,7 @@ using CustomerManagement.Application.Validators;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using CustomerManagementAPI.Filters;
+using CustomerManagament.Infrastructure.CloudServices;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -90,6 +91,7 @@ builder.Services.AddScoped<IStateRepository, StateRepository>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<ITenantRepository, TenantRepository>();
 builder.Services.AddScoped<ICityRepository, CityRepository>();
+builder.Services.AddScoped<IFileStorageService, FileStorageService>();
 
 builder.Services
     .AddValidatorsFromAssemblyContaining<CreateUserCommandValidator>()
