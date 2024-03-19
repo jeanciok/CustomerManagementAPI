@@ -7,15 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Auth\**" />
     <Compile Remove="Entities\NovaPasta\**" />
     <Compile Remove="NovaPasta1\**" />
-    <Compile Remove="NovaPasta\**" />
+    <EmbeddedResource Remove="Auth\**" />
     <EmbeddedResource Remove="Entities\NovaPasta\**" />
     <EmbeddedResource Remove="NovaPasta1\**" />
-    <EmbeddedResource Remove="NovaPasta\**" />
+    <None Remove="Auth\**" />
     <None Remove="Entities\NovaPasta\**" />
     <None Remove="NovaPasta1\**" />
-    <None Remove="NovaPasta\**" />
   </ItemGroup>
 
 </Project>
