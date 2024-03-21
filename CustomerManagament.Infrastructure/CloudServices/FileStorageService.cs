@@ -36,19 +36,18 @@ namespace CustomerManagament.Infrastructure.CloudServices
                 {
                     BucketName = _bucketName,
                     InputStream = file.OpenReadStream(),
-                    Key = $"{filePath}/{file.FileName}",
+                    Key = $"{filePath}/{Guid.NewGuid()}",
                     CannedACL = S3CannedACL.PublicRead,
                 };
 
                 transferUtility.Upload(fileTransferUtilityRequest);
 
+                return fileTransferUtilityRequest.Key;
             }
             catch (AmazonS3Exception ex)
             {
                 throw new Exception(ex.Message);
             }
-
-            return file.FileName;
         }
     }
 }
