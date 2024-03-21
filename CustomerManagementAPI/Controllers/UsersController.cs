@@ -18,11 +18,13 @@ namespace CustomerManagementAPI.Controllers
     {
         private readonly IMediator _mediator;
         private readonly IAuthService _authService;
+        private readonly IFileStorageService _fileStorageService;
 
-        public UsersController(IMediator mediator, IAuthService authService)
+        public UsersController(IMediator mediator, IAuthService authService, IFileStorageService fileStorageService)
         {
             _mediator = mediator;
             _authService = authService;
+            _fileStorageService = fileStorageService;
         }
 
         [HttpGet]
@@ -104,5 +106,15 @@ namespace CustomerManagementAPI.Controllers
 
             return Ok(isValid);
         }
+
+        // TODO: This controller is for testing digitalocean storage, after testing they will be deleted
+        [AllowAnonymous]
+        [HttpPost("uploadFile")]
+        public IActionResult UploadFile(IFormFile file)
+        {
+            _fileStorageService.UploadFile(file, "profile_avatar");
+            return NoContent();
+        }
+
     }
 }

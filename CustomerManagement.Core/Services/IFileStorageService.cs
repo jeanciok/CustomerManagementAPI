@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,6 @@ namespace CustomerManagement.Core.Services
 {
     public interface IFileStorageService
     {
-        Task UploadFileAsync(string filePath);
+        string UploadFile(IFormFile file, string filePath);
     }
 }
