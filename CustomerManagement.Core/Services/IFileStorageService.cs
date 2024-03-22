@@ -9,6 +9,6 @@ namespace CustomerManagement.Core.Services
 {
     public interface IFileStorageService
     {
-        string UploadFile(IFormFile file, string filePath);
+        string UploadFile(IFormFile file, string folder);
     }
 }

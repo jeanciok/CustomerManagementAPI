@@ -26,7 +26,7 @@ namespace CustomerManagament.Infrastructure.CloudServices
             _s3client = new AmazonS3Client(configuration["Storage:AccessKeyId"], configuration["Storage:SecretAcessKey"], config);
         }
 
-        public string UploadFile(IFormFile file, string filePath)
+        public string UploadFile(IFormFile file, string folder)
         {
             try
             {
@@ -36,7 +36,7 @@ namespace CustomerManagament.Infrastructure.CloudServices
                 {
                     BucketName = _bucketName,
                     InputStream = file.OpenReadStream(),
-                    Key = $"{filePath}/{Guid.NewGuid()}",
+                    Key = $"{folder}/{Guid.NewGuid()}",
                     CannedACL = S3CannedACL.PublicRead,
                 };
 

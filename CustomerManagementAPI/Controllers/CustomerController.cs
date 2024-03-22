@@ -1,8 +1,10 @@
 using CustomerManagement.Application.Commands.AddCustomer;
 using CustomerManagement.Application.Commands.DeleteCustomer;
+using CustomerManagement.Application.Commands.UpdateAvatarCustomer;
 using CustomerManagement.Application.Commands.UpdateCustomer;
 using CustomerManagement.Application.Queries.GetAllCustomers;
 using CustomerManagement.Application.Queries.GetCustomerById;
+using CustomerManagement.Core.Services;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -17,10 +19,12 @@ namespace CustomerManagementAPI.Controllers
     public class CustomerController : ControllerBase
     {
         private readonly IMediator _mediator;
+        private readonly IFileStorageService _fileStorageService;
 
-        public CustomerController(IMediator mediator)
+        public CustomerController(IMediator mediator, IFileStorageService fileStorageService)
         {
             _mediator = mediator;
+            _fileStorageService = fileStorageService;
         }
 
         [HttpGet]
@@ -64,6 +68,16 @@ namespace CustomerManagementAPI.Controllers
         public async Task<IActionResult> Update([FromBody] UpdateCustomerCommand command)
         {
             await _mediator.Send(command);
+            return NoContent();
+        }
+
+        [HttpPut("updateAvatar/{customerId}")]
+        public async Task<IActionResult> UpdateAvatar(IFormFile avatar, Guid customerId)
+        {
+            UpdateCustomerAvatarCommand command = new(avatar, customerId);
+
+            await _mediator.Send(command);
+
             return NoContent();
         }
     }

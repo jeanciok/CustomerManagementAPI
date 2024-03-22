@@ -54,6 +54,7 @@ namespace CustomerManagement.Core.Entities
         public City City { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
+        public string? AvatarUrl { get; set; }
         [JsonIgnore]
         public ICollection<Attachment> Attachments { get; set; }
     }
