@@ -2,6 +2,7 @@
 using CustomerManagement.Core.Entities;
 using CustomerManagement.Core.Repositories;
 using MediatR;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Threading.Tasks;
 
@@ -10,10 +11,13 @@ namespace CustomerManagement.Application.Queries.GetCustomerById
     public class GetCustomerByIdQueryHandler : IRequestHandler<GetCustomerByIdQuery, CustomerViewModel>
     {
         private readonly ICustomerRepository _customerRepository;
+        private readonly string _bucketUrl;
 
-        public GetCustomerByIdQueryHandler(ICustomerRepository customerRepository)
+        public GetCustomerByIdQueryHandler(ICustomerRepository customerRepository, IConfiguration configuration)
         {
             _customerRepository = customerRepository;
+            _bucketUrl = configuration["Storage:BucketURL"];
+            
         }
 
         public async Task<CustomerViewModel> Handle(GetCustomerByIdQuery request, CancellationToken cancellationToken)
@@ -27,7 +31,7 @@ namespace CustomerManagement.Application.Queries.GetCustomerById
 
             CustomerViewModel customerViewModel = new(customer.Id, customer.Name, customer.PhoneNumber, customer.PhoneNumber2, customer.Cnpj, 
                 customer.Cpf, customer.Rg, customer.Cep, customer.Street, customer.Number, customer.District, customer.Additional, customer.Email, customer.Description, 
-                customer.City, customer.CreatedAt, customer.UpdatedAt, new CustomerGroupViewModel(customer.Group.Id, customer.Group.Name));
+                customer.City, customer.CreatedAt, customer.UpdatedAt, new CustomerGroupViewModel(customer.Group.Id, customer.Group.Name), $"{_bucketUrl}/{customer.AvatarUrl}");
 
             return customerViewModel;
         }

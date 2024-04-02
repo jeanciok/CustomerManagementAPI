@@ -49,5 +49,16 @@ namespace CustomerManagament.Infrastructure.CloudServices
                 throw new Exception(ex.Message);
             }
         }
+
+        public async Task DeleteFileAsync(string filePath) 
+        {
+            DeleteObjectRequest request = new()
+            {
+                BucketName = _bucketName,
+                Key = filePath
+            };
+
+            await _s3client.DeleteObjectAsync(request);
+        }
     }
 }

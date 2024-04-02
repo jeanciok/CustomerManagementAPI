@@ -1,5 +1,6 @@
 using CustomerManagement.Application.Commands.AddCustomer;
 using CustomerManagement.Application.Commands.DeleteCustomer;
+using CustomerManagement.Application.Commands.DeleteCustomerAvatar;
 using CustomerManagement.Application.Commands.UpdateAvatarCustomer;
 using CustomerManagement.Application.Commands.UpdateCustomer;
 using CustomerManagement.Application.Queries.GetAllCustomers;
@@ -75,6 +76,16 @@ namespace CustomerManagementAPI.Controllers
         public async Task<IActionResult> UpdateAvatar(IFormFile avatar, Guid customerId)
         {
             UpdateCustomerAvatarCommand command = new(avatar, customerId);
+
+            await _mediator.Send(command);
+
+            return NoContent();
+        }
+
+        [HttpDelete("deleteAvatar/{customerId}")]
+        public async Task<IActionResult> DeleteAvatar(Guid customerId)
+        {
+            DeleteCustomerAvatarCommand command = new(customerId);
 
             await _mediator.Send(command);
 
