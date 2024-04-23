@@ -16,10 +16,10 @@ namespace CustomerManagament.Infrastructure.Persistence.Configuration
             builder
                 .HasKey(p => p.Id);
 
-            //builder
-            //    .HasOne(c => c.Customer)
-            //    .WithMany(a => a.Attachments)
-            //    .HasForeignKey(a => a.CustomerId);
+            builder
+                .HasOne(c => c.Customer)
+                .WithMany(a => a.Attachments)
+                .HasForeignKey(a => a.CustomerId);
         }
     }
 }

@@ -2,17 +2,15 @@
 {
     public class Attachment : BaseEntity
     {
-        public Attachment() { }
-
-        public Attachment(string name, string urlFile)
+        public Attachment(string name, string fileUrl)
         {
             Name = name;
-            UrlFile = urlFile;
+            FileUrl = fileUrl;
         }
 
         public string Name { get; set; }
-        public string UrlFile { get; set; }
-        //public Guid CustomerId { get; set; }
-        //public Customer Customer { get; set; }
+        public string FileUrl { get; set; }
+        public Guid CustomerId { get; set; }
+        public Customer Customer { get; set; }
     }
 }
