@@ -1,4 +1,5 @@
-﻿using CustomerManagement.Application.Queries.GetAllAttachments;
+﻿using CustomerManagement.Application.Commands.DeleteAttachment;
+using CustomerManagement.Application.Queries.GetAllAttachments;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -23,6 +24,16 @@ namespace CustomerManagementAPI.Controllers
             GetAttachmentsByCustomerIdQuery query = new(customerId);
             var result = await _mediator.Send(query);
             return Ok(result);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            DeleteAttachmentCommand command = new(id);
+
+            await _mediator.Send(command);
+
+            return NoContent();
         }
     }
 }

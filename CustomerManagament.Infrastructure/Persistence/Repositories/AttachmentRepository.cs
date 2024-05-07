@@ -24,6 +24,12 @@ namespace CustomerManagament.Infrastructure.Persistence.Repositories
             await _context.SaveChangesAsync();
         }
 
+        public async Task<Attachment> GetByIdAsync(Guid id)
+        {
+            return await _context.Attachments
+                .FirstOrDefaultAsync(x => x.Id == id);
+        }
+
         public async Task DeleteAsync(Guid id)
         {
             var attachment = await _context.Attachments.FindAsync(id);
