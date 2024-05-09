@@ -26,23 +26,31 @@ namespace CustomerManagament.Infrastructure.CloudServices
             _s3client = new AmazonS3Client(configuration["Storage:AccessKeyId"], configuration["Storage:SecretAcessKey"], config);
         }
 
-        public string UploadFile(IFormFile file, string folder)
+        public Dictionary<string, string> UploadFiles(List<IFormFile> files, string folder)
         {
             try
             {
                 TransferUtility transferUtility = new(_s3client);
 
-                var fileTransferUtilityRequest = new TransferUtilityUploadRequest
+                Dictionary<string, string> filesUploaded = new();
+
+                foreach (var file in files)
                 {
-                    BucketName = _bucketName,
-                    InputStream = file.OpenReadStream(),
-                    Key = $"{folder}/{Guid.NewGuid()}",
-                    CannedACL = S3CannedACL.PublicRead,
-                };
+                    var fileTransferUtilityRequest = new TransferUtilityUploadRequest
+                    {
+                        BucketName = _bucketName,
+                        InputStream = file.OpenReadStream(),
+                        Key = $"{folder}/{Guid.NewGuid()}",
+                        CannedACL = S3CannedACL.PublicRead,
+                    };
 
-                transferUtility.Upload(fileTransferUtilityRequest);
+                    transferUtility.Upload(fileTransferUtilityRequest);
 
-                return fileTransferUtilityRequest.Key;
+                    filesUploaded.Add(fileTransferUtilityRequest.Key, file.FileName);
+                }
+
+
+                return filesUploaded;
             }
             catch (AmazonS3Exception ex)
             {

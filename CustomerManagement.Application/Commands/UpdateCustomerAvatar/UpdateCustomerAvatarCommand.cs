@@ -10,13 +10,13 @@ namespace CustomerManagement.Application.Commands.UpdateAvatarCustomer
 {
     public class UpdateCustomerAvatarCommand : IRequest<Unit>
     {
-        public UpdateCustomerAvatarCommand(IFormFile avatar, Guid customerId)
+        public UpdateCustomerAvatarCommand(List<IFormFile> avatar, Guid customerId)
         {
             Avatar = avatar;
             CustomerId = customerId;
         }
 
-        public IFormFile Avatar { get; set; }
+        public List<IFormFile> Avatar { get; set; }
         public Guid CustomerId { get; set; }
     }
 }

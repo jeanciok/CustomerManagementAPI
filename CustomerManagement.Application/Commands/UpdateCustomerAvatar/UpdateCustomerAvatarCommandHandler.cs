@@ -23,11 +23,11 @@ namespace CustomerManagement.Application.Commands.UpdateAvatarCustomer
 
         public async Task<Unit> Handle(UpdateCustomerAvatarCommand request, CancellationToken cancellationToken)
         {
-            string avatarUrl = _fileStorageService.UploadFile(request.Avatar, "customer_avatar");
+            Dictionary<string, string> avatarUrl = _fileStorageService.UploadFiles(request.Avatar, "customer_avatar");
 
             var customer = await _customerRepository.GetByIdAsync(request.CustomerId);
 
-            customer.AvatarUrl = avatarUrl;
+            customer.AvatarUrl = avatarUrl.First().Key;
 
             await _customerRepository.UpdateAsync(customer);
 

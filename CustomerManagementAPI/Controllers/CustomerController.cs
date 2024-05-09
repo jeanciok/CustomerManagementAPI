@@ -73,7 +73,7 @@ namespace CustomerManagementAPI.Controllers
         }
 
         [HttpPut("updateAvatar/{customerId}")]
-        public async Task<IActionResult> UpdateAvatar(IFormFile avatar, Guid customerId)
+        public async Task<IActionResult> UpdateAvatar(List<IFormFile> avatar, Guid customerId)
         {
             UpdateCustomerAvatarCommand command = new(avatar, customerId);
 
