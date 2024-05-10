@@ -2,10 +2,13 @@
 {
     public class Attachment : BaseEntity
     {
-        public Attachment(string name, string fileUrl)
+        public Attachment(string name, string fileUrl, string fileType, Guid customerId)
         {
             Name = name;
             FileUrl = fileUrl;
+            FileType = fileType;
+            CreatedAt = DateTime.Now;
+            CustomerId = customerId;
         }
 
         public string Name { get; set; }

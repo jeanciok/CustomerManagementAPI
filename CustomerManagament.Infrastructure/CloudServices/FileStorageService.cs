@@ -26,13 +26,13 @@ namespace CustomerManagament.Infrastructure.CloudServices
             _s3client = new AmazonS3Client(configuration["Storage:AccessKeyId"], configuration["Storage:SecretAcessKey"], config);
         }
 
-        public Dictionary<string, string> UploadFiles(List<IFormFile> files, string folder)
+        public Dictionary<string, IFormFile> UploadFiles(List<IFormFile> files, string folder)
         {
             try
             {
                 TransferUtility transferUtility = new(_s3client);
 
-                Dictionary<string, string> filesUploaded = new();
+                Dictionary<string, IFormFile> filesUploaded = new();
 
                 foreach (var file in files)
                 {
@@ -40,13 +40,13 @@ namespace CustomerManagament.Infrastructure.CloudServices
                     {
                         BucketName = _bucketName,
                         InputStream = file.OpenReadStream(),
-                        Key = $"{folder}/{Guid.NewGuid()}",
+                        Key = $"{folder}/{Guid.NewGuid()}.{MimeTypes.GetMimeTypeExtensions(file.ContentType).First()}",
                         CannedACL = S3CannedACL.PublicRead,
                     };
 
                     transferUtility.Upload(fileTransferUtilityRequest);
 
-                    filesUploaded.Add(fileTransferUtilityRequest.Key, file.FileName);
+                    filesUploaded.Add(fileTransferUtilityRequest.Key, file);
                 }
 
 

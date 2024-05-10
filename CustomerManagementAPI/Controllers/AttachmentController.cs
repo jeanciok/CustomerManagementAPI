@@ -1,4 +1,5 @@
 ﻿using CustomerManagement.Application.Commands.DeleteAttachment;
+using CustomerManagement.Application.Commands.UploadAttachment;
 using CustomerManagement.Application.Queries.GetAllAttachments;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -24,6 +25,15 @@ namespace CustomerManagementAPI.Controllers
             GetAttachmentsByCustomerIdQuery query = new(customerId);
             var result = await _mediator.Send(query);
             return Ok(result);
+        }
+
+        [HttpPost("{customerId}")]
+        public async Task<IActionResult> Upload(List<IFormFile> files, Guid customerId)
+        {
+            UploadAttachmentCommand command = new(customerId, files);
+            await _mediator.Send(command);
+
+            return NoContent();
         }
 
         [HttpDelete("{id}")]

@@ -9,7 +9,7 @@ namespace CustomerManagement.Core.Services
 {
     public interface IFileStorageService
     {
-        Dictionary<string, string> UploadFiles(List<IFormFile> file, string folder);
+        Dictionary<string, IFormFile> UploadFiles(List<IFormFile> file, string folder);
         Task DeleteFileAsync(string filePath);
     }
 }

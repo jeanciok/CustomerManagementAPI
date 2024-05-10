@@ -2,6 +2,7 @@
 using CustomerManagement.Core.Repositories;
 using CustomerManagement.Core.Services;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +24,7 @@ namespace CustomerManagement.Application.Commands.UpdateAvatarCustomer
 
         public async Task<Unit> Handle(UpdateCustomerAvatarCommand request, CancellationToken cancellationToken)
         {
-            Dictionary<string, string> avatarUrl = _fileStorageService.UploadFiles(request.Avatar, "customer_avatar");
+            Dictionary<string, IFormFile> avatarUrl = _fileStorageService.UploadFiles(request.Avatar, "customer_avatar");
 
             var customer = await _customerRepository.GetByIdAsync(request.CustomerId);
 
