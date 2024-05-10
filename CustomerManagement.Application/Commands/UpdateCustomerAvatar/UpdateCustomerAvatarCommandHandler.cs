@@ -28,6 +28,11 @@ namespace CustomerManagement.Application.Commands.UpdateAvatarCustomer
 
             var customer = await _customerRepository.GetByIdAsync(request.CustomerId);
 
+            if (customer != null && !string.IsNullOrWhiteSpace(customer.AvatarUrl)) 
+            {
+                await _fileStorageService.DeleteFileAsync(customer.AvatarUrl);
+            }
+
             customer.AvatarUrl = avatarUrl.First().Key;
 
             await _customerRepository.UpdateAsync(customer);
