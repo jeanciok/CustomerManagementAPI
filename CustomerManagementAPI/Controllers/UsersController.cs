@@ -106,14 +106,5 @@ namespace CustomerManagementAPI.Controllers
 
             return Ok(isValid);
         }
-
-        // TODO: This controller is for testing digitalocean storage, after testing they will be deleted
-        //[AllowAnonymous]
-        //[HttpPost("uploadAvatar")]
-        //public IActionResult UploadAvatar(IFormFile file)
-        //{
-        //    _fileStorageService.UploadFiles(file, "profile_avatar");
-        //    return NoContent();
-        //}
     }
 }

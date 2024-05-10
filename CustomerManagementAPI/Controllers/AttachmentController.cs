@@ -9,7 +9,7 @@ namespace CustomerManagementAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class AttachmentController : ControllerBase
     {
         private readonly IMediator _mediator;

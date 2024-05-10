@@ -1,11 +1,13 @@
 ﻿using CustomerManagement.Application.Queries.GetCityByUf;
 using CustomerManagement.Application.ViewModels;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CustomerManagementAPI.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize]
     [ApiController]
     public class CityController : ControllerBase
     {
