@@ -6,7 +6,7 @@ namespace CustomerManagament.Infrastructure.Persistence.Repositories
 {
     public class UserRepository : IUserRepository
     {
-        private Guid tempTenant = Guid.Parse("f3680a57-795e-4ef7-9e10-cf54d2b6c42f");
+        private Guid tempTenant = Guid.Parse("644d1f61-575b-444f-858f-5471a0b4f3d4");
         private Guid tempRole = Guid.Parse("62d8acf1-1577-4d1a-b6ba-62e214e0fe8b");
 
         private readonly CustomerManagementDbContext _dbContext;
@@ -46,6 +46,7 @@ namespace CustomerManagament.Infrastructure.Persistence.Repositories
         {
             return await _dbContext.Users
                 .Include(u => u.Role)
+                .Include(u => u.Tenant)
                 .Where(u => u.TenantId == tempTenant && u.Id == id)
                 .FirstOrDefaultAsync();
         }

@@ -2,6 +2,7 @@
 using CustomerManagement.Core.Entities;
 using CustomerManagement.Core.Repositories;
 using MediatR;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +14,12 @@ namespace CustomerManagement.Application.Queries.GetUserById
     public class GetUserByIdQueryHandler : IRequestHandler<GetUserByIdQuery, UserViewModel>
     {
         private readonly IUserRepository _userRepository;
+        private readonly string _bucketUrl;
 
-        public GetUserByIdQueryHandler(IUserRepository userRepository)
+        public GetUserByIdQueryHandler(IUserRepository userRepository, IConfiguration configuration)
         {
             _userRepository = userRepository;
+            _bucketUrl = configuration["Storage:BucketURL"];
         }
 
         public async Task<UserViewModel> Handle(GetUserByIdQuery request, CancellationToken cancellationToken)
@@ -32,7 +35,8 @@ namespace CustomerManagement.Application.Queries.GetUserById
                 user.Email,
                 user.Role,
                 user.IsActive,
-                user.Tenant
+                user.Tenant,
+                $"{_bucketUrl}/{user.AvatarUrl}"
             );
 
             return viewModel;

@@ -2,6 +2,7 @@
 using CustomerManagement.Application.Commands.DeleteUser;
 using CustomerManagement.Application.Commands.LoginUser;
 using CustomerManagement.Application.Commands.UpdateUser;
+using CustomerManagement.Application.Commands.UpdateUserAvatar;
 using CustomerManagement.Application.Queries.GetAllUsers;
 using CustomerManagement.Application.Queries.GetUserById;
 using CustomerManagement.Application.ViewModels;
@@ -46,7 +47,7 @@ namespace CustomerManagementAPI.Controllers
 
             return Ok(user);
         }
-        [AllowAnonymous]
+
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] CreateUserCommand command)
         {
@@ -105,6 +106,16 @@ namespace CustomerManagementAPI.Controllers
             bool isValid = _authService.IsTokenValid(token);
 
             return Ok(isValid);
+        }
+
+        [HttpPut("updateAvatar/{userId}")]
+        public async Task<IActionResult> UpdateAvatar(List<IFormFile> avatar, Guid userId)
+        {
+            UpdateUserAvatarCommand command = new(avatar, userId);
+
+            await _mediator.Send(command);
+
+            return NoContent();
         }
     }
 }

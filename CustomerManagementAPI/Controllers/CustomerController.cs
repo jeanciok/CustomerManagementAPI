@@ -22,7 +22,7 @@ namespace CustomerManagementAPI.Controllers
         private readonly IMediator _mediator;
         private readonly IFileStorageService _fileStorageService;
 
-        public CustomerController(IMediator mediator, IFileStorageService fileStorageService)
+        public CustomerController(IMediator mediator, IFileStorageService fileStorageService) 
         {
             _mediator = mediator;
             _fileStorageService = fileStorageService;

@@ -3,6 +3,7 @@ using CustomerManagement.Core.Repositories;
 using CustomerManagement.Core.Services;
 using MediatR;
 using MediatR.Pipeline;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,11 +16,13 @@ namespace CustomerManagement.Application.Commands.LoginUser
     {
         private IAuthService _authService;
         private IUserRepository _userRepository;
+        private readonly string _bucketUrl;
 
-        public LoginUserCommandHandler(IAuthService authService, IUserRepository userRepository)
+        public LoginUserCommandHandler(IAuthService authService, IUserRepository userRepository, IConfiguration configuration)
         {
             _authService = authService;
             _userRepository = userRepository;
+            _bucketUrl = configuration["Storage:BucketURL"];
         }
 
         public async Task<LoginUserViewModel> Handle(LoginUserCommand request, CancellationToken cancellationToken)
@@ -35,7 +38,7 @@ namespace CustomerManagement.Application.Commands.LoginUser
 
             var token = _authService.GenerateToken(user.Email, "Admin");
 
-            return new LoginUserViewModel(user.Id, user.Name, user.Email, token, user.Tenant, user.Role);
+            return new LoginUserViewModel(user.Id, user.Name, user.Email, token, user.Tenant, user.Role, $"{_bucketUrl}/{user.AvatarUrl}");
         }
     }
 }

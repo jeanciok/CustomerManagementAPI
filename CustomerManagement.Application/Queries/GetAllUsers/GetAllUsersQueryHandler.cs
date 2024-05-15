@@ -2,6 +2,7 @@
 using CustomerManagement.Core.Entities;
 using CustomerManagement.Core.Repositories;
 using MediatR;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +14,12 @@ namespace CustomerManagement.Application.Queries.GetAllUsers
     public class GetAllUsersQueryHandler : IRequestHandler<GetAllUsersQuery, List<UserViewModel>>
     {
         private readonly IUserRepository _userRepository;
+        private readonly string _bucketUrl;
 
-        public GetAllUsersQueryHandler(IUserRepository userRepository)
+        public GetAllUsersQueryHandler(IUserRepository userRepository, IConfiguration configuration)
         {
             _userRepository = userRepository;
+            _bucketUrl = configuration["Storage:BucketURL"];
         }
 
         public async Task<List<UserViewModel>> Handle(GetAllUsersQuery request, CancellationToken cancellationToken)
@@ -24,7 +27,7 @@ namespace CustomerManagement.Application.Queries.GetAllUsers
             List<User> users = await _userRepository.GetAllAsync();
 
             List<UserViewModel> usersViewModel = users
-                .Select(u => new UserViewModel(u.Id, u.Name, u.Email, u.Role, u.IsActive, u.Tenant))
+                .Select(u => new UserViewModel(u.Id, u.Name, u.Email, u.Role, u.IsActive, u.Tenant, $"{_bucketUrl}/{u.AvatarUrl}"))
                 .ToList();
 
             return usersViewModel;
