@@ -18,6 +18,7 @@ using FluentValidation;
 using FluentValidation.AspNetCore;
 using CustomerManagementAPI.Filters;
 using CustomerManagament.Infrastructure.CloudServices;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -65,6 +66,9 @@ builder.Services.AddDbContext<CustomerManagementDbContext>(options =>
 {
     options.UseNpgsql(builder.Configuration.GetConnectionString("Default"));
 });
+
+//builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+//    .AddEntityFrameworkStores<CustomerManagementDbContext>();
 
 builder.Services
   .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -122,4 +126,19 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+//CreateRoles(app.Services.CreateScope().ServiceProvider.GetService<RoleManager<IdentityRole>>()).Wait();
+
 app.Run();
+
+//static async Task CreateRoles(RoleManager<IdentityRole> roleManager)
+//{
+//    if (await roleManager.FindByNameAsync("TenantAdmin") == null)
+//    {
+//        await roleManager.CreateAsync(new IdentityRole("TenantAdmin"));
+//    }
+
+//    if (await roleManager.FindByNameAsync("User") == null)
+//    {
+//        await roleManager.CreateAsync(new IdentityRole("User"));
+//    }
+//}

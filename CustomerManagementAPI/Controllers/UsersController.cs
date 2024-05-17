@@ -44,7 +44,6 @@ namespace CustomerManagementAPI.Controllers
             GetUserByIdQuery query = new(id);
 
             UserViewModel user = await _mediator.Send(query);
-
             return Ok(user);
         }
 

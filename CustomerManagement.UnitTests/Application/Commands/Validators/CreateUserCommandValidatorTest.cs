@@ -22,7 +22,6 @@ namespace CustomerManagement.UnitTests.Application.Commands.Validators
                 Name = "Jean Andrade",
                 Email = "jean@example.com",
                 Password = "password123",
-                RoleId = Guid.NewGuid(),
                 TenantId = Guid.NewGuid()
             };
 
@@ -45,7 +44,6 @@ namespace CustomerManagement.UnitTests.Application.Commands.Validators
                 Name = "",
                 Email = "jean@example.com",
                 Password = "password123",
-                RoleId = Guid.NewGuid(),
                 TenantId = Guid.NewGuid()
             };
 
@@ -67,7 +65,6 @@ namespace CustomerManagement.UnitTests.Application.Commands.Validators
                 Name = "Jean Andrade",
                 Email = "invalidemail",
                 Password = "password123",
-                RoleId = Guid.NewGuid(),
                 TenantId = Guid.NewGuid()
             };
 
@@ -93,7 +90,6 @@ namespace CustomerManagement.UnitTests.Application.Commands.Validators
                 Name = "Jean Andrade",
                 Email = email,
                 Password = "password123",
-                RoleId = Guid.NewGuid(),
                 TenantId = Guid.NewGuid()
             };
 
@@ -115,7 +111,6 @@ namespace CustomerManagement.UnitTests.Application.Commands.Validators
                 Name = "Jean Andrade",
                 Email = "jean@example.com",
                 Password = "",
-                RoleId = Guid.NewGuid(),
                 TenantId = Guid.NewGuid()
             };
 
@@ -128,28 +123,6 @@ namespace CustomerManagement.UnitTests.Application.Commands.Validators
         }
 
         [Fact]
-        public void EmptyRoleId_Validate_ShouldHaveValidationError()
-        {
-            // Arrange
-            var validator = new CreateUserCommandValidator();
-            var command = new CreateUserCommand
-            {
-                Name = "Jean Andrade",
-                Email = "jean@example.com",
-                Password = "password123",
-                RoleId = Guid.Empty,
-                TenantId = Guid.NewGuid()
-            };
-
-            // Act
-            var result = validator.Validate(command);
-
-            // Assert
-            Assert.False(result.IsValid);
-            Assert.Contains(result.Errors, error => error.ErrorMessage == "Role is required");
-        }
-
-        [Fact]
         public void Validate_EmptyTenantId_ShouldHaveValidationError()
         {
             // Arrange
@@ -159,7 +132,6 @@ namespace CustomerManagement.UnitTests.Application.Commands.Validators
                 Name = "Jean Andrade",
                 Email = "jean@example.com",
                 Password = "password123",
-                RoleId = Guid.NewGuid(),
                 TenantId = Guid.Empty
             };
 

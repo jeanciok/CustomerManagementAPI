@@ -36,7 +36,6 @@ namespace CustomerManagament.Infrastructure.Persistence.Repositories
         public async Task<List<User>> GetAllAsync()
         {
             return await _dbContext.Users
-                   .Include(u => u.Role)
                    .Include(u => u.Tenant)
                    .Where(u => u.TenantId == tempTenant)
                    .ToListAsync();
@@ -45,7 +44,6 @@ namespace CustomerManagament.Infrastructure.Persistence.Repositories
         public async Task<User> GetByIdAsync(Guid id)
         {
             return await _dbContext.Users
-                .Include(u => u.Role)
                 .Include(u => u.Tenant)
                 .Where(u => u.TenantId == tempTenant && u.Id == id)
                 .FirstOrDefaultAsync();
@@ -62,7 +60,6 @@ namespace CustomerManagament.Infrastructure.Persistence.Repositories
         {
             return await _dbContext.Users
                 .Include(u => u.Tenant)
-                .Include(u => u.Role)
                 .Where(u => u.Email == email && u.Password == passwordHash)
                 .SingleOrDefaultAsync();
         }

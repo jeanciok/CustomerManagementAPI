@@ -33,7 +33,6 @@ namespace CustomerManagement.Application.Queries.GetUserById
                 user.Id,
                 user.Name,
                 user.Email,
-                user.Role,
                 user.IsActive,
                 user.Tenant,
                 $"{_bucketUrl}/{user.AvatarUrl}"

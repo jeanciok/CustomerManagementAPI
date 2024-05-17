@@ -1,5 +1,6 @@
 ﻿using CustomerManagament.Infrastructure.Persistence.Configuration;
 using CustomerManagement.Core.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace CustomerManagament.Infrastructure.Persistence
@@ -15,7 +16,6 @@ namespace CustomerManagament.Infrastructure.Persistence
         public DbSet<Customer> Customers { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<CustomerGroup> CustomerGroups { get; set; }
-        public DbSet<Role> Roles { get; set; }
         public DbSet<Attachment> Attachments { get; set; }
         public DbSet<City> City { get; set; }
         public DbSet<State> State { get; set; }
@@ -27,7 +27,6 @@ namespace CustomerManagament.Infrastructure.Persistence
             modelBuilder.ApplyConfiguration(new AttachmentConfigurations());
             modelBuilder.ApplyConfiguration(new TenantConfigurations());
             modelBuilder.ApplyConfiguration(new UserConfigurations());
-            modelBuilder.ApplyConfiguration(new RoleConfigurations());
             modelBuilder.ApplyConfiguration(new CustomerConfigurations());
             modelBuilder.ApplyConfiguration(new CostumerGroupConfigurations());
         }

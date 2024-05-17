@@ -15,7 +15,6 @@ namespace CustomerManagement.Application.Validators
             RuleFor(x => x.Name).NotEmpty().WithMessage("Name is required");
             RuleFor(x => x.Email).EmailAddress().WithMessage("Email not valid");
             RuleFor(x => x.Password).NotEmpty().WithMessage("Password is required");
-            RuleFor(x => x.RoleId).NotEmpty().WithMessage("Role is required");
             RuleFor(x => x.TenantId).NotEmpty().WithMessage("Tenant is required");
         }
     }

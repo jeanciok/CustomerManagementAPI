@@ -38,7 +38,6 @@ namespace CustomerManagement.Application.Commands.CreateTenant
                 Name = request.User.Name,
                 Email = request.User.Email,
                 Password = request.User.Password,
-                RoleId = request.User.RoleId,
                 TenantId = tenant.TenantId
             };
 

@@ -23,9 +23,15 @@ namespace CustomerManagement.Application.Commands.UpdateUser
 
         public async Task<Unit> Handle(UpdateUserCommand request, CancellationToken cancellationToken)
         {
-            string passwordHash = _authService.ComputeSha256Hash(request.Password);
+            var user = await _userRepository.GetByIdAsync(request.Id);
 
-            User user = new(request.Id, request.Name, request.Email, passwordHash, request.RoleId, request.IsActive, request.TenantId);
+            if (user == null)
+            {
+                throw new Exception("Usuário não encontrando");
+            }
+
+            user.Name = request.Name;
+            user.IsActive = request.IsActive;
 
             await _userRepository.UpdateAsync(user);
 

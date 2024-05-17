@@ -21,10 +21,6 @@ namespace CustomerManagament.Infrastructure.Persistence.Configuration
                 .WithMany(t => t.Users)
                 .HasForeignKey(f => f.TenantId);
 
-            builder
-                .HasOne(u => u.Role)
-                .WithMany(r => r.Users)
-                .HasForeignKey(f => f.RoleId);
         }
     }
 }
