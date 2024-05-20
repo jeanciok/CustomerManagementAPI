@@ -4,7 +4,7 @@ namespace CustomerManagement.Application.ViewModels
 {
     public class LoginUserViewModel : BaseEntity
     {
-        public LoginUserViewModel(Guid id, string name, string email, string token, Tenant tenant, string avatarUrl)
+        public LoginUserViewModel(Guid id, string name, string email, string token, Tenant tenant, string avatarUrl, string role)
         {
             Id = id;
             Name = name;
@@ -12,6 +12,7 @@ namespace CustomerManagement.Application.ViewModels
             Token = token;
             Tenant = tenant;
             AvatarUrl = avatarUrl;
+            Role = role;
         }
 
         public string Name { get; set; }
@@ -19,5 +20,6 @@ namespace CustomerManagement.Application.ViewModels
         public string Token { get; set; }
         public Tenant Tenant { get; set; }
         public string AvatarUrl { get; set; }
+        public string Role { get; set; }
     }
 }

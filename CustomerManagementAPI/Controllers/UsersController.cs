@@ -14,7 +14,6 @@ using Microsoft.AspNetCore.Mvc;
 namespace CustomerManagementAPI.Controllers
 {
     [Route("api/[controller]")]
-    [Authorize]
     public class UsersController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -29,6 +28,7 @@ namespace CustomerManagementAPI.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "tenant_admin")]
         public async Task<IActionResult> Get()
         {
             GetAllUsersQuery query = new();
@@ -39,6 +39,7 @@ namespace CustomerManagementAPI.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize(Roles = "tenant_admin, tenant_user")]
         public async Task<IActionResult> GetById(Guid id)
         {
             GetUserByIdQuery query = new(id);
@@ -48,6 +49,7 @@ namespace CustomerManagementAPI.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "tenant_admin")]
         public async Task<IActionResult> Post([FromBody] CreateUserCommand command)
         {
             //if (!ModelState.IsValid)
@@ -67,6 +69,7 @@ namespace CustomerManagementAPI.Controllers
         }
 
         [HttpPut]
+        [Authorize(Roles = "tenant_admin, tenant_user")]
         public async Task<IActionResult> Put([FromBody] UpdateUserCommand command)
         {
             await _mediator.Send(command);
@@ -75,6 +78,7 @@ namespace CustomerManagementAPI.Controllers
         }
 
         [HttpDelete]
+        [Authorize(Roles = "tenant_admin")]
         public async Task<IActionResult> Delete(Guid id)
         {
             DeleteUserCommand deleteUserCommand = new(id);
@@ -84,7 +88,6 @@ namespace CustomerManagementAPI.Controllers
             return NoContent();
         }
 
-        [AllowAnonymous]
         [HttpPut("login")]
         public async Task<IActionResult> Login([FromBody] LoginUserCommand command)
         {
@@ -98,7 +101,6 @@ namespace CustomerManagementAPI.Controllers
             return Ok(response);
         }
 
-        [AllowAnonymous]
         [HttpGet("validateToken")]
         public IActionResult ValidateToken([FromQuery] string token)
         {
@@ -108,6 +110,7 @@ namespace CustomerManagementAPI.Controllers
         }
 
         [HttpPut("updateAvatar/{userId}")]
+        [Authorize(Roles = "tenant_admin, tenant_user")]
         public async Task<IActionResult> UpdateAvatar(List<IFormFile> avatar, Guid userId)
         {
             UpdateUserAvatarCommand command = new(avatar, userId);

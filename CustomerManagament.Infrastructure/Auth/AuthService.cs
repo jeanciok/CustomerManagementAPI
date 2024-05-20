@@ -46,13 +46,13 @@ namespace CustomerManagament.Infrastructure.Auth
             List<Claim> claims = new()
             {
                 new Claim("username", email),
-                new Claim("ClaimTypes.Role", role),
+                new Claim(ClaimTypes.Role, role),
             };
 
             var token = new JwtSecurityToken(
                 issuer: issuer,
                 audience: audience,
-                expires: DateTime.Now.AddMinutes(120),
+                expires: DateTime.Now.AddHours(24),
                 signingCredentials: credentials,
                 claims: claims);
 

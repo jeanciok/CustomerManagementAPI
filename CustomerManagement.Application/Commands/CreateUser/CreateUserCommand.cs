@@ -13,5 +13,6 @@ namespace CustomerManagement.Application.Commands.CreateUser
         public string Email { get; set; }
         public string Password { get; set; }
         public Guid TenantId { get; set; }
+        public string Role { get; set; }
     }
 }
