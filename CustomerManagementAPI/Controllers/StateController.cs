@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace CustomerManagementAPI.Controllers
 {
     [Route("api/[controller]")]
-    [Authorize]
+    [Authorize(Roles = "tenant_admin, tenant_user")]
     public class StateController : ControllerBase
     {
         private readonly IMediator _mediator;

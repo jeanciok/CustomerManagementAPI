@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 namespace CustomerManagementAPI.Controllers
 {
     [Route("api/[controller]")]
-    [Authorize]
+    [Authorize(Roles = "tenant_admin, tenant_user")]
     [ApiController]
     public class CustomerController : ControllerBase
     {
