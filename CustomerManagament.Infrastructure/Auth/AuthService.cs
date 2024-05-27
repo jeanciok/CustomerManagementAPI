@@ -34,7 +34,7 @@ namespace CustomerManagament.Infrastructure.Auth
             }
         }
 
-        public string GenerateToken(string email, string role)
+        public string GenerateToken(Guid userId, string role)
         {
             var issuer = _configuration["Jwt:Issuer"];
             var audience = _configuration["Jwt:Audience"];
@@ -45,7 +45,7 @@ namespace CustomerManagament.Infrastructure.Auth
 
             List<Claim> claims = new()
             {
-                new Claim("username", email),
+                new Claim("id", userId.ToString()),
                 new Claim(ClaimTypes.Role, role),
             };
 

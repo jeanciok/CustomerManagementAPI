@@ -10,6 +10,7 @@ using CustomerManagement.Core.Services;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace CustomerManagementAPI.Controllers
 {
@@ -45,6 +46,19 @@ namespace CustomerManagementAPI.Controllers
             GetUserByIdQuery query = new(id);
 
             UserViewModel user = await _mediator.Send(query);
+            return Ok(user);
+        }
+
+        [HttpGet("me")]
+        [Authorize]
+        public async Task<IActionResult> GetCurrentUser()
+        {
+            Guid userId = Guid.Parse(User.FindFirst("id").Value);
+
+            GetUserByIdQuery query = new(userId);
+
+            UserViewModel user = await _mediator.Send(query);
+
             return Ok(user);
         }
 
@@ -99,14 +113,6 @@ namespace CustomerManagementAPI.Controllers
             }
 
             return Ok(response);
-        }
-
-        [HttpGet("validateToken")]
-        public IActionResult ValidateToken([FromQuery] string token)
-        {
-            bool isValid = _authService.IsTokenValid(token);
-
-            return Ok(isValid);
         }
 
         [HttpPut("updateAvatar/{userId}")]

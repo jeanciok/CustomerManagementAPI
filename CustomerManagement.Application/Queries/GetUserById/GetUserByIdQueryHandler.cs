@@ -34,6 +34,7 @@ namespace CustomerManagement.Application.Queries.GetUserById
                 user.Name,
                 user.Email,
                 user.IsActive,
+                user.Role,
                 user.Tenant,
                 $"{_bucketUrl}/{user.AvatarUrl}"
             );

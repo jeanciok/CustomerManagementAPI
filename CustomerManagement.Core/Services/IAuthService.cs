@@ -9,7 +9,7 @@ namespace CustomerManagement.Core.Services
     public interface IAuthService
     {
         string ComputeSha256Hash(string password);
-        string GenerateToken(string username, string password);
+        string GenerateToken(Guid userId, string role);
         bool IsTokenValid(string token);
     }
 }
