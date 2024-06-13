@@ -76,6 +76,10 @@ namespace CustomerManagementAPI.Controllers
             //    return BadRequest(messages);
             //}
 
+            Guid tenantId = Guid.Parse(User.FindFirst("tenant_id").Value);
+
+            command.TenantId = tenantId;
+
             Guid userId = await _mediator.Send(command);
 
             // TODO: Change this to return a 201 Created response
@@ -91,7 +95,7 @@ namespace CustomerManagementAPI.Controllers
             return NoContent();
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         [Authorize(Roles = "tenant_admin")]
         public async Task<IActionResult> Delete(Guid id)
         {

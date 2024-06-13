@@ -36,7 +36,7 @@ namespace CustomerManagement.Application.Commands.LoginUser
                 return null;
             }
 
-            var token = _authService.GenerateToken(user.Id, user.Role);
+            var token = _authService.GenerateToken(user.Id, user.Role, user.TenantId);
 
             return new LoginUserViewModel(user.Id, user.Name, user.Email, token, user.Tenant, $"{_bucketUrl}/{user.AvatarUrl}", user.Role);
         }
