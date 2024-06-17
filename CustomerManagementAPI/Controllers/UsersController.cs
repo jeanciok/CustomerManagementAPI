@@ -1,4 +1,5 @@
-﻿using CustomerManagement.Application.Commands.CreateUser;
+﻿using CustomerManagement.Application.Commands.ChangePassword;
+using CustomerManagement.Application.Commands.CreateUser;
 using CustomerManagement.Application.Commands.DeleteUser;
 using CustomerManagement.Application.Commands.LoginUser;
 using CustomerManagement.Application.Commands.UpdateUser;
@@ -124,6 +125,19 @@ namespace CustomerManagementAPI.Controllers
         public async Task<IActionResult> UpdateAvatar(List<IFormFile> avatar, Guid userId)
         {
             UpdateUserAvatarCommand command = new(avatar, userId);
+
+            await _mediator.Send(command);
+
+            return NoContent();
+        }
+
+        [HttpPut("changePassword")]
+        [Authorize(Roles = "tenant_admin, tenant_user")]
+        public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordCommand command)
+        {
+            Guid userId = Guid.Parse(User.FindFirst("id").Value);
+
+            command.UserId = userId;
 
             await _mediator.Send(command);
 
