@@ -2,7 +2,7 @@
 using MediatR;
 using System;
 
-namespace CustomerManagement.Application.Commands.AddCustomer
+namespace CustomerManagement.Application.Commands.CreateCustomer
 {
     public class CreateCustomerCommand : IRequest<Guid>
     {

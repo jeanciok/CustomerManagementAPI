@@ -112,11 +112,6 @@ namespace CustomerManagementAPI.Controllers
         {
             LoginUserViewModel response = await _mediator.Send(command);
 
-            if (response == null)
-            {
-                return BadRequest();
-            }
-
             return Ok(response);
         }
 

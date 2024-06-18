@@ -1,4 +1,4 @@
-﻿using CustomerManagement.Application.Commands.AddCustomer;
+﻿using CustomerManagement.Application.Commands.CreateCustomer;
 using FluentValidation;
 using System;
 

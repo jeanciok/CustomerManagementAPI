@@ -1,4 +1,4 @@
-using CustomerManagement.Application.Commands.AddCustomer;
+using CustomerManagement.Application.Commands.CreateCustomer;
 using CustomerManagement.Application.Commands.DeleteCustomer;
 using CustomerManagement.Application.Commands.DeleteCustomerAvatar;
 using CustomerManagement.Application.Commands.UpdateAvatarCustomer;

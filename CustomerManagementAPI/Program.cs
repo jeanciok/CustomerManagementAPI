@@ -97,6 +97,7 @@ builder.Services.AddScoped<ITenantRepository, TenantRepository>();
 builder.Services.AddScoped<ICityRepository, CityRepository>();
 builder.Services.AddScoped<IFileStorageService, FileStorageService>();
 builder.Services.AddScoped<IAttachmentRepository, AttachmentRepository>();
+builder.Services.AddScoped<IReceiptRepository, ReceiptRepository>();
 
 builder.Services
     .AddValidatorsFromAssemblyContaining<CreateUserCommandValidator>()

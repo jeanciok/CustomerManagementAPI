@@ -23,12 +23,20 @@ namespace CustomerManagament.Infrastructure.Persistence.Repositories
 
             _httpContextAccessor = httpContextAccessor;
             var _userClaims = _httpContextAccessor.HttpContext.User.Claims;
-            _tenantId = Guid.Parse(_userClaims.FirstOrDefault(c => c.Type == "TenantId").Value);
+            _tenantId = Guid.Parse(_userClaims.FirstOrDefault(c => c.Type == "tenant_id").Value);
         }
 
         public async Task AddAsync(Receipt receipt)
         {
             receipt.TenantId = _tenantId;
+
+            int lastReceiptNumber = await _context.Receipts
+                .Where(r => r.TenantId.Equals(_tenantId))
+                .OrderByDescending(r => r.Number)
+                .Select(r => r.Number)
+                .FirstOrDefaultAsync();
+
+            receipt.Number = lastReceiptNumber + 1;
 
             await _context.AddAsync(receipt);
             await _context.SaveChangesAsync();

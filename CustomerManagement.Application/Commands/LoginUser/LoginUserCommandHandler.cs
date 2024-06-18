@@ -33,7 +33,7 @@ namespace CustomerManagement.Application.Commands.LoginUser
 
             if (user == null)
             {
-                return null;
+                throw new Exception("Invalid email or password");
             }
 
             var token = _authService.GenerateToken(user.Id, user.Role, user.TenantId);

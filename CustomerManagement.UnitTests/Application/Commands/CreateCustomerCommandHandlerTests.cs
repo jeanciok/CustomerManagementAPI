@@ -1,4 +1,4 @@
-﻿using CustomerManagement.Application.Commands.AddCustomer;
+﻿using CustomerManagement.Application.Commands.CreateCustomer;
 using CustomerManagement.Core.Entities;
 using CustomerManagement.Core.Repositories;
 using Moq;
