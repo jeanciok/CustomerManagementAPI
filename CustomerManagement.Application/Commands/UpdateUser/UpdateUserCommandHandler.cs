@@ -27,7 +27,7 @@ namespace CustomerManagement.Application.Commands.UpdateUser
 
             if (user == null)
             {
-                throw new Exception("Usuário não encontrando");
+                throw new Exception("User not found");
             }
 
             user.Name = request.Name;
