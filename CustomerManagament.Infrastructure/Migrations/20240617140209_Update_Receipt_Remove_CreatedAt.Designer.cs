@@ -3,6 +3,7 @@ using System;
 using CustomerManagament.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace CustomerManagament.Infrastructure.Migrations
 {
     [DbContext(typeof(CustomerManagementDbContext))]
-    partial class CostumerManagementDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240617140209_Update_Receipt_Remove_CreatedAt")]
+    partial class Update_Receipt_Remove_CreatedAt
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -194,11 +196,11 @@ namespace CustomerManagament.Infrastructure.Migrations
                     b.Property<int>("Number")
                         .HasColumnType("integer");
 
+                    b.Property<decimal>("Price")
+                        .HasColumnType("numeric");
+
                     b.Property<Guid>("TenantId")
                         .HasColumnType("uuid");
-
-                    b.Property<decimal>("Value")
-                        .HasColumnType("numeric");
 
                     b.HasKey("Id");
 
@@ -208,7 +210,7 @@ namespace CustomerManagament.Infrastructure.Migrations
 
                     b.HasIndex("TenantId");
 
-                    b.ToTable("Receipts");
+                    b.ToTable("Receipt");
                 });
 
             modelBuilder.Entity("CustomerManagement.Core.Entities.State", b =>

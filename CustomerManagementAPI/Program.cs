@@ -105,6 +105,8 @@ builder.Services
 
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<GetAllUsersQuery>());
 
+builder.Services.AddHttpContextAccessor();
+
 var app = builder.Build();
 
 app.UseCors(policy =>
@@ -120,6 +122,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
 
 app.UseAuthentication();
 app.UseAuthorization();

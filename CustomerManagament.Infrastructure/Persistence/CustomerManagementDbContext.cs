@@ -19,6 +19,7 @@ namespace CustomerManagament.Infrastructure.Persistence
         public DbSet<Attachment> Attachments { get; set; }
         public DbSet<City> City { get; set; }
         public DbSet<State> State { get; set; }
+        public DbSet<Receipt> Receipts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -29,6 +30,7 @@ namespace CustomerManagament.Infrastructure.Persistence
             modelBuilder.ApplyConfiguration(new UserConfigurations());
             modelBuilder.ApplyConfiguration(new CustomerConfigurations());
             modelBuilder.ApplyConfiguration(new CostumerGroupConfigurations());
+            modelBuilder.ApplyConfiguration(new ReceiptConfiguration());
         }
     }
 }

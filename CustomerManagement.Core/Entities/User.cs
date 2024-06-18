@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace CustomerManagement.Core.Entities
@@ -28,5 +29,8 @@ namespace CustomerManagement.Core.Entities
         public string? AvatarUrl { get; set; }
         public bool IsActive { get; set; }
         public string Role { get; set; }
+
+        [JsonIgnore]
+        public ICollection<Receipt> Receipts { get; set; }
     }
 }

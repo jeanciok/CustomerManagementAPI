@@ -57,5 +57,7 @@ namespace CustomerManagement.Core.Entities
         public string? AvatarUrl { get; set; }
         [JsonIgnore]
         public ICollection<Attachment> Attachments { get; set; }
+        [JsonIgnore]
+        public ICollection<Receipt> Receipts { get; set; }
     }
 }

@@ -31,5 +31,7 @@ namespace CustomerManagement.Core.Entities
         public ICollection<Customer> Customers { get; set; }
         [JsonIgnore]
         public ICollection<CustomerGroup> CustomerGroups { get; set; }
+        [JsonIgnore]
+        public ICollection<Receipt> Receipts { get; set; }
     }
 }

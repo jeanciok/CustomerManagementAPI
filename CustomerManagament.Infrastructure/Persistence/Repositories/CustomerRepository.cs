@@ -71,7 +71,7 @@ namespace CustomerManagement.Core.Repositories
                 .Include(c => c.City)
                 .Include(c => c.City.State)
                 .Include(c => c.Group)
-                .FirstOrDefaultAsync(c => c.Id == id);
+                .FirstOrDefaultAsync(c => c.Id.Equals(id));
         }
 
         public async Task UpdateAsync(Customer customer)
