@@ -2,6 +2,7 @@
 using CustomerManagement.Application.Commands.DeleteReceipt;
 using CustomerManagement.Application.Commands.UpdateReceipt;
 using CustomerManagement.Application.Queries.GetAllReceipts;
+using CustomerManagement.Application.Queries.GetReceiptById;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -26,6 +27,14 @@ namespace CustomerManagementAPI.Controllers
             var query = new GetReceiptsQuery(number, customerName);
             var receipts = await _mediator.Send(query);
             return Ok(receipts);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(Guid id)
+        {
+            var query = new GetReceiptByIdQuery(id);
+            var receipt = await _mediator.Send(query);
+            return Ok(receipt);
         }
 
         [HttpPost]
