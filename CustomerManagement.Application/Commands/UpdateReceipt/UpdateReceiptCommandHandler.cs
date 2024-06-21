@@ -25,7 +25,6 @@ namespace CustomerManagement.Application.Commands.UpdateReceipt
                 throw new Exception("Receipt not found");
             }
 
-            receipt.CustomerId = request.CustomerId;
             receipt.Value = request.Value;
             receipt.Description = request.Description;
             receipt.Date = request.Date;

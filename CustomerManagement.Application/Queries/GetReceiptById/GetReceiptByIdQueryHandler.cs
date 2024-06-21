@@ -18,7 +18,7 @@ namespace CustomerManagement.Application.Queries.GetReceiptById
         {
             var receipt = await _receiptRepository.GetByIdAsync(request.ReceiptId);
 
-            return new ReceiptViewModel(receipt.Id, receipt.Number, receipt.Customer, receipt.Tenant, receipt.Value, receipt.Description, receipt.Date, receipt.User);
+            return new ReceiptViewModel(receipt.Id, receipt.Number, receipt.Tenant.Name, receipt.Customer.Name, receipt.Value, receipt.Description, receipt.Date, receipt.User.Name);
         }
     }
 }

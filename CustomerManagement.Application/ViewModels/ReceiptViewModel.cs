@@ -9,25 +9,25 @@ namespace CustomerManagement.Application.ViewModels
 {
     public class ReceiptViewModel
     {
-        public ReceiptViewModel(Guid id, int number, Customer customer, Tenant tenant, decimal value, string description, DateTime date, User user)
+        public ReceiptViewModel(Guid id, int number, string tenantName, string customerName, decimal value, string description, DateTime date, string createdBy)
         {
             Id = id;
             Number = number;
-            Customer = customer;
-            Tenant = tenant;
+            TenantName = tenantName;
+            CustomerName = customerName;
             Value = value;
             Description = description;
             Date = date;
-            CreatedBy = user;
+            CreatedBy = createdBy;
         }
 
         public Guid Id { get; set; }
         public int Number { get; set; }
-        public Customer Customer { get; set; }
-        public Tenant Tenant { get; set; }
+        public string TenantName { get; set; }
+        public string CustomerName { get; set; }
         public decimal Value { get; set; }
         public string Description { get; set; }
         public DateTime Date { get; set; }
-        public User CreatedBy { get; set; }
+        public string CreatedBy { get; set; }
     }
 }

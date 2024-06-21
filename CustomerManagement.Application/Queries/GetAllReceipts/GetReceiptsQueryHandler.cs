@@ -23,7 +23,7 @@ namespace CustomerManagement.Application.Queries.GetAllReceipts
             List<Receipt> receipts = await _receiptRepository.Get(request.Number, request.CustomerName);
 
             List<ReceiptViewModel> receiptViewModels = receipts
-                .Select(r => new ReceiptViewModel(r.Id, r.Number, r.Customer, r.Tenant, r.Value, r.Description, r.Date, r.User))
+                .Select(r => new ReceiptViewModel(r.Id, r.Number, r.Tenant.Name, r.Customer.Name, r.Value, r.Description, r.Date, r.User.Name))
                 .ToList();
 
             return receiptViewModels;
