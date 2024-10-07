@@ -24,12 +24,17 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers(options => options.Filters.Add(typeof(ValidationFilter)))
+builder.Services
+    .AddControllers(options =>
+    {
+        options.Filters.Add(typeof(ValidationFilter));
+        options.Filters.Add(typeof(TenantFilter));
+    })
     .AddJsonOptions(options =>
         {
             //options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
             options.JsonSerializerOptions.WriteIndented = true;
-        });
+    });
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

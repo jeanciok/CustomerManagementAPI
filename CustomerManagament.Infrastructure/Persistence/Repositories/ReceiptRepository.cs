@@ -55,6 +55,7 @@ namespace CustomerManagament.Infrastructure.Persistence.Repositories
         public async Task<List<Receipt>> Get(int number, string customerName)
         {
             IQueryable<Receipt> query = _context.Receipts
+                .Where(r => r.TenantId.Equals(_tenantId))
                 .Include(r => r.Customer)
                 .Include(r => r.Tenant)
                 .Include(r => r.User);
@@ -75,6 +76,7 @@ namespace CustomerManagament.Infrastructure.Persistence.Repositories
         public async Task<Receipt> GetByIdAsync(Guid id)
         {
             return await _context.Receipts
+                .Where(r => r.TenantId.Equals(_tenantId))
                 .Include(r => r.Customer)
                 .Include(r => r.Tenant)
                 .Include(r => r.User)

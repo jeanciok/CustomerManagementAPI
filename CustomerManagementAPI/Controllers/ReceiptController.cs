@@ -3,6 +3,7 @@ using CustomerManagement.Application.Commands.DeleteReceipt;
 using CustomerManagement.Application.Commands.UpdateReceipt;
 using CustomerManagement.Application.Queries.GetAllReceipts;
 using CustomerManagement.Application.Queries.GetReceiptById;
+using CustomerManagementAPI.Filters;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -15,10 +16,12 @@ namespace CustomerManagementAPI.Controllers
     public class ReceiptController : ControllerBase
     {
         private readonly IMediator _mediator;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public ReceiptController(IMediator mediator)
+        public ReceiptController(IMediator mediator, IHttpContextAccessor httpContextAccessor)
         {
             _mediator = mediator;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         [HttpGet]
@@ -40,6 +43,8 @@ namespace CustomerManagementAPI.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] CreateReceiptCommand command)
         {
+            var tenantId = _httpContextAccessor.HttpContext.Items["TenantId"];
+
             await _mediator.Send(command);
             return NoContent();
         }

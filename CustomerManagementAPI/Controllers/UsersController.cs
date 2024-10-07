@@ -8,10 +8,13 @@ using CustomerManagement.Application.Queries.GetAllUsers;
 using CustomerManagement.Application.Queries.GetUserById;
 using CustomerManagement.Application.ViewModels;
 using CustomerManagement.Core.Services;
+using CustomerManagementAPI.Filters;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Mvc.Filters;
+using CustomerManagementAPI.Attributes;
 
 namespace CustomerManagementAPI.Controllers
 {
@@ -67,16 +70,6 @@ namespace CustomerManagementAPI.Controllers
         [Authorize(Roles = "tenant_admin")]
         public async Task<IActionResult> Post([FromBody] CreateUserCommand command)
         {
-            //if (!ModelState.IsValid)
-            //{
-            //    var messages = ModelState
-            //        .SelectMany(msg => msg.Value.Errors)
-            //        .Select(e => e.ErrorMessage)
-            //        .ToList();
-
-            //    return BadRequest(messages);
-            //}
-
             Guid tenantId = Guid.Parse(User.FindFirst("tenant_id").Value);
 
             command.TenantId = tenantId;
@@ -106,7 +99,8 @@ namespace CustomerManagementAPI.Controllers
 
             return NoContent();
         }
-
+        
+        [IgnoreTenant]
         [HttpPut("login")]
         public async Task<IActionResult> Login([FromBody] LoginUserCommand command)
         {
