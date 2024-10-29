@@ -16,6 +16,7 @@ namespace CustomerManagament.Infrastructure.Persistence.Repositories
         private readonly CustomerManagementDbContext _context;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly Guid _tenantId;
+        private readonly Guid _userId;
 
         public ReceiptRepository(IHttpContextAccessor httpContextAccessor, CustomerManagementDbContext context)
         {
@@ -24,11 +25,13 @@ namespace CustomerManagament.Infrastructure.Persistence.Repositories
             _httpContextAccessor = httpContextAccessor;
             var _userClaims = _httpContextAccessor.HttpContext.User.Claims;
             _tenantId = Guid.Parse(_userClaims.FirstOrDefault(c => c.Type == "tenant_id").Value);
+            _userId = Guid.Parse(_userClaims.FirstOrDefault(c => c.Type == "id").Value);
         }
 
         public async Task AddAsync(Receipt receipt)
         {
             receipt.TenantId = _tenantId;
+            receipt.CreatedBy = _userId;
 
             int lastReceiptNumber = await _context.Receipts
                 .Where(r => r.TenantId.Equals(_tenantId))

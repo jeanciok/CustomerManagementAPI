@@ -8,13 +8,12 @@ namespace CustomerManagement.Core.Entities
 {
     public class Receipt : BaseEntity
     {
-        public Receipt(Guid customerId, decimal value, string description, DateTime date, Guid createdBy)
+        public Receipt(Guid customerId, decimal value, string description, DateTime date)
         {
             CustomerId = customerId;
             Value = value;
             Description = description;
             Date = date;
-            CreatedBy = createdBy;
         }
 
         public Guid TenantId { get; set; }

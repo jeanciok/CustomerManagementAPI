@@ -43,8 +43,6 @@ namespace CustomerManagementAPI.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] CreateReceiptCommand command)
         {
-            var tenantId = _httpContextAccessor.HttpContext.Items["TenantId"];
-
             await _mediator.Send(command);
             return NoContent();
         }

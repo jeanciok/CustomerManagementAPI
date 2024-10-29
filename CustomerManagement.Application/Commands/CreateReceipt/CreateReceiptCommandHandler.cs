@@ -23,8 +23,7 @@ namespace CustomerManagement.Application.Commands.CreateReceipt
                 request.CustomerId,
                 request.Value,
                 request.Description,
-                request.Date,
-                request.CreatedBy
+                request.Date
             );
 
             await _receiptRepository.AddAsync(receipt);
