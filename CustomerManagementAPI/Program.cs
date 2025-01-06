@@ -19,6 +19,8 @@ using FluentValidation.AspNetCore;
 using CustomerManagementAPI.Filters;
 using CustomerManagament.Infrastructure.CloudServices;
 using Microsoft.AspNetCore.Identity;
+using CustomerManagament.Infrastructure.Services;
+using QuestPDF.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -103,6 +105,7 @@ builder.Services.AddScoped<ICityRepository, CityRepository>();
 builder.Services.AddScoped<IFileStorageService, FileStorageService>();
 builder.Services.AddScoped<IAttachmentRepository, AttachmentRepository>();
 builder.Services.AddScoped<IReceiptRepository, ReceiptRepository>();
+builder.Services.AddScoped<IPdfService, PdfService>();
 
 builder.Services
     .AddValidatorsFromAssemblyContaining<CreateUserCommandValidator>()
@@ -114,6 +117,8 @@ builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<Ge
 builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
+
+QuestPDF.Settings.License = LicenseType.Community;
 
 app.UseCors(policy =>
     policy.AllowAnyOrigin()

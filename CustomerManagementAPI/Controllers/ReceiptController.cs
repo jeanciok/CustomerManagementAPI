@@ -1,6 +1,7 @@
 ﻿using CustomerManagement.Application.Commands.CreateReceipt;
 using CustomerManagement.Application.Commands.DeleteReceipt;
 using CustomerManagement.Application.Commands.UpdateReceipt;
+using CustomerManagement.Application.Queries.GenerateReceiptPdf;
 using CustomerManagement.Application.Queries.GetAllReceipts;
 using CustomerManagement.Application.Queries.GetReceiptById;
 using CustomerManagementAPI.Filters;
@@ -60,6 +61,14 @@ namespace CustomerManagementAPI.Controllers
             var command = new DeleteReceiptCommand(id);
             await _mediator.Send(command);
             return NoContent();
+        }
+
+        [HttpGet("{id}/pdf")]
+        public async Task<IActionResult> GetReceiptPdf(Guid id)
+        {
+            var query = new GenerateReceiptPdfQuery(id);
+            byte[] pdf = await _mediator.Send(query);
+            return File(pdf, "application/pdf");
         }
     }
 }
