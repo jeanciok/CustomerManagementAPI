@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace CustomerManagement.Core.Helpers
@@ -20,6 +21,38 @@ namespace CustomerManagement.Core.Helpers
                     System.Text.RegularExpressions.RegexOptions.Compiled),
                 @"-+", "-",
                 System.Text.RegularExpressions.RegexOptions.Compiled).Trim('-');
+        }
+
+        public static string FormatAsCpfOrCnpj(this string text)
+        {
+            if (text.Length == 11 && Regex.IsMatch(text, @"^\d{11}$"))
+            {
+                return Regex.Replace(text, @"(\d{3})(\d{3})(\d{3})(\d{2})", "$1.$2.$3-$4");
+            }
+            else if (text.Length == 14 && Regex.IsMatch(text, @"^\d{14}$"))
+            {
+                return Regex.Replace(text, @"(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})", "$1.$2.$3/$4-$5");
+            }
+            else
+            {
+                throw new ArgumentException("O texto deve conter exatamente 11 dígitos numéricos para CPF ou 14 dígitos numéricos para CNPJ.");
+            }
+        }
+
+        public static string FormatAsPhoneNumber(this string text)
+        {
+            if (text.Length == 10 && Regex.IsMatch(text, @"^\d{10}$"))
+            {
+                return Regex.Replace(text, @"(\d{2})(\d{4})(\d{4})", "($1) $2-$3");
+            }
+            else if (text.Length == 11 && Regex.IsMatch(text, @"^\d{11}$"))
+            {
+                return Regex.Replace(text, @"(\d{2})(\d{5})(\d{4})", "($1) $2-$3");
+            }
+            else
+            {
+                throw new ArgumentException("O texto deve conter exatamente 10 ou 11 dígitos numéricos.");
+            }
         }
     }
 }

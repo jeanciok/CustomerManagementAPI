@@ -81,6 +81,7 @@ namespace CustomerManagament.Infrastructure.Persistence.Repositories
             return await _context.Receipts
                 .Where(r => r.TenantId.Equals(_tenantId))
                 .Include(r => r.Customer)
+                .Include(r => r.Customer.City)
                 .Include(r => r.Tenant)
                 .Include(r => r.User)
                 .FirstOrDefaultAsync(r => r.Id.Equals(id));
