@@ -4,6 +4,7 @@ using CustomerManagement.Application.Commands.UpdateReceipt;
 using CustomerManagement.Application.Queries.GenerateReceiptPdf;
 using CustomerManagement.Application.Queries.GetAllReceipts;
 using CustomerManagement.Application.Queries.GetReceiptById;
+using CustomerManagement.Application.ViewModels;
 using CustomerManagementAPI.Filters;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -67,8 +68,10 @@ namespace CustomerManagementAPI.Controllers
         public async Task<IActionResult> GetReceiptPdf(Guid id)
         {
             var query = new GenerateReceiptPdfQuery(id);
-            byte[] pdf = await _mediator.Send(query);
-            return File(pdf, "application/pdf");
+            PdfViewModel pdf = await _mediator.Send(query);
+
+            Response.Headers.Add("Content-Disposition", $"attachment; filename={pdf.FileName}.pdf");
+            return File(pdf.File, "application/pdf");
         }
     }
 }

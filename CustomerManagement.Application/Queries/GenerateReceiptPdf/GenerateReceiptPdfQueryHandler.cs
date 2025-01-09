@@ -1,4 +1,6 @@
-﻿using CustomerManagement.Core.Repositories;
+﻿using CustomerManagement.Application.ViewModels;
+using CustomerManagement.Core.Helpers;
+using CustomerManagement.Core.Repositories;
 using CustomerManagement.Core.Services;
 using MediatR;
 using System;
@@ -9,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace CustomerManagement.Application.Queries.GenerateReceiptPdf
 {
-    public class GenerateReceiptPdfQueryHandler : IRequestHandler<GenerateReceiptPdfQuery, byte[]>
+    public class GenerateReceiptPdfQueryHandler : IRequestHandler<GenerateReceiptPdfQuery, PdfViewModel>
     {
         private readonly IReceiptRepository _receiptRepository;
         private readonly IPdfService _pdfService;
@@ -20,7 +22,7 @@ namespace CustomerManagement.Application.Queries.GenerateReceiptPdf
             _pdfService = pdfService;
         }
 
-        public async Task<byte[]> Handle(GenerateReceiptPdfQuery request, CancellationToken cancellationToken)
+        public async Task<PdfViewModel> Handle(GenerateReceiptPdfQuery request, CancellationToken cancellationToken)
         {
             var receipt = await _receiptRepository.GetByIdAsync(request.ReceiptId);
 
@@ -29,7 +31,9 @@ namespace CustomerManagement.Application.Queries.GenerateReceiptPdf
                 throw new Exception("Receipt not found");
             }
 
-            return _pdfService.GenerateReceipt(receipt);
+            byte[] pdf = _pdfService.GenerateReceipt(receipt);
+
+            return new PdfViewModel { FileName = $"recibo-{receipt.Customer.Name.ToSlug()}-{receipt.Date}", File = pdf };
         }
     }
 }

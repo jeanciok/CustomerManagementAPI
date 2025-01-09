@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using CustomerManagement.Application.ViewModels;
+using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CustomerManagement.Application.Queries.GenerateReceiptPdf
 {
-    public class GenerateReceiptPdfQuery : IRequest<byte[]>
+    public class GenerateReceiptPdfQuery : IRequest<PdfViewModel>
     {
         public Guid ReceiptId { get; set; }
 

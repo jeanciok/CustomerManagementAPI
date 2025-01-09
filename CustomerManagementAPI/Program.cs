@@ -122,8 +122,10 @@ QuestPDF.Settings.License = LicenseType.Community;
 
 app.UseCors(policy =>
     policy.AllowAnyOrigin()
-            .AllowAnyMethod()
-            .AllowAnyHeader());    
+          .AllowAnyMethod()
+          .AllowAnyHeader()
+          .WithExposedHeaders("Content-Disposition")); // Exponha o cabeçalho necessário
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

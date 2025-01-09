@@ -95,7 +95,7 @@ namespace CustomerManagament.Infrastructure.Services
                 });
             });
 
-            document.ShowInCompanion();
+            //document.ShowInCompanion();
 
             return document.GeneratePdf();
         }
@@ -108,4 +108,3 @@ namespace CustomerManagament.Infrastructure.Services
     }
 
 }
-
