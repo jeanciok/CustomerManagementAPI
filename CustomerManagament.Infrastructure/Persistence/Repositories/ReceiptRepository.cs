@@ -55,7 +55,7 @@ namespace CustomerManagament.Infrastructure.Persistence.Repositories
             }
         }
 
-        public async Task<List<Receipt>> Get(int number, string customerName)
+        public async Task<List<Receipt>> Get(int number, Guid customerId, DateTime startDate, DateTime endDate)
         {
             IQueryable<Receipt> query = _context.Receipts
                 .Where(r => r.TenantId.Equals(_tenantId))
@@ -67,10 +67,19 @@ namespace CustomerManagament.Infrastructure.Persistence.Repositories
             {
                 query = query.Where(r => r.Number.Equals(number));
             }
-
-            if (!string.IsNullOrEmpty(customerName))
+            if (customerId != Guid.Empty)
             {
-                query = query.Where(r => r.Customer.Name.Contains(customerName));
+                query = query.Where(r => r.Customer.Id.Equals(customerId));
+            }
+
+            if (startDate != default)
+            {
+                query = query.Where(r => r.Date.Date >= startDate.Date);
+            }
+
+            if (endDate != default)
+            {
+                query = query.Where(r => r.Date.Date <= endDate.Date);
             }
 
             return await query.ToListAsync();

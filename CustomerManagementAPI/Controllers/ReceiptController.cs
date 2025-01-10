@@ -27,9 +27,9 @@ namespace CustomerManagementAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get([FromQuery] int number, [FromQuery] string customerName)
+        public async Task<IActionResult> Get([FromQuery] int number, [FromQuery] Guid customerId, [FromQuery] DateTime startDate, [FromQuery] DateTime endDate)
         {
-            var query = new GetReceiptsQuery(number, customerName);
+            var query = new GetReceiptsQuery(number, customerId, startDate, endDate);
             var receipts = await _mediator.Send(query);
             return Ok(receipts);
         }

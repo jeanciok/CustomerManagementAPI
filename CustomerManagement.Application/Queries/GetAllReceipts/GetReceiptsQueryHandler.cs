@@ -20,7 +20,7 @@ namespace CustomerManagement.Application.Queries.GetAllReceipts
 
         public async Task<List<ReceiptViewModel>> Handle(GetReceiptsQuery request, CancellationToken cancellationToken)
         {
-            List<Receipt> receipts = await _receiptRepository.Get(request.Number, request.CustomerName);
+            List<Receipt> receipts = await _receiptRepository.Get(request.Number, request.CustomerId, request.StartDate, request.EndDate);
 
             List<ReceiptViewModel> receiptViewModels = receipts
                 .Select(r => new ReceiptViewModel(r.Id, r.Number, r.Tenant.Name, r.Customer.Name, r.Value, r.Description, r.Date, r.User.Name))

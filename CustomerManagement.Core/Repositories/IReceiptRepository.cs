@@ -11,7 +11,7 @@ namespace CustomerManagement.Core.Repositories
     {
         Task AddAsync(Receipt receipt);
         Task DeleteAsync(Guid id);
-        Task<List<Receipt>> Get(int number, string customerName);
+        Task<List<Receipt>> Get(int number, Guid customerId, DateTime startDate, DateTime endDate);
         Task<Receipt> GetByIdAsync(Guid id);
         Task UpdateAsync(Receipt receipt);
     }

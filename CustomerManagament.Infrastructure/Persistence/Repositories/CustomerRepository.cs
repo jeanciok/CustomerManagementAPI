@@ -6,23 +6,30 @@ using CustomerManagement.Core.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using CustomerManagament.Infrastructure.Persistence;
+using Microsoft.AspNetCore.Http;
 
 namespace CustomerManagement.Core.Repositories
 {
     public class CustomerRepository : ICustomerRepository
     {
         private readonly CustomerManagementDbContext _context;
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly Guid _tenantId;
+        private readonly Guid _userId;
 
-        private Guid tempTenant = Guid.Parse("644d1f61-575b-444f-858f-5471a0b4f3d4");
-
-        public CustomerRepository(CustomerManagementDbContext context)
+        public CustomerRepository(CustomerManagementDbContext context, IHttpContextAccessor httpContextAccessor)
         {
             _context = context;
+
+            _httpContextAccessor = httpContextAccessor;
+            var _userClaims = _httpContextAccessor.HttpContext.User.Claims;
+            _tenantId = Guid.Parse(_userClaims.FirstOrDefault(c => c.Type == "tenant_id").Value);
+            _userId = Guid.Parse(_userClaims.FirstOrDefault(c => c.Type == "id").Value);
         }
 
         public async Task AddAsync(Customer customer)
         {
-            customer.TenantId = tempTenant;
+            customer.TenantId = _tenantId;
             await _context.AddAsync(customer);
             await _context.SaveChangesAsync();
         }
@@ -41,6 +48,7 @@ namespace CustomerManagement.Core.Repositories
         {
             // TODO - Include Group
             IQueryable<Customer> query = _context.Customers
+                .Where(c => c.TenantId == _tenantId)
                 .Include(c => c.City)
                 .Include(c => c.City.State)
                 .Include(g => g.Group);
@@ -68,6 +76,7 @@ namespace CustomerManagement.Core.Repositories
             // TODO - Include Group
 
             return await _context.Customers
+                .Where(c => c.TenantId == _tenantId)
                 .Include(c => c.City)
                 .Include(c => c.City.State)
                 .Include(c => c.Group)
@@ -76,7 +85,7 @@ namespace CustomerManagement.Core.Repositories
 
         public async Task UpdateAsync(Customer customer)
         {
-            customer.TenantId = tempTenant;
+            customer.TenantId = _tenantId;
             _context.Customers.Update(customer);
             await _context.SaveChangesAsync();
         }
