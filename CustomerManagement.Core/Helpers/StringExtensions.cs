@@ -23,6 +23,16 @@ namespace CustomerManagement.Core.Helpers
                 System.Text.RegularExpressions.RegexOptions.Compiled).Trim('-');
         }
 
+        public static bool IsCpf(this string text)
+        {
+            return text.Length == 11 && Regex.IsMatch(text, @"^\d{11}$");
+        }
+
+        public static bool IsCnpj(this string text)
+        {
+            return text.Length == 14 && Regex.IsMatch(text, @"^\d{14}$");
+        }
+
         public static string FormatAsCpfOrCnpj(this string text)
         {
             if (text.Length == 11 && Regex.IsMatch(text, @"^\d{11}$"))

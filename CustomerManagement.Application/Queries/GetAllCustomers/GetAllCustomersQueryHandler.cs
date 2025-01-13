@@ -19,7 +19,7 @@ namespace CustomerManagement.Application.Queries.GetAllCustomers
 
         public async Task<List<CustomerViewModel>> Handle(GetAllCustomersQuery request, CancellationToken cancellationToken)
         {
-            List<Customer> customers = await _customerRepository.Get(request.Name, request.Cpf, request.Cnpj);
+            List<Customer> customers = await _customerRepository.Get(request.Name, request.CpfCnpj);
 
             List<CustomerViewModel> customerViewModels = customers
                 .Select(c => new CustomerViewModel(c.Id, c.Name, c.PhoneNumber, c.PhoneNumber2, c.Cpf != null ? c.Cpf : c.Cnpj, c.Rg, c.Cep, c.Street, c.Number, c.District, c.Additional, c.Email, c.Description,

@@ -11,7 +11,7 @@ namespace CustomerManagement.Core.Repositories
     {
         Task AddAsync(Customer customer);
         Task DeleteAsync(Guid id);
-        Task<List<Customer>> Get(string name, string cpf, string cnpj);
+        Task<List<Customer>> Get(string name, string cpfCnpj);
         Task<Customer> GetByIdAsync(Guid id);
         Task UpdateAsync(Customer customer);
     }

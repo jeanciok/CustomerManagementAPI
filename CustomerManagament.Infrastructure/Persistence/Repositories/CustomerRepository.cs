@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using CustomerManagament.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Http;
+using CustomerManagement.Core.Helpers;
 
 namespace CustomerManagement.Core.Repositories
 {
@@ -44,7 +45,7 @@ namespace CustomerManagement.Core.Repositories
             }
         }
 
-        public async Task<List<Customer>> Get(string name, string cpf, string cnpj)
+        public async Task<List<Customer>> Get(string name, string cpfCnpj)
         {
             // TODO - Include Group
             IQueryable<Customer> query = _context.Customers
@@ -58,14 +59,14 @@ namespace CustomerManagement.Core.Repositories
                 query = query.Where(c => c.Name.Contains(name));
             }
 
-            if (!string.IsNullOrEmpty(cpf))
+            if (!string.IsNullOrEmpty(cpfCnpj) && cpfCnpj.IsCpf())
             {
-                query = query.Where(c => c.Equals(cpf));
+                query = query.Where(c => c.Cpf == cpfCnpj);
             }
 
-            if (!string.IsNullOrEmpty(cnpj))
+            if (!string.IsNullOrEmpty(cpfCnpj) && cpfCnpj.IsCnpj())
             {
-                query = query.Where(c => c.Equals(cnpj));
+                query = query.Where(c => c.Cnpj == cpfCnpj);
             }
 
             return await query.ToListAsync();
