@@ -27,7 +27,7 @@ namespace CustomerManagement.UnitTests.Application.Queries
             };
 
             Mock<ICustomerRepository> customerRepositoryMock = new();
-            customerRepositoryMock.Setup(x => x.Get("", "", "")).ReturnsAsync(customers);
+            customerRepositoryMock.Setup(x => x.Get("", "")).ReturnsAsync(customers);
 
             GetAllCustomersQuery getAllCustomersQuery = new();
             GetAllCustomersQueryHandler getAllCustomersQueryHandler = new(customerRepositoryMock.Object);
@@ -40,7 +40,7 @@ namespace CustomerManagement.UnitTests.Application.Queries
             Assert.NotEmpty(customerViewModels);
             Assert.Equal(3, customerViewModels.Count);
 
-            customerRepositoryMock.Verify(x => x.Get("", "", ""), Times.Once);
+            customerRepositoryMock.Verify(x => x.Get("", ""), Times.Once);
         }
 
         [Fact]
@@ -48,7 +48,7 @@ namespace CustomerManagement.UnitTests.Application.Queries
         {
             // Arrange
             Mock<ICustomerRepository> customerRepositoryMock = new();
-            customerRepositoryMock.Setup(x => x.Get("", "", "")).ReturnsAsync(new List<Customer>());
+            customerRepositoryMock.Setup(x => x.Get("", "")).ReturnsAsync(new List<Customer>());
 
             GetAllCustomersQuery getAllCustomersQuery = new();
             GetAllCustomersQueryHandler getAllCustomersQueryHandler = new(customerRepositoryMock.Object);
@@ -60,7 +60,7 @@ namespace CustomerManagement.UnitTests.Application.Queries
             Assert.NotNull(customerViewModels);
             Assert.Empty(customerViewModels);
 
-            customerRepositoryMock.Verify(x => x.Get("", "", ""), Times.Once);
+            customerRepositoryMock.Verify(x => x.Get("", ""), Times.Once);
         }
 
         //[Fact]

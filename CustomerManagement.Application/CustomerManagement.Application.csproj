@@ -23,4 +23,8 @@
     <ProjectReference Include="..\CustomerManagement.Core\CustomerManagement.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ResponseModels\" />
+  </ItemGroup>
+
 </Project>
