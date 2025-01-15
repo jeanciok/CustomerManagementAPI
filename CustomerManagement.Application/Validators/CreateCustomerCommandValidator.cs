@@ -10,10 +10,8 @@ namespace CustomerManagement.Application.Validators
         {
             RuleFor(x => x.Name).NotEmpty().WithMessage("Name is required");
             RuleFor(x => x.PhoneNumber).NotEmpty().WithMessage("Phone number is required");
-            RuleFor(x => x.PhoneNumber2).NotEmpty().WithMessage("Phone number2 is required");
             RuleFor(x => x.Cnpj).NotEmpty().WithMessage("CNPJ is required");
             RuleFor(x => x.Cpf).NotEmpty().WithMessage("CPF is required");
-            RuleFor(x => x.Rg).NotEmpty().WithMessage("RG is required");
             RuleFor(x => x.Cep).NotEmpty().WithMessage("CEP is required");
             RuleFor(x => x.Street).NotEmpty().WithMessage("Street is required");
             RuleFor(x => x.Number).NotEmpty().WithMessage("Number is required");
