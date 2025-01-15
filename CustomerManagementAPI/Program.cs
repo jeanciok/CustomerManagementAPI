@@ -21,6 +21,7 @@ using CustomerManagament.Infrastructure.CloudServices;
 using Microsoft.AspNetCore.Identity;
 using CustomerManagament.Infrastructure.Services;
 using QuestPDF.Infrastructure;
+using CustomerManagement.Application.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -106,6 +107,9 @@ builder.Services.AddScoped<IFileStorageService, FileStorageService>();
 builder.Services.AddScoped<IAttachmentRepository, AttachmentRepository>();
 builder.Services.AddScoped<IReceiptRepository, ReceiptRepository>();
 builder.Services.AddScoped<IPdfService, PdfService>();
+builder.Services.AddScoped<IOpenCepService, OpenCepService>();
+
+builder.Services.AddHttpClient(); // Adicione esta linha
 
 builder.Services
     .AddValidatorsFromAssemblyContaining<CreateUserCommandValidator>()

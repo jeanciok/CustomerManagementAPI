@@ -1,5 +1,6 @@
 ﻿using CustomerManagement.Application.Services;
 using CustomerManagement.Core.Entities;
+using CustomerManagement.Core.Repositories;
 using CustomerManagement.Infrastructure.Models;
 using System;
 using System.Collections.Generic;
@@ -13,10 +14,12 @@ namespace CustomerManagament.Infrastructure.Services
     public class OpenCepService : IOpenCepService
     {
         private readonly HttpClient _httpClient;
+        private readonly ICityRepository _cityRepository;
 
-        public OpenCepService(HttpClient httpClient)
+        public OpenCepService(HttpClient httpClient, ICityRepository cityRepository)
         {
             _httpClient = httpClient;
+            _cityRepository = cityRepository;
         }
 
         public async Task<Address> GetAddressByPostalCode(string postalCode)
@@ -27,19 +30,15 @@ namespace CustomerManagament.Infrastructure.Services
             var content = await response.Content.ReadAsStringAsync();
             var openCepResponse = JsonSerializer.Deserialize<OpenCepResponse>(content);
 
-            //return new Address()
-            //{
-            //    PostalCode = openCepResponse.PostalCode,
-            //    Street = openCepResponse.Street,
-            //    District = openCepResponse.District,
-            //    City = new City()
-            //    {
-            //        Name = openCepResponse.,
-            //        State = openCepResponse.Uf
-            //    }
-            //}
+            var city = await _cityRepository.GetByIbge(int.Parse(openCepResponse.Ibge));
 
-            return new Address();
+            return new Address()
+            {
+                PostalCode = openCepResponse.PostalCode,
+                Street = openCepResponse.Street,
+                District = openCepResponse.District,
+                City = city
+            };
         }
     }
 }

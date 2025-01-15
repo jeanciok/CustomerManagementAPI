@@ -11,6 +11,6 @@ namespace CustomerManagement.Core.Repositories
     {
         Task<List<City>> GetAll();
         Task<List<City>> GetAllByUf(string uf);
-        Task<City> GetById(Guid id);
+        Task<City> GetByIbge(int ibge);
     }
 }

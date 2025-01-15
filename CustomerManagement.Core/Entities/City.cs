@@ -17,6 +17,7 @@ namespace CustomerManagement.Core.Entities
             State = state;
         }
 
+        public int Ibge { get; set; }
         public string Name { get; set; }
         public Guid StateId { get; set; }
         public State State { get; set; }

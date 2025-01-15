@@ -19,5 +19,7 @@ namespace CustomerManagement.Infrastructure.Models
         public string City { get; set; }
         [JsonPropertyName("uf")]
         public string State { get; set; }
+        [JsonPropertyName("ibge")]
+        public string Ibge { get; set; }
     }
 }

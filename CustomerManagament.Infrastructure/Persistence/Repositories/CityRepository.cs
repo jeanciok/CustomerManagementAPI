@@ -33,9 +33,12 @@ namespace CustomerManagament.Infrastructure.Persistence.Repositories
                 .ToListAsync();
         }
 
-        public Task<City> GetById(Guid id)
+        public async Task<City> GetByIbge(int ibge)
         {
-            throw new NotImplementedException();
+            return await _dbContext.City
+                .Include(c => c.State)
+                .Where(c => c.Ibge == ibge)
+                .SingleOrDefaultAsync();
         }
     }
 }
