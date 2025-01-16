@@ -84,7 +84,7 @@ namespace CustomerManagament.Infrastructure.Services
                         column.Item().Row(row =>
                         {
                             row.RelativeItem().Text("Telefone");
-                            row.RelativeItem().Text($"{receipt.Customer.PhoneNumber.FormatAsPhoneNumber()}");
+                            row.RelativeItem().Text($"{receipt.Customer.PhoneNumber}");
                         });
 
                         column.Item().Row(row =>

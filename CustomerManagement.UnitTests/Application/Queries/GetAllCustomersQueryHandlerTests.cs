@@ -21,9 +21,9 @@ namespace CustomerManagement.UnitTests.Application.Queries
             // Arrange
             List<Customer> customers = new()
             {
-                new Customer(Guid.NewGuid(), "John Doe", "123456789", "123456789", "22222222222", "333333333", "44444444", "1231231231", "Street 1", "1", "District 1", "Additional 1", "john.doe@example.com", "Description 1", Guid.NewGuid(), Guid.NewGuid()),
-                new Customer(Guid.NewGuid(), "Jane Smith", "987654321", "987654321", "66666666666", "777777777", "88888888", "1231231231", "Street 2", "2", "District 1", "Additional 2", "jane.smith@example.com", "Description 2", Guid.NewGuid(), Guid.NewGuid()),
-                new Customer(Guid.NewGuid(), "Bob Johnson", "555555555", "555555555", "88888888888", "777777777", "66666666", "12312312312", "Street 3", "3", "District 1", "Additional 3", "bob.johnson@example.com", "Description 3", Guid.NewGuid(), Guid.NewGuid())
+                new Customer(Guid.NewGuid(), "John Doe", "123456789", "123456789", "22222222222", "44444444", "1231231231", "Street 1", "1", "District 1", "Additional 1", "john.doe@example.com", "Description 1", Guid.NewGuid(), Guid.NewGuid()),
+                new Customer(Guid.NewGuid(), "Jane Smith", "987654321", "987654321", "66666666666", "88888888", "1231231231", "Street 2", "2", "District 1", "Additional 2", "jane.smith@example.com", "Description 2", Guid.NewGuid(), Guid.NewGuid()),
+                new Customer(Guid.NewGuid(), "Bob Johnson", "555555555", "555555555", "88888888888", "66666666", "12312312312", "Street 3", "3", "District 1", "Additional 3", "bob.johnson@example.com", "Description 3", Guid.NewGuid(), Guid.NewGuid())
             };
 
             Mock<ICustomerRepository> customerRepositoryMock = new();

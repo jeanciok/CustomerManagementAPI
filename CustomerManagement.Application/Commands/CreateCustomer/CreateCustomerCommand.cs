@@ -6,13 +6,12 @@ namespace CustomerManagement.Application.Commands.CreateCustomer
 {
     public class CreateCustomerCommand : IRequest<Guid>
     {
-        public CreateCustomerCommand(string name, string cnpj, string cpf, string rg, string phoneNumber, string phoneNumber2,
+        public CreateCustomerCommand(string name, string cnpj, string cpf, string phoneNumber, string phoneNumber2,
             string cep, string street, string number, string district, string additional, Guid groupId, string email, string description, Guid cityId)
         {
             Name = name;
             Cnpj = cnpj;
             Cpf = cpf;
-            Rg = rg;
             PhoneNumber = phoneNumber;
             PhoneNumber2 = phoneNumber2;
             Cep = cep;
@@ -29,7 +28,6 @@ namespace CustomerManagement.Application.Commands.CreateCustomer
         public string Name { get; set; }
         public string Cnpj { get; set; }
         public string Cpf { get; set; }
-        public string Rg { get; set; }
         public string PhoneNumber { get; set; }
         public string PhoneNumber2 { get; set; }
         public string Cep { get; set; }

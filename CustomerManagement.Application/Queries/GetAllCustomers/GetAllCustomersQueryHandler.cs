@@ -22,7 +22,7 @@ namespace CustomerManagement.Application.Queries.GetAllCustomers
             List<Customer> customers = await _customerRepository.Get(request.Name, request.CpfCnpj);
 
             List<CustomerViewModel> customerViewModels = customers
-                .Select(c => new CustomerViewModel(c.Id, c.Name, c.PhoneNumber, c.PhoneNumber2, c.Cpf != null ? c.Cpf : c.Cnpj, c.Rg, c.Cep, c.Street, c.Number, c.District, c.Additional, c.Email, c.Description,
+                .Select(c => new CustomerViewModel(c.Id, c.Name, c.PhoneNumber, c.PhoneNumber2, c.Cpf != null ? c.Cpf : c.Cnpj, c.Cep, c.Street, c.Number, c.District, c.Additional, c.Email, c.Description,
                     c.City, c.CreatedAt, c.UpdatedAt, new CustomerGroupViewModel(c.Group.Id, c.Group.Name), c.AvatarUrl))
                 .ToList();
 
