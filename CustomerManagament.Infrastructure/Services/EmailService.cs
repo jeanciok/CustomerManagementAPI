@@ -37,7 +37,7 @@ namespace CustomerManagament.Infrastructure.Services
             message.Body = bodyBuilder.ToMessageBody();
 
             using var client = new SmtpClient();
-            await client.ConnectAsync(_configuration["SmtpSettings:Server"], int.Parse(_configuration["SmtpSettings:Port"]), SecureSocketOptions.StartTls);
+            await client.ConnectAsync(_configuration["SmtpSettings:Server"], int.Parse(_configuration["SmtpSettings:Port"]), SecureSocketOptions.SslOnConnect);
             await client.AuthenticateAsync(_configuration["SmtpSettings:Username"], _configuration["SmtpSettings:Password"]);
             await client.SendAsync(message);
             await client.DisconnectAsync(true);

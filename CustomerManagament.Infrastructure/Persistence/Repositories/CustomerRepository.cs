@@ -47,7 +47,6 @@ namespace CustomerManagement.Core.Repositories
 
         public async Task<List<Customer>> Get(string name, string cpfCnpj)
         {
-            // TODO - Include Group
             IQueryable<Customer> query = _context.Customers
                 .Where(c => c.TenantId == _tenantId)
                 .Include(c => c.City)

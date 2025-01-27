@@ -1,7 +1,7 @@
 ﻿using CustomerManagement.Application.Commands.CreateTenant;
 using CustomerManagement.Application.Queries.GetTenantById;
-using CustomerManagement.Application.Queries.GetUserById;
 using CustomerManagement.Application.ViewModels;
+using CustomerManagementAPI.Attributes;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -20,6 +20,7 @@ namespace CustomerManagementAPI.Controllers
             _mediator = mediator;
         }
 
+        [IgnoreTenant]
         [HttpPost]
         [AllowAnonymous]
         public async Task<IActionResult> Post([FromBody] CreateTenantCommand command)

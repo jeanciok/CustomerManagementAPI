@@ -38,7 +38,8 @@ namespace CustomerManagement.Application.Commands.CreateTenant
                 Name = request.User.Name,
                 Email = request.User.Email,
                 Password = request.User.Password,
-                TenantId = tenant.TenantId
+                TenantId = tenant.TenantId,
+                Role = request.User.Role
             };
 
             await _mediator.Send(createUser);

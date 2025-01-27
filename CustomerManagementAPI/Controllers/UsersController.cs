@@ -24,12 +24,14 @@ namespace CustomerManagementAPI.Controllers
         private readonly IMediator _mediator;
         private readonly IAuthService _authService;
         private readonly IFileStorageService _fileStorageService;
+        private readonly IEmailService _emailService;
 
-        public UsersController(IMediator mediator, IAuthService authService, IFileStorageService fileStorageService)
+        public UsersController(IMediator mediator, IAuthService authService, IFileStorageService fileStorageService, IEmailService emailService)
         {
             _mediator = mediator;
             _authService = authService;
             _fileStorageService = fileStorageService;
+            _emailService = emailService;
         }
 
         [HttpGet]
@@ -129,6 +131,15 @@ namespace CustomerManagementAPI.Controllers
             command.UserId = userId;
 
             await _mediator.Send(command);
+
+            return NoContent();
+        }
+
+        [IgnoreTenant]
+        [HttpPost("sendEmail")]
+        public async Task<IActionResult> SendEmail()
+        {
+            await _emailService.SendEmailAsync("jeanciok@gmail.com", "Teste Email", "Salve rapaziadinha, bora testar");
 
             return NoContent();
         }
