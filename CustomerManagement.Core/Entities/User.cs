@@ -29,6 +29,8 @@ namespace CustomerManagement.Core.Entities
         public string? AvatarUrl { get; set; }
         public bool IsActive { get; set; }
         public string Role { get; set; }
+        public string? PasswordResetToken { get; set; }
+        public DateTime? PasswordResetTokenExpiration { get; set; }
 
         [JsonIgnore]
         public ICollection<Receipt> Receipts { get; set; }

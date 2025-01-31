@@ -42,5 +42,21 @@ namespace CustomerManagament.Infrastructure.Services
             await client.SendAsync(message);
             await client.DisconnectAsync(true);
         }
+
+        public async Task SendPasswordResetEmailAsync(string email, string resetLink)
+        {
+            var body = $@"
+            <h3>Redefinição de Senha</h3>
+            <p>Clique no link abaixo (válido por 15 minutos):</p>
+            <a href='{resetLink}'>{resetLink}</a>
+            <p><em>Se você não solicitou isso, ignore este email.</em></p>
+            <p>Equipe Customer Management</p>";
+
+            await SendEmailAsync(
+                recipient: email,
+                subject: "Redefinição de Senha",
+                body: body
+            );
+        }
     }
 }

@@ -85,5 +85,12 @@ namespace CustomerManagament.Infrastructure.Auth
             }
             return true;
         }
+
+        public string GenerateSecureToken(int size = 32)
+        {
+            byte[] tokenData = new byte[size];
+            RandomNumberGenerator.Fill(tokenData);
+            return Convert.ToBase64String(tokenData);
+        }
     }
 }

@@ -29,7 +29,7 @@ namespace CustomerManagement.Application.Commands.LoginUser
         {
             string passwordHash = _authService.ComputeSha256Hash(request.Password);
 
-            var user = await _userRepository.GetByEmailAndPasswordHash(request.Email, passwordHash);
+            var user = await _userRepository.GetByEmailAndPasswordHashAsync(request.Email, passwordHash);
 
             if (user == null)
             {

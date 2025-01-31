@@ -9,5 +9,6 @@ namespace CustomerManagement.Core.Services
     public interface IEmailService
     {
         Task SendEmailAsync(string recipient, string subject, string body);
+        Task SendPasswordResetEmailAsync(string email, string resetLink);
     }
 }

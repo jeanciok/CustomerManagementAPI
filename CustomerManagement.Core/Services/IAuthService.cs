@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,5 +12,6 @@ namespace CustomerManagement.Core.Services
         string ComputeSha256Hash(string password);
         string GenerateToken(Guid userId, string role, Guid tenantId);
         bool IsTokenValid(string token);
+        string GenerateSecureToken(int size = 32);
     }
 }

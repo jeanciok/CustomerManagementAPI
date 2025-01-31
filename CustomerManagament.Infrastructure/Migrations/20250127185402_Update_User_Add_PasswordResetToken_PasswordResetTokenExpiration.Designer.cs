@@ -3,6 +3,7 @@ using System;
 using CustomerManagament.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace CustomerManagament.Infrastructure.Migrations
 {
     [DbContext(typeof(CustomerManagementDbContext))]
-    partial class CostumerManagementDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250127185402_Update_User_Add_PasswordResetToken_PasswordResetTokenExpiration")]
+    partial class Update_User_Add_PasswordResetToken_PasswordResetTokenExpiration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -281,6 +283,7 @@ namespace CustomerManagament.Infrastructure.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("PasswordResetToken")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<DateTime?>("PasswordResetTokenExpiration")

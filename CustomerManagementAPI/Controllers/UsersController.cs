@@ -15,6 +15,8 @@ using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Mvc.Filters;
 using CustomerManagementAPI.Attributes;
+using CustomerManagement.Application.Commands.ForgotPassword;
+using CustomerManagement.Application.Commands.ResetPassword;
 
 namespace CustomerManagementAPI.Controllers
 {
@@ -101,7 +103,7 @@ namespace CustomerManagementAPI.Controllers
 
             return NoContent();
         }
-        
+
         [IgnoreTenant]
         [HttpPut("login")]
         public async Task<IActionResult> Login([FromBody] LoginUserCommand command)
@@ -139,8 +141,24 @@ namespace CustomerManagementAPI.Controllers
         [HttpPost("sendEmail")]
         public async Task<IActionResult> SendEmail()
         {
-            await _emailService.SendEmailAsync("jeanciok@gmail.com", "Teste Email", "Salve rapaziadinha, bora testar");
+            await _emailService.SendEmailAsync("jeanciok@gmail.com", "Teste Email", "Teste Email");
 
+            return NoContent();
+        }
+
+        [IgnoreTenant]
+        [HttpPost("forgot-password")]
+        public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordCommand command)
+        {
+            await _mediator.Send(command);
+            return NoContent();
+        }
+
+        [IgnoreTenant]
+        [HttpPost("reset-password")]
+        public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordCommand command)
+        {
+            await _mediator.Send(command);
             return NoContent();
         }
     }
