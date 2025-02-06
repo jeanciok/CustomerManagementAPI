@@ -24,7 +24,7 @@ namespace CustomerManagement.Application.Commands.UploadAttachment
 
         public async Task<Unit> Handle(UploadAttachmentCommand request, CancellationToken cancellationToken)
         {
-            Dictionary<string, IFormFile> uploadFiles = _fileStorageService.UploadFiles(request.Files, "attachments");
+            Dictionary<string, IFormFile> uploadFiles = await _fileStorageService.UploadFilesAsync(request.Files, "attachments");
 
             foreach (var item in uploadFiles)
             {

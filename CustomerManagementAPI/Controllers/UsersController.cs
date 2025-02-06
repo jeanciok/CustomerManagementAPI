@@ -138,15 +138,6 @@ namespace CustomerManagementAPI.Controllers
         }
 
         [IgnoreTenant]
-        [HttpPost("sendEmail")]
-        public async Task<IActionResult> SendEmail()
-        {
-            await _emailService.SendEmailAsync("jeanciok@gmail.com", "Teste Email", "Teste Email");
-
-            return NoContent();
-        }
-
-        [IgnoreTenant]
         [HttpPost("forgot-password")]
         public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordCommand command)
         {

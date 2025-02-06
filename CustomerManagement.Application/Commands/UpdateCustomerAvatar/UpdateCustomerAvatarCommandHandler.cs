@@ -24,7 +24,7 @@ namespace CustomerManagement.Application.Commands.UpdateAvatarCustomer
 
         public async Task<Unit> Handle(UpdateCustomerAvatarCommand request, CancellationToken cancellationToken)
         {
-            Dictionary<string, IFormFile> avatarUrl = _fileStorageService.UploadFiles(request.Avatar, "customer_avatar");
+            Dictionary<string, IFormFile> avatarUrl = await _fileStorageService.UploadFilesAsync(request.Avatar, "customer_avatar");
 
             var customer = await _customerRepository.GetByIdAsync(request.CustomerId);
 

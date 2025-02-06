@@ -1,4 +1,6 @@
-﻿using Amazon.S3;
+﻿using Amazon;
+using Amazon.Runtime;
+using Amazon.S3;
 using Amazon.S3.Model;
 using Amazon.S3.Transfer;
 using CustomerManagement.Core.Services;
@@ -6,8 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.IO;
 using System.Threading.Tasks;
 
 namespace CustomerManagament.Infrastructure.CloudServices
@@ -19,48 +20,60 @@ namespace CustomerManagament.Infrastructure.CloudServices
 
         public FileStorageService(IConfiguration configuration)
         {
-            AmazonS3Config config = new();
-            config.ServiceURL = configuration["Storage:ServiceURL"];
+            AmazonS3Config config = new AmazonS3Config
+            {
+                ServiceURL = configuration["Storage:ServiceURL"],
+                ForcePathStyle = true,
+                SignatureVersion = "4",
+                RequestChecksumCalculation = RequestChecksumCalculation.WHEN_REQUIRED,
+                ResponseChecksumValidation = ResponseChecksumValidation.WHEN_REQUIRED
+            };
+
             _bucketName = configuration["Storage:BucketName"];
 
-            _s3client = new AmazonS3Client(configuration["Storage:AccessKeyId"], configuration["Storage:SecretAcessKey"], config);
+            _s3client = new AmazonS3Client(
+                configuration["Storage:AccessKeyId"],
+                configuration["Storage:SecretAccessKey"],
+                config
+            );
         }
 
-        public Dictionary<string, IFormFile> UploadFiles(List<IFormFile> files, string folder)
+        public async Task<Dictionary<string, IFormFile>> UploadFilesAsync(List<IFormFile> files, string folder)
         {
             try
             {
-                TransferUtility transferUtility = new(_s3client);
-
-                Dictionary<string, IFormFile> filesUploaded = new();
+                var filesUploaded = new Dictionary<string, IFormFile>();
 
                 foreach (var file in files)
                 {
-                    var fileTransferUtilityRequest = new TransferUtilityUploadRequest
+                    using var stream = file.OpenReadStream();
+
+                    var request = new PutObjectRequest
                     {
+                        DisablePayloadSigning = true,
+                        UseChunkEncoding = false,    
                         BucketName = _bucketName,
-                        InputStream = file.OpenReadStream(),
-                        Key = $"{folder}/{Guid.NewGuid()}.{MimeTypes.GetMimeTypeExtensions(file.ContentType).First()}",
-                        CannedACL = S3CannedACL.PublicRead,
+                        Key = $"{folder}/{Guid.NewGuid()}{Path.GetExtension(file.FileName)}",
+                        InputStream = stream,
+                        ContentType = file.ContentType,
+                        Headers = { ContentLength = stream.Length }
                     };
 
-                    transferUtility.Upload(fileTransferUtilityRequest);
-
-                    filesUploaded.Add(fileTransferUtilityRequest.Key, file);
+                    await _s3client.PutObjectAsync(request);
+                    filesUploaded.Add(request.Key, file);
                 }
-
 
                 return filesUploaded;
             }
             catch (AmazonS3Exception ex)
             {
-                throw new Exception(ex.Message);
+                throw new Exception($"Erro S3: {ex.Message}");
             }
         }
 
-        public async Task DeleteFileAsync(string filePath) 
+        public async Task DeleteFileAsync(string filePath)
         {
-            DeleteObjectRequest request = new()
+            var request = new DeleteObjectRequest
             {
                 BucketName = _bucketName,
                 Key = filePath

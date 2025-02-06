@@ -23,7 +23,7 @@ namespace CustomerManagement.Application.Commands.UpdateUserAvatar
 
         public async Task<Unit> Handle(UpdateUserAvatarCommand request, CancellationToken cancellationToken)
         {
-            Dictionary<string, IFormFile> avatarUrl = _fileStorageService.UploadFiles(request.Avatar, "profile_avatar");
+            Dictionary<string, IFormFile> avatarUrl = await _fileStorageService.UploadFilesAsync(request.Avatar, "profile_avatar");
 
             var user = await _userRepository.GetByIdAsync(request.UserId);
 
