@@ -152,5 +152,14 @@ namespace CustomerManagementAPI.Controllers
             await _mediator.Send(command);
             return NoContent();
         }
+
+        [IgnoreTenant]
+        [HttpGet("pre-signed")]
+        public IActionResult GetPresigned()
+        {
+            string url = _fileStorageService.GeneratePreSignedUrl("profile_avatar/ba07ea2f-2b2a-4f25-a1bf-8822acfe17dc.png", 10);
+
+            return Ok(url);
+        }
     }
 }

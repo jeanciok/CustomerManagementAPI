@@ -97,7 +97,6 @@ builder.Services
   });
 
 builder.Services.AddScoped<IUserRepository, UserRepository>();
-builder.Services.AddScoped<ICustomerGroupRepository, CustomerGroupRepository>();
 builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
 builder.Services.AddScoped<IStateRepository, StateRepository>();
 builder.Services.AddScoped<IAuthService, AuthService>();

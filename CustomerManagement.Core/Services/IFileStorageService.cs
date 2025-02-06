@@ -11,5 +11,6 @@ namespace CustomerManagement.Core.Services
     {
         Task<Dictionary<string, IFormFile>> UploadFilesAsync(List<IFormFile> files, string folder);
         Task DeleteFileAsync(string filePath);
+        string GeneratePreSignedUrl(string key, int expirationInMinutes);
     }
 }

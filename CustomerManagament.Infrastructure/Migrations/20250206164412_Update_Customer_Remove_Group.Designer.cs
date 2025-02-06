@@ -3,6 +3,7 @@ using System;
 using CustomerManagament.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace CustomerManagament.Infrastructure.Migrations
 {
     [DbContext(typeof(CustomerManagementDbContext))]
-    partial class CostumerManagementDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250206164412_Update_Customer_Remove_Group")]
+    partial class Update_Customer_Remove_Group
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -104,6 +106,9 @@ namespace CustomerManagament.Infrastructure.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp without time zone");
 
+                    b.Property<Guid?>("CustomerGroupId")
+                        .HasColumnType("uuid");
+
                     b.Property<string>("Description")
                         .HasColumnType("text");
 
@@ -142,9 +147,31 @@ namespace CustomerManagament.Infrastructure.Migrations
 
                     b.HasIndex("CityId");
 
+                    b.HasIndex("CustomerGroupId");
+
                     b.HasIndex("TenantId");
 
                     b.ToTable("Customers");
+                });
+
+            modelBuilder.Entity("CustomerManagement.Core.Entities.CustomerGroup", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<Guid>("TenantId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TenantId");
+
+                    b.ToTable("CustomerGroups");
                 });
 
             modelBuilder.Entity("CustomerManagement.Core.Entities.Receipt", b =>
@@ -305,6 +332,10 @@ namespace CustomerManagament.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("CustomerManagement.Core.Entities.CustomerGroup", null)
+                        .WithMany("Customers")
+                        .HasForeignKey("CustomerGroupId");
+
                     b.HasOne("CustomerManagement.Core.Entities.Tenant", "Tenant")
                         .WithMany("Customers")
                         .HasForeignKey("TenantId")
@@ -312,6 +343,17 @@ namespace CustomerManagament.Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("City");
+
+                    b.Navigation("Tenant");
+                });
+
+            modelBuilder.Entity("CustomerManagement.Core.Entities.CustomerGroup", b =>
+                {
+                    b.HasOne("CustomerManagement.Core.Entities.Tenant", "Tenant")
+                        .WithMany("CustomerGroups")
+                        .HasForeignKey("TenantId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Tenant");
                 });
@@ -366,6 +408,11 @@ namespace CustomerManagament.Infrastructure.Migrations
                     b.Navigation("Receipts");
                 });
 
+            modelBuilder.Entity("CustomerManagement.Core.Entities.CustomerGroup", b =>
+                {
+                    b.Navigation("Customers");
+                });
+
             modelBuilder.Entity("CustomerManagement.Core.Entities.State", b =>
                 {
                     b.Navigation("Cities");
@@ -373,6 +420,8 @@ namespace CustomerManagament.Infrastructure.Migrations
 
             modelBuilder.Entity("CustomerManagement.Core.Entities.Tenant", b =>
                 {
+                    b.Navigation("CustomerGroups");
+
                     b.Navigation("Customers");
 
                     b.Navigation("Receipts");

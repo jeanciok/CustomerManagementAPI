@@ -30,7 +30,7 @@ namespace CustomerManagement.Application.Queries.GetCustomerById
             }
 
             CustomerViewModel customerViewModel = new(customer.Id, customer.Name, customer.PhoneNumber, customer.PhoneNumber2, customer.Cpf != null ? customer.Cpf : customer.Cnpj, customer.Cep, customer.Street, customer.Number, customer.District, customer.Additional, customer.Email, customer.Description, 
-                customer.City, customer.CreatedAt, customer.UpdatedAt, new CustomerGroupViewModel(customer.Group.Id, customer.Group.Name), $"{_bucketUrl}/{customer.AvatarUrl}");
+                customer.City, customer.CreatedAt, customer.UpdatedAt, $"{_bucketUrl}/{customer.AvatarUrl}");
 
             return customerViewModel;
         }

@@ -50,8 +50,7 @@ namespace CustomerManagement.Core.Repositories
             IQueryable<Customer> query = _context.Customers
                 .Where(c => c.TenantId == _tenantId)
                 .Include(c => c.City)
-                .Include(c => c.City.State)
-                .Include(g => g.Group);
+                .Include(c => c.City.State);
 
             if (!string.IsNullOrEmpty(name))
             {
@@ -79,7 +78,6 @@ namespace CustomerManagement.Core.Repositories
                 .Where(c => c.TenantId == _tenantId)
                 .Include(c => c.City)
                 .Include(c => c.City.State)
-                .Include(c => c.Group)
                 .FirstOrDefaultAsync(c => c.Id.Equals(id));
         }
 

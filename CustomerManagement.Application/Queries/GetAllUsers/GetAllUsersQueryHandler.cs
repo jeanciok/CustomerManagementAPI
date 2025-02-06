@@ -27,7 +27,7 @@ namespace CustomerManagement.Application.Queries.GetAllUsers
             List<User> users = await _userRepository.GetAllAsync();
 
             List<UserViewModel> usersViewModel = users
-                .Select(u => new UserViewModel(u.Id, u.Name, u.Email, u.IsActive, u.Role, u.Tenant, $"{_bucketUrl}/{u.AvatarUrl}"))
+                .Select(u => new UserViewModel(u.Id, u.Name, u.Email, u.IsActive, u.Role, u.Tenant))
                 .ToList();
 
             return usersViewModel;

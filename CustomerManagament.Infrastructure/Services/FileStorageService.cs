@@ -26,7 +26,7 @@ namespace CustomerManagament.Infrastructure.CloudServices
                 ForcePathStyle = true,
                 SignatureVersion = "4",
                 RequestChecksumCalculation = RequestChecksumCalculation.WHEN_REQUIRED,
-                ResponseChecksumValidation = ResponseChecksumValidation.WHEN_REQUIRED
+                ResponseChecksumValidation = ResponseChecksumValidation.WHEN_REQUIRED,
             };
 
             _bucketName = configuration["Storage:BucketName"];
@@ -81,5 +81,24 @@ namespace CustomerManagament.Infrastructure.CloudServices
 
             await _s3client.DeleteObjectAsync(request);
         }
+
+        public string GeneratePreSignedUrl(string key, int expirationInMinutes)
+        {
+            AWSConfigsS3.UseSignatureVersion4 = true;
+
+            var request = new GetPreSignedUrlRequest
+            {
+                BucketName = _bucketName,
+                Key = key,
+                Expires = DateTime.UtcNow.AddMinutes(expirationInMinutes),
+                //Protocol = Protocol.HTTPS,
+                Verb = HttpVerb.GET
+            };
+
+            // Gera a URL pré-assinada
+            string url = _s3client.GetPreSignedURL(request);
+            return url;
+        }
+
     }
 }

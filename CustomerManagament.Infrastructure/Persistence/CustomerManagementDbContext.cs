@@ -15,7 +15,6 @@ namespace CustomerManagament.Infrastructure.Persistence
         public DbSet<Tenant> Tenants { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<User> Users { get; set; }
-        public DbSet<CustomerGroup> CustomerGroups { get; set; }
         public DbSet<Attachment> Attachments { get; set; }
         public DbSet<City> City { get; set; }
         public DbSet<State> State { get; set; }
@@ -29,7 +28,7 @@ namespace CustomerManagament.Infrastructure.Persistence
             modelBuilder.ApplyConfiguration(new TenantConfigurations());
             modelBuilder.ApplyConfiguration(new UserConfigurations());
             modelBuilder.ApplyConfiguration(new CustomerConfigurations());
-            modelBuilder.ApplyConfiguration(new CostumerGroupConfigurations());
+            //modelBuilder.ApplyConfiguration(new CostumerGroupConfigurations());
             modelBuilder.ApplyConfiguration(new ReceiptConfiguration());
         }
     }

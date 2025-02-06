@@ -11,7 +11,7 @@ namespace CustomerManagement.Core.Entities
     public class Customer : BaseEntity
     {
         public Customer(Guid id, string name, string phoneNumber, string phoneNumber2, string cnpj, string cpf, string cep, 
-            string street, string number, string district, string additional, string email, string description, Guid cityId, Guid groupId)
+            string street, string number, string district, string additional, string email, string description, Guid cityId)
         {
             Id = id;
             Name = name;
@@ -29,7 +29,6 @@ namespace CustomerManagement.Core.Entities
             CityId = cityId;
             CreatedAt = DateTime.Now;
             UpdatedAt = DateTime.Now;
-            GroupId = groupId;
         }
 
         public Guid TenantId { get; set; }
@@ -44,8 +43,6 @@ namespace CustomerManagement.Core.Entities
         public string Number { get; set; }
         public string District { get; set; }
         public string? Additional { get; set; }
-        public Guid GroupId { get; set; }
-        public CustomerGroup Group { get; set; }
         public string? Email { get; set; }
         public string? Description { get; set; }
         public Guid CityId { get; set; }
