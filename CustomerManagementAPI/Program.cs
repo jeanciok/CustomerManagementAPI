@@ -128,7 +128,7 @@ app.UseCors(policy =>
     policy.AllowAnyOrigin()
           .AllowAnyMethod()
           .AllowAnyHeader()
-          .WithExposedHeaders("Content-Disposition")); // Exponha o cabeçalho necessário
+          .WithExposedHeaders("Content-Disposition"));
 
 
 // Configure the HTTP request pipeline.
