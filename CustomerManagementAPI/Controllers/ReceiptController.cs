@@ -27,12 +27,28 @@ namespace CustomerManagementAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get([FromQuery] int number, [FromQuery] Guid customerId, [FromQuery] DateTime startDate, [FromQuery] DateTime endDate)
+        public async Task<IActionResult> Get(
+            [FromQuery] int number,
+            [FromQuery] string customerName,
+            [FromQuery] DateTime startDate,
+            [FromQuery] DateTime endDate,
+            [FromQuery] int page = 1,
+            [FromQuery] int pageSize = 10)
         {
-            var query = new GetReceiptsQuery(number, customerId, startDate, endDate);
-            var receipts = await _mediator.Send(query);
-            return Ok(receipts);
+            var query = new GetReceiptsQuery
+            {
+                Number = number,
+                CustomerName = customerName,
+                StartDate = startDate,
+                EndDate = endDate,
+                Page = page,
+                PageSize = pageSize
+            };
+
+            var result = await _mediator.Send(query);
+            return Ok(result);
         }
+
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(Guid id)

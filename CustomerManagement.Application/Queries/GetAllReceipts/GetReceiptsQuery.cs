@@ -1,23 +1,12 @@
-﻿using MediatR;
-using CustomerManagement.Core.Entities;
-using System.Collections.Generic;
-using CustomerManagement.Application.ViewModels;
+﻿using CustomerManagement.Application.ViewModels;
+using MediatR;
 
-namespace CustomerManagement.Application.Queries.GetAllReceipts
+public class GetReceiptsQuery : IRequest<PaginationResult<ReceiptViewModel>>
 {
-    public class GetReceiptsQuery : IRequest<List<ReceiptViewModel>>
-    {
-        public int Number { get; }
-        public Guid CustomerId { get; }
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
-
-        public GetReceiptsQuery(int number, Guid customerId, DateTime startDate, DateTime endDate)
-        {
-            Number = number;
-            CustomerId = customerId;
-            StartDate = startDate;
-            EndDate = endDate;
-        }
-    }
+    public int Number { get; set; }
+    public string CustomerName { get; set; }
+    public DateTime StartDate { get; set; }
+    public DateTime EndDate { get; set; }
+    public int Page { get; set; } = 1;
+    public int PageSize { get; set; } = 10;
 }

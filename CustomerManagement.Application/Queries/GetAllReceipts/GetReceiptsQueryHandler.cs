@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CustomerManagement.Application.Queries.GetAllReceipts
 {
-    public class GetReceiptsQueryHandler : IRequestHandler<GetReceiptsQuery, List<ReceiptViewModel>>
+    public class GetReceiptsQueryHandler : IRequestHandler<GetReceiptsQuery, PaginationResult<ReceiptViewModel>>
     {
         private readonly IReceiptRepository _receiptRepository;
 
@@ -18,15 +18,25 @@ namespace CustomerManagement.Application.Queries.GetAllReceipts
             _receiptRepository = receiptRepository;
         }
 
-        public async Task<List<ReceiptViewModel>> Handle(GetReceiptsQuery request, CancellationToken cancellationToken)
+        public async Task<PaginationResult<ReceiptViewModel>> Handle(GetReceiptsQuery request, CancellationToken cancellationToken)
         {
-            List<Receipt> receipts = await _receiptRepository.Get(request.Number, request.CustomerId, request.StartDate, request.EndDate);
+            var (receipts, total) = await _receiptRepository.Get(
+                request.Number,
+                request.CustomerName,
+                request.StartDate,
+                request.EndDate,
+                request.Page,
+                request.PageSize);
 
-            List<ReceiptViewModel> receiptViewModels = receipts
-                .Select(r => new ReceiptViewModel(r.Id, r.Number, r.Tenant.Name, r.Customer.Name, r.Value, r.Description, r.Date, r.User.Name))
+            var receiptViewModels = receipts
+                .Select(r => new ReceiptViewModel(r.Id, r.Number, r.Tenant.Name, r.Customer.Name,
+                    r.Value, r.Description, r.Date, r.User.Name))
                 .ToList();
 
-            return receiptViewModels;
+            int totalPages = (int)Math.Ceiling(total / (double)request.PageSize);
+
+            return new PaginationResult<ReceiptViewModel>(receiptViewModels, request.Page, totalPages, total);
         }
-    } 
+    }
+
 }
