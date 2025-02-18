@@ -45,7 +45,7 @@ namespace CustomerManagement.Core.Repositories
             }
         }
 
-        public async Task<List<Customer>> Get(string name, string cpfCnpj)
+        public async Task<(List<Customer>, int)> Get(string name, string cpfCnpj, int page, int pageSize)
         {
             IQueryable<Customer> query = _context.Customers
                 .Where(c => c.TenantId == _tenantId)
@@ -67,7 +67,14 @@ namespace CustomerManagement.Core.Repositories
                 query = query.Where(c => c.Cnpj == cpfCnpj);
             }
 
-            return await query.ToListAsync();
+            int total = await query.CountAsync();
+
+            var customers = await query
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            return (customers, total);
         }
 
         public async Task<Customer> GetByIdAsync(Guid id)

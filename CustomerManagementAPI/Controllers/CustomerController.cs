@@ -29,12 +29,14 @@ namespace CustomerManagementAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get([FromQuery] string? name, [FromQuery] string cpfCnpj)
+        public async Task<IActionResult> Get([FromQuery] string? name, [FromQuery] string? cpfCnpj, [FromQuery] int page = 1, [FromQuery] int pageSize = 10)
         {
             var query = new GetAllCustomersQuery
             {
                 Name = name,
-                CpfCnpj = cpfCnpj
+                CpfCnpj = cpfCnpj,
+                Page = page,
+                PageSize = pageSize
             };
 
             var result = await _mediator.Send(query);

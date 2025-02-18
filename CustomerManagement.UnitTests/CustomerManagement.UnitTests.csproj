@@ -27,4 +27,8 @@
     <ProjectReference Include="..\CustomerManagement.Application\CustomerManagement.Application.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Application\Queries\" />
+  </ItemGroup>
+
 </Project>
