@@ -16,13 +16,11 @@ namespace CustomerManagement.Application.Commands.LoginUser
     {
         private IAuthService _authService;
         private IUserRepository _userRepository;
-        private readonly string _bucketUrl;
 
         public LoginUserCommandHandler(IAuthService authService, IUserRepository userRepository, IConfiguration configuration)
         {
             _authService = authService;
             _userRepository = userRepository;
-            _bucketUrl = configuration["Storage:BucketURL"];
         }
 
         public async Task<LoginUserViewModel> Handle(LoginUserCommand request, CancellationToken cancellationToken)
@@ -38,7 +36,7 @@ namespace CustomerManagement.Application.Commands.LoginUser
 
             var token = _authService.GenerateToken(user.Id, user.Role, user.TenantId);
 
-            return new LoginUserViewModel(user.Id, user.Name, user.Email, token, user.Tenant, $"{_bucketUrl}/{user.AvatarUrl}", user.Role);
+            return new LoginUserViewModel(user.Id, user.Name, user.Email, token, user.Tenant, "", user.Role);
         }
     }
 }

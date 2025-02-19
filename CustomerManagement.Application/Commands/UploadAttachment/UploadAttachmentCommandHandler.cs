@@ -28,7 +28,7 @@ namespace CustomerManagement.Application.Commands.UploadAttachment
 
             foreach (var item in uploadFiles)
             {
-                var attachment = new Attachment(item.Value.FileName, item.Key, MimeTypes.GetMimeTypeExtensions(item.Value.ContentType).First(), request.CustomerId);
+                var attachment = new Attachment(Guid.NewGuid(), item.Value.FileName, item.Key, MimeTypes.GetMimeTypeExtensions(item.Value.ContentType).First(), request.CustomerId);
                 await _attachmentRepository.AddAsync(attachment);
             }
 

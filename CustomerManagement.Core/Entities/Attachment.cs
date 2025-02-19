@@ -2,8 +2,9 @@
 {
     public class Attachment : BaseEntity
     {
-        public Attachment(string name, string fileUrl, string fileType, Guid customerId)
+        public Attachment(Guid id, string name, string fileUrl, string fileType, Guid customerId)
         {
+            Id = id;
             Name = name;
             FileUrl = fileUrl;
             FileType = fileType;

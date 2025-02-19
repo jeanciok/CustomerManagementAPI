@@ -54,7 +54,7 @@ namespace CustomerManagement.Core.Repositories
 
             if (!string.IsNullOrEmpty(name))
             {
-                query = query.Where(c => c.Name.Contains(name));
+                query = query.Where(c => c.Name.ToLower().Contains(name.ToLower()));
             }
 
             if (!string.IsNullOrEmpty(cpfCnpj) && cpfCnpj.IsCpf())

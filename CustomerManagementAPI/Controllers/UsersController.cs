@@ -157,7 +157,7 @@ namespace CustomerManagementAPI.Controllers
         [HttpGet("pre-signed")]
         public IActionResult GetPresigned()
         {
-            string url = _fileStorageService.GeneratePreSignedUrl("profile_avatar/ba07ea2f-2b2a-4f25-a1bf-8822acfe17dc.png", 10);
+            string url = _fileStorageService.GeneratePreSignedUrl("attachments/64ed92dd-5ac0-49b4-891f-51b83e08a563.pdf", 10);
 
             return Ok(url);
         }

@@ -14,12 +14,10 @@ namespace CustomerManagement.Application.Queries.GetAllUsers
     public class GetAllUsersQueryHandler : IRequestHandler<GetAllUsersQuery, List<UserViewModel>>
     {
         private readonly IUserRepository _userRepository;
-        private readonly string _bucketUrl;
 
         public GetAllUsersQueryHandler(IUserRepository userRepository, IConfiguration configuration)
         {
             _userRepository = userRepository;
-            _bucketUrl = configuration["Storage:BucketURL"];
         }
 
         public async Task<List<UserViewModel>> Handle(GetAllUsersQuery request, CancellationToken cancellationToken)

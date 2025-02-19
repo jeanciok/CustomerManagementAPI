@@ -11,13 +11,10 @@ namespace CustomerManagement.Application.Queries.GetCustomerById
     public class GetCustomerByIdQueryHandler : IRequestHandler<GetCustomerByIdQuery, CustomerViewModel>
     {
         private readonly ICustomerRepository _customerRepository;
-        private readonly string _bucketUrl;
 
         public GetCustomerByIdQueryHandler(ICustomerRepository customerRepository, IConfiguration configuration)
         {
             _customerRepository = customerRepository;
-            _bucketUrl = configuration["Storage:BucketURL"];
-            
         }
 
         public async Task<CustomerViewModel> Handle(GetCustomerByIdQuery request, CancellationToken cancellationToken)
@@ -30,7 +27,7 @@ namespace CustomerManagement.Application.Queries.GetCustomerById
             }
 
             CustomerViewModel customerViewModel = new(customer.Id, customer.Name, customer.PhoneNumber, customer.PhoneNumber2, customer.Cpf != null ? customer.Cpf : customer.Cnpj, customer.Cep, customer.Street, customer.Number, customer.District, customer.Additional, customer.Email, customer.Description, 
-                customer.City, customer.CreatedAt, customer.UpdatedAt, $"{_bucketUrl}/{customer.AvatarUrl}");
+                customer.City, customer.CreatedAt, customer.UpdatedAt, "");
 
             return customerViewModel;
         }

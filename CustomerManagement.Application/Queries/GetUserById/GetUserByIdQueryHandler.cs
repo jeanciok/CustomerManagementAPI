@@ -16,12 +16,10 @@ namespace CustomerManagement.Application.Queries.GetUserById
     {
         private readonly IUserRepository _userRepository;
         private readonly IFileStorageService _fileStorageService;
-        private readonly string _bucketUrl;
 
         public GetUserByIdQueryHandler(IUserRepository userRepository, IConfiguration configuration, IFileStorageService fileStorageService)
         {
             _userRepository = userRepository;
-            _bucketUrl = configuration["Storage:BucketURL"];
             _fileStorageService = fileStorageService;
         }
 

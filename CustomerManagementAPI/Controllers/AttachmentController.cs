@@ -1,6 +1,7 @@
 ﻿using CustomerManagement.Application.Commands.DeleteAttachment;
 using CustomerManagement.Application.Commands.UploadAttachment;
 using CustomerManagement.Application.Queries.GetAllAttachments;
+using CustomerManagement.Application.Queries.GetPreSignedUrl;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -44,6 +45,15 @@ namespace CustomerManagementAPI.Controllers
             await _mediator.Send(command);
 
             return NoContent();
+        }
+
+        [HttpGet]
+        [Route("presigned-url/{attachmentId}")]
+        public async Task<IActionResult> GetPreSignedUrl(Guid attachmentId)
+        {
+            GetPreSignedUrlQuery query = new(attachmentId);
+            var result = await _mediator.Send(query);
+            return Ok(result);
         }
     }
 }

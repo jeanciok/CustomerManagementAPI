@@ -1,5 +1,6 @@
 ﻿using CustomerManagement.Core.Entities;
 using CustomerManagement.Core.Repositories;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -12,10 +13,15 @@ namespace CustomerManagament.Infrastructure.Persistence.Repositories
     public class AttachmentRepository : IAttachmentRepository
     {
         private readonly CustomerManagementDbContext _context;
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly Guid _tenantId;
 
-        public AttachmentRepository(CustomerManagementDbContext context)
+        public AttachmentRepository(CustomerManagementDbContext context, IHttpContextAccessor httpContextAccessor)
         {
             _context = context;
+            _httpContextAccessor = httpContextAccessor;
+            var _userClaims = _httpContextAccessor.HttpContext.User.Claims;
+            _tenantId = Guid.Parse(_userClaims.FirstOrDefault(c => c.Type == "tenant_id").Value);
         }
 
         public async Task AddAsync(Attachment attachment)
@@ -27,7 +33,8 @@ namespace CustomerManagament.Infrastructure.Persistence.Repositories
         public async Task<Attachment> GetByIdAsync(Guid id)
         {
             return await _context.Attachments
-                .FirstOrDefaultAsync(x => x.Id == id);
+                .Where(a => a.Customer.TenantId.Equals(_tenantId))
+                .SingleOrDefaultAsync(a => a.Id == id);
         }
 
         public async Task DeleteAsync(Guid id)
