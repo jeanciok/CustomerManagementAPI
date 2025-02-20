@@ -18,8 +18,25 @@ namespace CustomerManagement.Application.Commands.UpdateCustomer
 
         public async Task<Unit> Handle(UpdateCustomerCommand request, CancellationToken cancellationToken)
         {
-            var customer = new Customer(request.Id, request.Name, request.PhoneNumber, request.PhoneNumber2, request.CNPJ, request.CPF, request.CEP,
-                               request.Street, request.Number, request.District, request.Additional, request.Email, request.Description, request.CityId);
+            var customer = await _customerRepository.GetByIdAsync(request.Id);
+            if (customer == null)
+            {
+                throw new Exception("Customer not found");
+            }
+
+            customer.Name = request.Name;
+            customer.PhoneNumber = request.PhoneNumber;
+            customer.PhoneNumber2 = request.PhoneNumber2;
+            customer.Cnpj = request.CNPJ;
+            customer.Cpf = request.CPF;
+            customer.Cep = request.CEP;
+            customer.Street = request.Street;
+            customer.Number = request.Number;
+            customer.District = request.District;
+            customer.Additional = request.Additional;
+            customer.Email = request.Email;
+            customer.Description = request.Description;
+            customer.CityId = request.CityId;
 
             await _customerRepository.UpdateAsync(customer);
             return Unit.Value;

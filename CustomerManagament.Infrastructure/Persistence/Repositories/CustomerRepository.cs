@@ -85,6 +85,7 @@ namespace CustomerManagement.Core.Repositories
                 .Where(c => c.TenantId == _tenantId)
                 .Include(c => c.City)
                 .Include(c => c.City.State)
+                .Include(c => c.Attachments)
                 .FirstOrDefaultAsync(c => c.Id.Equals(id));
         }
 
