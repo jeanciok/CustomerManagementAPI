@@ -36,13 +36,9 @@ namespace CustomerManagement.Application.Queries.GetUserById
                 user.Email,
                 user.IsActive,
                 user.Role,
-                user.Tenant
+                user.Tenant,
+                !string.IsNullOrEmpty(user.AvatarUrl) ? _fileStorageService.GeneratePreSignedUrl(user.AvatarUrl, 30) : null
             );
-
-            if (!string.IsNullOrEmpty(user.AvatarUrl))
-            {
-                viewModel.AvatarUrl = _fileStorageService.GeneratePreSignedUrl(user.AvatarUrl, 1);
-            }
 
             return viewModel;
         }
