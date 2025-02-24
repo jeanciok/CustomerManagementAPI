@@ -1,4 +1,5 @@
 ﻿using CustomerManagement.Core.Entities;
+using CustomerManagement.Core.Helpers;
 using CustomerManagement.Core.Repositories;
 using MediatR;
 using System;
@@ -27,8 +28,8 @@ namespace CustomerManagement.Application.Commands.UpdateCustomer
             customer.Name = request.Name;
             customer.PhoneNumber = request.PhoneNumber;
             customer.PhoneNumber2 = request.PhoneNumber2;
-            customer.Cnpj = request.CNPJ;
-            customer.Cpf = request.CPF;
+            customer.Cnpj = request.CNPJ.IsCnpj() ? request.CNPJ : string.Empty;
+            customer.Cpf = request.CPF.IsCpf() ? request.CPF : string.Empty;
             customer.Cep = request.CEP;
             customer.Street = request.Street;
             customer.Number = request.Number;
@@ -37,6 +38,7 @@ namespace CustomerManagement.Application.Commands.UpdateCustomer
             customer.Email = request.Email;
             customer.Description = request.Description;
             customer.CityId = request.CityId;
+            customer.UpdatedAt = DateTime.Now;
 
             await _customerRepository.UpdateAsync(customer);
             return Unit.Value;

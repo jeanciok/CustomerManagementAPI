@@ -11,7 +11,7 @@ namespace CustomerManagement.Core.Entities
     public class Customer : BaseEntity
     {
         public Customer(Guid id, string name, string phoneNumber, string phoneNumber2, string cnpj, string cpf, string cep, 
-            string street, string number, string district, string additional, string email, string description, Guid cityId)
+            string street, string number, string district, string additional, string email, string description, Guid cityId, DateTime createdAt, DateTime updatedAt)
         {
             Id = id;
             Name = name;
@@ -27,8 +27,8 @@ namespace CustomerManagement.Core.Entities
             Email = email;
             Description = description;
             CityId = cityId;
-            CreatedAt = DateTime.Now;
-            UpdatedAt = DateTime.Now;
+            CreatedAt = createdAt;
+            UpdatedAt = updatedAt;
         }
 
         public Guid TenantId { get; set; }

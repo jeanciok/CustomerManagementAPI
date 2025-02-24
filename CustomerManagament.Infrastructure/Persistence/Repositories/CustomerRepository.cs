@@ -79,8 +79,6 @@ namespace CustomerManagement.Core.Repositories
 
         public async Task<Customer> GetByIdAsync(Guid id)
         {
-            // TODO - Include Group
-
             return await _context.Customers
                 .Where(c => c.TenantId == _tenantId)
                 .Include(c => c.City)
