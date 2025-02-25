@@ -24,16 +24,10 @@ namespace CustomerManagementAPI.Controllers
     public class UsersController : ControllerBase
     {
         private readonly IMediator _mediator;
-        private readonly IAuthService _authService;
-        private readonly IFileStorageService _fileStorageService;
-        private readonly IEmailService _emailService;
 
-        public UsersController(IMediator mediator, IAuthService authService, IFileStorageService fileStorageService, IEmailService emailService)
+        public UsersController(IMediator mediator)
         {
             _mediator = mediator;
-            _authService = authService;
-            _fileStorageService = fileStorageService;
-            _emailService = emailService;
         }
 
         [HttpGet]
@@ -154,12 +148,13 @@ namespace CustomerManagementAPI.Controllers
         }
 
         [IgnoreTenant]
-        [HttpGet("pre-signed")]
-        public IActionResult GetPresigned()
+        [HttpPost("verify-token")]
+        public async Task<IActionResult> VerifyToken([FromBody] string token)
         {
-            string url = _fileStorageService.GeneratePreSignedUrl("attachments/64ed92dd-5ac0-49b4-891f-51b83e08a563.pdf", 10);
+            var query = new VerifyTokenQuery(token);
+            bool result = await _mediator.Send(query);
 
-            return Ok(url);
+            return Ok(result);
         }
     }
 }

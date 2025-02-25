@@ -53,7 +53,7 @@ namespace CustomerManagament.Infrastructure.Auth
             var token = new JwtSecurityToken(
                 issuer: issuer,
                 audience: audience,
-                expires: DateTime.Now.AddHours(24),
+                expires: DateTime.Now.AddHours(8),
                 signingCredentials: credentials,
                 claims: claims);
 
