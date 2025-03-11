@@ -109,7 +109,7 @@ builder.Services.AddScoped<IPdfService, PdfService>();
 builder.Services.AddScoped<IOpenCepService, OpenCepService>();
 builder.Services.AddScoped<IEmailService, EmailService>();
 
-builder.Services.AddHttpClient(); // Adicione esta linha
+builder.Services.AddHttpClient();
 
 builder.Services
     .AddValidatorsFromAssemblyContaining<CreateUserCommandValidator>()
