@@ -30,8 +30,11 @@ namespace CustomerManagement.Application.Commands.LoginUser
             var user = await _userRepository.GetByEmailAndPasswordHashAsync(request.Email, passwordHash);
 
             if (user == null)
+                throw new Exception("Usuário ou senha inválida");
+
+            if (!user.IsActive)
             {
-                throw new Exception("Invalid email or password");
+                throw new Exception("Usuário inativo ou bloqueado");
             }
 
             var token = _authService.GenerateToken(user.Id, user.Role, user.TenantId);
