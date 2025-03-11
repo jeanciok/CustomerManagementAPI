@@ -1,10 +1,6 @@
 ﻿using CustomerManagement.Application.Commands.CreateUser;
 using FluentValidation;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CustomerManagement.Application.Validators
 {
@@ -12,10 +8,20 @@ namespace CustomerManagement.Application.Validators
     {
         public CreateUserCommandValidator()
         {
-            RuleFor(x => x.Name).NotEmpty().WithMessage("Name is required");
-            RuleFor(x => x.Email).EmailAddress().WithMessage("Email not valid");
-            RuleFor(x => x.Password).NotEmpty().WithMessage("Password is required");
-            //RuleFor(x => x.TenantId).NotEmpty().WithMessage("Tenant is required");
+            RuleFor(x => x.Name)
+                .NotEmpty().WithMessage("Nome é obrigatório");
+
+            RuleFor(x => x.Email)
+                .NotEmpty().WithMessage("Email é obrigatório")
+                .EmailAddress().WithMessage("Email não é válido");
+
+            RuleFor(x => x.Password)
+                .NotEmpty().WithMessage("Senha é obrigatória")
+                .MinimumLength(8).WithMessage("A senha deve ter pelo menos 8 caracteres")
+                .Matches("[A-Z]").WithMessage("A senha deve conter pelo menos uma letra maiúscula")
+                .Matches("[a-z]").WithMessage("A senha deve conter pelo menos uma letra minúscula")
+                .Matches("[0-9]").WithMessage("A senha deve conter pelo menos um número")
+                .Matches("[^a-zA-Z0-9]").WithMessage("A senha deve conter pelo menos um caractere especial");
         }
     }
 }
