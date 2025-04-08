@@ -22,6 +22,7 @@ using Microsoft.AspNetCore.Identity;
 using CustomerManagament.Infrastructure.Services;
 using QuestPDF.Infrastructure;
 using CustomerManagement.Application.Services;
+using CustomerManagementAPI.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -145,5 +146,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.Run();
