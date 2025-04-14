@@ -1,4 +1,5 @@
 ﻿using CustomerManagement.Application.ViewModels;
+using CustomerManagement.Core.Exceptions;
 using CustomerManagement.Core.Repositories;
 using CustomerManagement.Core.Services;
 using MediatR;
@@ -30,11 +31,11 @@ namespace CustomerManagement.Application.Commands.LoginUser
             var user = await _userRepository.GetByEmailAndPasswordHashAsync(request.Email, passwordHash);
 
             if (user == null)
-                throw new Exception("Usuário ou senha inválida");
+                throw new APIException("Usuário ou senha inválido");
 
             if (!user.IsActive)
             {
-                throw new Exception("Usuário inativo ou bloqueado");
+                throw new APIException("Usuário inativo ou bloqueado");
             }
 
             var token = _authService.GenerateToken(user.Id, user.Role, user.TenantId);

@@ -13,7 +13,7 @@ namespace CustomerManagementAPI.Filters
         {
             if (!context.ModelState.IsValid)
             {
-                var messages = context.ModelState
+                List<string> messages = context.ModelState
                     .SelectMany(msg => msg.Value.Errors)
                     .Select(e => e.ErrorMessage)
                     .ToList();

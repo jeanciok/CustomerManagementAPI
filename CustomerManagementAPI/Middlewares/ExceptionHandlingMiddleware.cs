@@ -1,12 +1,14 @@
-﻿using System.Net;
+﻿using CustomerManagement.Core.Exceptions;
+using System.Net;
+using System.Text.Json;
 
 namespace CustomerManagementAPI.Middlewares
 {
     public class ExceptionHandlingMiddleware
     {
-        readonly RequestDelegate _next;
-        readonly ILogger<ExceptionHandlingMiddleware> _logger;
-        readonly IWebHostEnvironment _env;
+        private readonly RequestDelegate _next;
+        private readonly ILogger<ExceptionHandlingMiddleware> _logger;
+        private readonly IWebHostEnvironment _env;
 
         public ExceptionHandlingMiddleware(RequestDelegate next, ILogger<ExceptionHandlingMiddleware> logger, IWebHostEnvironment env)
         {
@@ -23,21 +25,46 @@ namespace CustomerManagementAPI.Middlewares
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Error: {ex.Message}");
-
-                context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                context.Response.ContentType = "application/json";
-
-                var isDevelopment = _env.IsDevelopment();
-                string details = isDevelopment ? ex.StackTrace : string.Empty;
-
-                object errorResponse = new {
-                    Message = "Unexpected server error",
-                    Details = details
-                };
-
-                await context.Response.WriteAsJsonAsync(errorResponse);
+                await HandleExceptionAsync(context, ex);
             }
+        }
+
+        private async Task HandleExceptionAsync(HttpContext context, Exception exception)
+        {
+            HttpStatusCode statusCode = HttpStatusCode.InternalServerError;
+            string message;
+            string details = string.Empty;
+
+            bool isDevelopment = !_env.IsDevelopment();
+
+            switch (exception)
+            {
+                case APIException apiEx:
+                    statusCode = HttpStatusCode.BadRequest;
+                    message = apiEx.Message;
+                    _logger.LogWarning(exception, $"Erro de API: {message}");
+                    break;
+
+                default:
+                    message = "Erro interno do servidor";
+                    if (isDevelopment)
+                    {
+                        details = exception.StackTrace ?? string.Empty;
+                    }
+                    _logger.LogError(exception, $"Erro não tratado: {exception.Message}");
+                    break;
+            }
+
+            context.Response.StatusCode = (int)statusCode;
+            context.Response.ContentType = "application/json";
+
+            var errorResponse = new
+            {
+                Message = message,
+                Details = details
+            };
+
+            await context.Response.WriteAsJsonAsync(errorResponse);
         }
     }
 }
