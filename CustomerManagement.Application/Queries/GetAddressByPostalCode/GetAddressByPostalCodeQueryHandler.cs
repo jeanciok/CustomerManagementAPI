@@ -1,11 +1,14 @@
 ﻿using CustomerManagement.Application.Services;
 using CustomerManagement.Application.ViewModels;
 using CustomerManagement.Core.Entities;
+using CustomerManagement.Core.Exceptions;
 using MediatR;
 
 
 namespace CustomerManagement.Application.Queries.GetAddressByPostalCode
 {
+
+
     public class GetAddressByPostalCodeQueryHandler : IRequestHandler<GetAddressByPostalCodeQuery, AddressViewModel>
     {
         private readonly IOpenCepService _openCepService;
@@ -18,11 +21,6 @@ namespace CustomerManagement.Application.Queries.GetAddressByPostalCode
         public async Task<AddressViewModel> Handle(GetAddressByPostalCodeQuery request, CancellationToken cancellationToken)
         {
             var address = await _openCepService.GetAddressByPostalCode(request.PostalCode);
-
-            if (address == null)
-            {
-                return null;
-            }
 
             var addressViewModel = new AddressViewModel
             {
