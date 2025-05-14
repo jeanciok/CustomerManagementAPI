@@ -1,28 +1,30 @@
-using CustomerManagament.Infrastructure.Persistence;
 using CustomerManagament.Infrastructure.Auth;
+using CustomerManagament.Infrastructure.CloudServices;
+using CustomerManagament.Infrastructure.Persistence;
 using CustomerManagament.Infrastructure.Persistence.Repositories;
+using CustomerManagament.Infrastructure.Services;
 using CustomerManagement.Application.Queries.GetAllUsers;
+using CustomerManagement.Application.Services;
+using CustomerManagement.Application.Validators;
+using CustomerManagement.Core.Interfaces;
 using CustomerManagement.Core.Repositories;
 using CustomerManagement.Core.Services;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
-using System.Text.Json.Serialization;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
-using Microsoft.OpenApi.Models;
-using CustomerManagement.Core.Interfaces;
 using CustomerManagement.Infrastructure.Repositories;
-using CustomerManagement.Application.Validators;
+using CustomerManagementAPI.Filters;
+using CustomerManagementAPI.Middlewares;
 using FluentValidation;
 using FluentValidation.AspNetCore;
-using CustomerManagementAPI.Filters;
-using CustomerManagament.Infrastructure.CloudServices;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
-using CustomerManagament.Infrastructure.Services;
+using Microsoft.AspNetCore.RateLimiting;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using QuestPDF.Infrastructure;
-using CustomerManagement.Application.Services;
-using CustomerManagementAPI.Middlewares;
+using System.Text;
+using System.Text.Json.Serialization;
+using System.Threading.RateLimiting;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -76,8 +78,22 @@ builder.Services.AddDbContext<CustomerManagementDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("Default"));
 });
 
-//builder.Services.AddIdentity<IdentityUser, IdentityRole>()
-//    .AddEntityFrameworkStores<CustomerManagementDbContext>();
+builder.Services.AddRateLimiter(options =>
+{
+    options.AddPolicy("ip-policy", context =>
+        RateLimitPartition.GetFixedWindowLimiter(
+            partitionKey: context.Connection.RemoteIpAddress?.ToString() ?? "unknown",
+            factory: key => new FixedWindowRateLimiterOptions
+            {
+                PermitLimit = 5,
+                Window = TimeSpan.FromSeconds(5),
+                QueueProcessingOrder = QueueProcessingOrder.OldestFirst,
+                QueueLimit = 3
+            }
+        )
+    );
+    options.RejectionStatusCode = StatusCodes.Status429TooManyRequests;
+});
 
 builder.Services
   .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -145,7 +161,9 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapControllers();
+app.UseRateLimiter();
+
+app.MapControllers().RequireRateLimiting("ip-policy");
 
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 
