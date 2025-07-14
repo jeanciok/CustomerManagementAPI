@@ -1,0 +1,31 @@
+name: CI/CD Customer Management
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Deploy to Ubuntu VM
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: 91.99.53.138
+        username: root
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        script: |
+          cd /root/source/CustomerManagementAPI
+          
+          git pull origin main
+         
+          docker compose down
+          docker compose up -d --build
+          
+          docker compose ps
