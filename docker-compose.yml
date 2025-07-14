@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: CustomerManagement.API/Dockerfile
+    container_name: customer-management-api 
+    expose:
+      - "8080" 
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://+:8080
+    restart: unless-stopped
+    networks:
+      - nginx-proxy-network 
+      - default          
+
+networks:
+  nginx-proxy-network:
+    external: true
