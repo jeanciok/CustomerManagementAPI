@@ -17,8 +17,8 @@ jobs:
     - name: Deploy to Ubuntu VM
       uses: appleboy/ssh-action@v1.0.3
       with:
-        host: 91.99.53.138
-        username: root
+        host: ${{ secrets.VM_HOST }}
+        username: ${{ secrets.VM_USERNAME }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         script: |
           cd /root/source/CustomerManagementAPI
